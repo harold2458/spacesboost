@@ -8,8 +8,8 @@ class Animeted extends StatefulWidget {
   State<Animeted> createState() => _AnimetedState();
 }
 
-class _AnimetedState extends State<Animeted> {
-    late AnimationController _controller;
+class _AnimetedState extends State<Animeted> with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
   late Animation<Offset> _rocketAnimation;
   late Animation<double> _logoOpacityAnimation;
   late Animation<Offset> _curtainLeftAnimation;
@@ -20,7 +20,7 @@ class _AnimetedState extends State<Animeted> {
     super.initState();
 
     _controller = AnimationController(
-      vsync: this,
+      vsync: this,  // Corrected here by adding the mixin
       duration: Duration(seconds: 5),
     );
 
@@ -63,7 +63,6 @@ class _AnimetedState extends State<Animeted> {
     // Start the animation and then navigate to the next page
     _controller.forward().then((value) {
       Timer(Duration(seconds: 4), () {
-        // Using Flutter's native Navigator instead of Get
         Navigator.pushReplacementNamed(context, '/home'); // Replace with your actual route
       });
     });
@@ -74,10 +73,11 @@ class _AnimetedState extends State<Animeted> {
     _controller.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-     body: Stack(
+    return Scaffold(
+      body: Stack(
         children: [
           // Background color
           Container(
