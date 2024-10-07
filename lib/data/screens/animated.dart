@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'package:projet_mobile/data/screens/onboarding.dart';
 
-class Animeted extends StatefulWidget {
-  const Animeted({super.key});
+class Animated extends StatefulWidget {
+  const Animated({super.key}); // Notez que j'ai corrigé le nom de la classe ici
 
   @override
-  State<Animeted> createState() => _AnimetedState();
+  State<Animated> createState() => _AnimatedState();
 }
 
-class _AnimetedState extends State<Animeted> with SingleTickerProviderStateMixin {
+class _AnimatedState extends State<Animated> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<Offset> _rocketAnimation;
   late Animation<double> _logoOpacityAnimation;
@@ -20,7 +21,7 @@ class _AnimetedState extends State<Animeted> with SingleTickerProviderStateMixin
     super.initState();
 
     _controller = AnimationController(
-      vsync: this,  // Corrected here by adding the mixin
+      vsync: this,
       duration: Duration(seconds: 5),
     );
 
@@ -63,7 +64,10 @@ class _AnimetedState extends State<Animeted> with SingleTickerProviderStateMixin
     // Start the animation and then navigate to the next page
     _controller.forward().then((value) {
       Timer(Duration(seconds: 4), () {
-        Navigator.pushReplacementNamed(context, '/home'); // Replace with your actual route
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const Onboarding()),
+        );
       });
     });
   }
