@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projet_mobile/data/screens/influenceur_login.dart';
 
 class ProfileType extends StatefulWidget {
   const ProfileType({super.key});
@@ -12,56 +13,45 @@ class _ProfileTypeState extends State<ProfileType> {
   Widget build(BuildContext context) {
     return Scaffold(
        body: Column(
+         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Expanded(
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    'assets/logos/logo.png',
-                    height: 100,
-                  ),
-                  SizedBox(height: 20),
-                  Text(
-                    'Veuillez choisir le type de profil :',
-                    style: TextStyle(fontSize: 18),
-                  ),
-                  SizedBox(height: 20),
-                  ElevatedButton(
-                    onPressed: () {
-                      // Navigation vers la page Entreprise
-                      Navigator.pushNamed(context, '/entreprise');
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue.shade900,
-                      foregroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20), // Bordures arrondies
-                      ),
-                      minimumSize: Size(200, 50),
-                    ),
-                    child: Text('Entreprise', style: TextStyle(fontSize: 18)),
-                  ),
-                  SizedBox(height: 20),
-                  ElevatedButton(
-                    onPressed: () {
-                      // Navigation vers la page Influenceur
-                      Navigator.pushNamed(context, '/influenceur');
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xfffcbc1c),
-                      foregroundColor: Color(0xff072858),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20), // Bordures arrondies
-                      ),
-                      minimumSize: Size(200, 50),
-                    ),
-                    child: Text('Influenceur', style: TextStyle(fontSize: 18)),
-                  ),
-                ],
-              ),
+          Image.asset(
+            'assets/logos/logo.png',
+            height: 100,
+          ),
+          const SizedBox(height: 170),
+          const Text(
+            'Veuillez choisir le type de profil',
+            style: TextStyle(fontSize: 18),
+          ),
+          const SizedBox(height: 50),
+          ElevatedButton(
+            onPressed: () {
+            },
+            style: ButtonStyle(
+                backgroundColor: const WidgetStatePropertyAll(Color(0xff072858)),
+                shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20), // Bordures arrondies
+                ),),
+                elevation: const WidgetStatePropertyAll(5),
+                padding: const WidgetStatePropertyAll(EdgeInsets.symmetric(horizontal: 55, vertical: 15))
             ),
+            child: const Text('Entreprise', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white)),
+          ),
+          const SizedBox(height: 30),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const InfluenceurLogin()));
+            },
+            style: ButtonStyle(
+              backgroundColor: const WidgetStatePropertyAll(Color(0xfffcbc1c)),
+              shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20), // Bordures arrondies
+              ),),
+              elevation: const WidgetStatePropertyAll(5),
+              padding: const WidgetStatePropertyAll(EdgeInsets.symmetric(horizontal: 50, vertical: 15))
+            ),
+            child: const Text('Influenceur', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white)),
           ),
         ],
       ),
