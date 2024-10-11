@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projet_mobile/data/screens/login_entreprise.dart';
 
 class ProfileType extends StatefulWidget {
   const ProfileType({super.key});
@@ -31,7 +32,7 @@ class _ProfileTypeState extends State<ProfileType> {
                   ElevatedButton(
                     onPressed: () {
                       // Navigation vers la page Entreprise
-                      Navigator.pushNamed(context, '/entreprise');
+                      Navigator.push(context, MaterialPageRoute(builder: (context) =>const LoginEntreprise()));
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue.shade900,

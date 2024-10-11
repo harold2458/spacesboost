@@ -1,7 +1,5 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:projet_mobile/data/screens/login_entreprise.dart';
 import 'package:projet_mobile/data/screens/profile_type.dart';
 
 class Onboarding extends StatefulWidget {
@@ -65,7 +63,7 @@ class _OnboardingState extends State<Onboarding> {
       );
     } else {
       // Rediriger vers la page de login
-      Navigator.pushReplacementNamed(context, '/profil');
+     /*  Navigator.pushReplacementNamed(context, '/profil'); */
     }
   }
   @override
