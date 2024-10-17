@@ -140,36 +140,39 @@ class _HomeState extends State<Home> {
                 const SizedBox(width: 20),
                 Column(
                   children: [
-                    ElevatedButton(
-                      onPressed: _toggleBalance,
-                      style: ButtonStyle(
-                        backgroundColor: const WidgetStatePropertyAll(Color(0xff072858)), // Couleur de fond
-                        padding: const WidgetStatePropertyAll(EdgeInsets.symmetric(vertical: 10, horizontal: 20)), // Espacement
-                        shape: WidgetStatePropertyAll(RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8), // Coins arrondis
-                        )),
-                        elevation: const WidgetStatePropertyAll(10),
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          // Icône
-                          Icon(
-                            _isBalanceVisible ? Icons.visibility_off : Icons.visibility,
-                            color: Colors.white,
-                          ),
-                          const SizedBox(width: 10), // Espacement entre l'icône et le texte
-                          // Texte
-                          Text(
-                            _isBalanceVisible
-                                ? '\$ $_balanceAmount' // Afficher le montant
-                                : 'Afficher solde', // Afficher le texte initial
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
+                    SizedBox(
+                      width: 175,
+                      child: ElevatedButton(
+                        onPressed: _toggleBalance,
+                        style: ButtonStyle(
+                          backgroundColor: const WidgetStatePropertyAll(Color(0xff072858)), // Couleur de fond
+                          padding: const WidgetStatePropertyAll(EdgeInsets.symmetric(vertical: 10, horizontal: 20)), // Espacement
+                          shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8), // Coins arrondis
+                          )),
+                          elevation: const WidgetStatePropertyAll(10),
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            // Icône
+                            Icon(
+                              _isBalanceVisible ? Icons.visibility_off : Icons.visibility,
                               color: Colors.white,
                             ),
-                          ),
-                        ],
+                            const SizedBox(width: 10), // Espacement entre l'icône et le texte
+                            // Texte
+                            Text(
+                              _isBalanceVisible
+                                  ? '\$ $_balanceAmount' // Afficher le montant
+                                  : 'Afficher solde', // Afficher le texte initial
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     const SizedBox(height: 20),

@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:projet_mobile/data/screens/campaign.dart';
+import 'package:projet_mobile/data/screens/help.dart';
+import 'package:projet_mobile/data/screens/influenceur_login.dart';
+import 'package:projet_mobile/data/screens/notifications.dart';
+import 'package:projet_mobile/data/screens/profil.dart';
 import 'package:projet_mobile/data/screens/proof.dart';
+import 'package:projet_mobile/data/screens/settings.dart';
 import 'package:projet_mobile/data/screens/sponsoring.dart';
 import 'package:projet_mobile/data/screens/withdraw.dart';
 import 'home.dart';
-import 'influenceur_login.dart';
 
 class BeforeHome extends StatefulWidget {
   final int initialIndex;
@@ -60,13 +64,17 @@ class _BeforeHomeState extends State<BeforeHome> {
           child: Image.asset('assets/logos/icon.png'),
         ),
         actions: [
-          IconButton(
-            onPressed: () {
-              // Ouvre le drawer (navigation latérale)
-              Scaffold.of(context).openDrawer();
+          Builder(
+            builder: (BuildContext context) {
+              return IconButton(
+                onPressed: () {
+                  // Ouvre le drawer
+                  Scaffold.of(context).openDrawer();
+                },
+                icon: const Icon(Icons.menu, size: 35, color: Color(0xff072858)),
+              );
             },
-            icon: const Icon(Icons.menu, size: 35, color: Color(0xff072858)),
-          )
+          ),
         ],
       ),
       body: _pages[_selectIndex],
@@ -74,63 +82,146 @@ class _BeforeHomeState extends State<BeforeHome> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Color(0XFFFCBC1C),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                   CircleAvatar(
-                    radius: 30,
-                    backgroundImage: AssetImage('assets/logos/profile.jpg'),
-                  ),
-                   SizedBox(height: 10),
-                   Text('Nom de l’utilisateur', style: TextStyle(color: Colors.white, fontSize: 18)),
-                   Text('email@exemple.com', style: TextStyle(color: Colors.white70)),
-                ],
+            const SizedBox(
+              height: 300,
+              child: DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Color(0XFFFCBC1C),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CircleAvatar(
+                      radius: 70,
+                      backgroundImage: AssetImage('assets/images/profil.jpg'),
+                    ),
+                    SizedBox(height: 20),
+                    Text('Gafour YEKINI', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+                    Text('yekiniabdougafour@gmail.com', style: TextStyle(color: Colors.white, fontSize: 12)),
+                  ],
+                ),
               ),
             ),
             const SizedBox(height: 30),
-            TextButton.icon(
-              onPressed: () {
-                // Action pour le profil
-              },
-              icon: const Icon(Icons.person),
-              label: const Text('Profil'),
+            Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const Profil()));
+                    },
+                    child: const Row(
+                      mainAxisSize: MainAxisSize.min, // Empêche le Row de prendre toute la largeur
+                      children: [
+                        Icon(Icons.person, color: Color(0xff072858)),
+                        SizedBox(width: 50), // Espacement entre l'icône et le texte
+                        Text(
+                          'Profil',
+                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xff072858)),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 25),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const Notifications()));
+                    },
+                    child: const Row(
+                      mainAxisSize: MainAxisSize.min, // Empêche le Row de prendre toute la largeur
+                      children: [
+                        Icon(Icons.notifications, color: Color(0xff072858)),
+                        SizedBox(width: 50), // Espacement entre l'icône et le texte
+                        Text(
+                          'Notifications',
+                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xff072858)),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 25),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const Settings()));
+                    },
+                    child: const Row(
+                      mainAxisSize: MainAxisSize.min, // Empêche le Row de prendre toute la largeur
+                      children: [
+                        Icon(Icons.settings, color: Color(0xff072858)),
+                        SizedBox(width: 50), // Espacement entre l'icône et le texte
+                        Text(
+                          'Paramètres',
+                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xff072858)),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 25),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const Help()));
+                    },
+                    child: const Row(
+                      mainAxisSize: MainAxisSize.min, // Empêche le Row de prendre toute la largeur
+                      children: [
+                        Icon(Icons.help, color: Color(0xff072858)),
+                        SizedBox(width: 50), // Espacement entre l'icône et le texte
+                        Text(
+                          'Aide',
+                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xff072858)),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 25),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const InfluenceurLogin()));
+                    },
+                    child: const Row(
+                      mainAxisSize: MainAxisSize.min, // Empêche le Row de prendre toute la largeur
+                      children: [
+                        Icon(Icons.logout, color: Colors.red),
+                        SizedBox(width: 50), // Espacement entre l'icône et le texte
+                        Text(
+                          'Déconnexion',
+                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.red),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 80),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(Icons.library_books, color: Color(0xff072858),),
+                      const SizedBox(width: 30),
+                      RichText(
+                        text: const TextSpan(
+                          style: TextStyle(
+                            fontFamily: 'Poppins',
+                          ),
+                          children: <TextSpan>[
+                            TextSpan(
+                              text: 'Version : ',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xff072858)),
+                            ),
+                            TextSpan(
+                              text: '1.0.0',
+                              style: TextStyle(color: Colors.black),
+                            ),
+                          ],
+                        ), textAlign: TextAlign.justify,),
+                    ],
+                  ),
+                ],
+              ),
             ),
             const SizedBox(height: 10),
-            TextButton.icon(
-              onPressed: () {
-                // Action pour les notifications
-              },
-              icon: const Icon(Icons.notifications),
-              label: const Text('Notifications'),
-            ),
-            const SizedBox(height: 10),
-            TextButton.icon(
-              onPressed: () {
-                // Action pour les paramètres
-              },
-              icon: const Icon(Icons.settings),
-              label: const Text('Paramètres'),
-            ),
-            const SizedBox(height: 10),
-            TextButton.icon(
-              onPressed: () {
-                // Action pour l'aide
-              },
-              icon: const Icon(Icons.help),
-              label: const Text('Aide'),
-            ),
-            const SizedBox(height: 10),
-            TextButton.icon(
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const InfluenceurLogin()));
-              },
-              icon: const Icon(Icons.logout),
-              label: const Text('Déconnexion'),
-            ),
           ],
         ),
       ),
