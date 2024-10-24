@@ -19,6 +19,12 @@ class _InfluenceurLoginState extends State<InfluenceurLogin> {
 
   @override
   Widget build(BuildContext context) {
+
+    final mediaQuery = MediaQuery.of(context);
+    final screenWidth = mediaQuery.size.width;
+    final screenHeight = mediaQuery.size.height;
+    final isPortrait = mediaQuery.orientation == Orientation.portrait;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Connexion', style: TextStyle(fontWeight: FontWeight.bold),),
@@ -27,118 +33,118 @@ class _InfluenceurLoginState extends State<InfluenceurLogin> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const SizedBox(height: 10,),
-            Image.asset('assets/images/login.png', height: 230,),
-            const SizedBox(height: 40,),
+            SizedBox(height: screenHeight * (isPortrait ? 0.01 : 0.1),),
+            Image.asset('assets/images/login.png', height: screenHeight * (isPortrait ? 0.25 : 0.5),),
+            SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.2),),
             Stack(
               children: [
                 Positioned.fill(
-                    child: Transform.translate(offset: const Offset(0, -40), child: Image.asset(
-                      'assets/images/forme_jaune.png',
+                    child: Transform.translate(offset: Offset(0, screenHeight * (isPortrait ? 0 : 0.2)), child: Image.asset(
+                      'assets/images/forme_jaune3.png',
                       fit: BoxFit.cover, // L'image couvre toute la zone
                     ),)
                 ),
-                SizedBox(
-                  width: double.infinity,
-                  height: 510,
-                  child: Form(
-                    key: _formKey,
-                    child: Column(
-                      children: [
-                        const Center(child: Text('Bienvenue à nouveau !',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xff072858),
-                          ),
-                          textAlign: TextAlign.center,
-                        ),),
-                        const SizedBox(height: 60,),
-                        SizedBox(
-                          width: 310,
-                          child: TextFormField(
-                            keyboardType: TextInputType.text,
-                            controller: _emailController,
-                            decoration: InputDecoration(
-                              labelText: 'Email utilisateur',
-                              hintText: '*example@gmail.com',
-                              labelStyle: const TextStyle(color: Colors.white),
-                              hintStyle: const TextStyle(color: Colors.white),
-                              prefixIcon: const Icon(
-                                Icons.email,
-                                color: Color(0xff072858),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide:
-                                const BorderSide(color: Color(0xff072858)),
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide:
-                                const BorderSide(color: Color(0xff072858)),
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                            ),
-                            validator: (String? value) {
-                              return (value == null || value.isEmpty)
-                                  ? 'Ce champ est obligatoire'
-                                  : null;
-                            },
-                          ),
+                Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      Center(child: Text('Bienvenue à nouveau !',
+                        style: TextStyle(
+                          fontSize: screenWidth * (isPortrait ? 0.05 : 0.03),
+                          fontWeight: FontWeight.bold,
+                          color: const Color(0xff072858),
                         ),
-                        const SizedBox(height: 10.0),
-                        SizedBox(
-                          width: 310,
-                          child: TextFormField(
-                            keyboardType: TextInputType.text,
-                            controller: _passwordController,
-                            obscureText: _isObscure,
-                            decoration: InputDecoration(
-                              labelText: 'Mot de passe',
-                              hintText: '*******',
-                              labelStyle: const TextStyle(color: Colors.white),
-                              hintStyle: const TextStyle(color: Colors.white),
-                              prefixIcon: const Icon(
-                                Icons.lock,
-                                color: Color(0xff072858),
-                              ),
-                              suffixIcon: IconButton(onPressed: () {
-                                setState(() {
-                                  _isObscure = !_isObscure;
-                                });
-                              }, icon: Icon(_isObscure ? Icons.visibility_off : Icons.visibility)),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide:
-                                const BorderSide(color: Color(0xff072858)),
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide:
-                                const BorderSide(color: Color(0xff072858)),
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
+                        textAlign: TextAlign.center,
+                      ),),
+                      SizedBox(height: screenHeight * (isPortrait ? 0.12 : 0.3),),
+                      SizedBox(
+                        width: screenWidth * (isPortrait ? 0.9 : 0.8),
+                        child: TextFormField(
+                          keyboardType: TextInputType.text,
+                          controller: _emailController,
+                          decoration: InputDecoration(
+                            labelText: 'Email utilisateur',
+                            hintText: '*example@gmail.com',
+                            labelStyle: const TextStyle(color: Colors.white),
+                            hintStyle: const TextStyle(color: Colors.white),
+                            prefixIcon: const Icon(
+                              Icons.email,
+                              color: Color(0xff072858),
                             ),
-                            validator: (String? value) {
-                              return (value == null || value.isEmpty)
-                                  ? 'Ce champ est obligatoire'
-                                  : null;
-                            },
+                            enabledBorder: OutlineInputBorder(
+                              borderSide:
+                              const BorderSide(color: Color(0xff072858)),
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide:
+                              const BorderSide(color: Color(0xff072858)),
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
                           ),
+                          validator: (String? value) {
+                            return (value == null || value.isEmpty)
+                                ? 'Ce champ est obligatoire'
+                                : null;
+                          },
                         ),
-                        const SizedBox(height: 10.0),
-                        TextButton(onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => const ForgotPassword()),
-                          );
-                        }, child: const Text('Mot de passe oublié ?',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),)),
-                        const SizedBox(height: 10.0),
-                        ElevatedButton(
+                      ),
+                      SizedBox(height: screenHeight * (isPortrait ? 0.015 : 0.08),),
+                      SizedBox(
+                        width: screenWidth * (isPortrait ? 0.9 : 0.8),
+                        child: TextFormField(
+                          keyboardType: TextInputType.text,
+                          controller: _passwordController,
+                          obscureText: _isObscure,
+                          decoration: InputDecoration(
+                            labelText: 'Mot de passe',
+                            hintText: '*******',
+                            labelStyle: const TextStyle(color: Colors.white),
+                            hintStyle: const TextStyle(color: Colors.white),
+                            prefixIcon: const Icon(
+                              Icons.lock,
+                              color: Color(0xff072858),
+                            ),
+                            suffixIcon: IconButton(onPressed: () {
+                              setState(() {
+                                _isObscure = !_isObscure;
+                              });
+                            }, icon: Icon(_isObscure ? Icons.visibility_off : Icons.visibility)),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide:
+                              const BorderSide(color: Color(0xff072858)),
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide:
+                              const BorderSide(color: Color(0xff072858)),
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                          ),
+                          validator: (String? value) {
+                            return (value == null || value.isEmpty)
+                                ? 'Ce champ est obligatoire'
+                                : null;
+                          },
+                        ),
+                      ),
+                      SizedBox(height: screenHeight * (isPortrait ? 0.015 : 0.08),),
+                      TextButton(onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const ForgotPassword()),
+                        );
+                      }, child: Text('Mot de passe oublié ?',
+                        style: TextStyle(
+                          fontSize: screenWidth * (isPortrait ? 0.04 : 0.03),
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),)),
+                      SizedBox(height: screenHeight * (isPortrait ? 0.015 : 0.08),),
+                      SizedBox(
+                        width: screenWidth * (isPortrait ? 0.9 : 0.8),
+                        height: screenHeight * (isPortrait ? 0.07 : 0.2),
+                        child: ElevatedButton(
                           onPressed: () {
                             Navigator.push(
                               context,
@@ -146,58 +152,62 @@ class _InfluenceurLoginState extends State<InfluenceurLogin> {
                             );
                           },
                           style: ButtonStyle(
-                              backgroundColor: const WidgetStatePropertyAll(Color(0xff072858)),
-                              shape: WidgetStatePropertyAll(
-                                RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20), // Bordures arrondies
-                                ),
+                            backgroundColor: const WidgetStatePropertyAll(Color(0xff072858)),
+                            shape: WidgetStatePropertyAll(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10), // Bordures arrondies
                               ),
-                              elevation: const WidgetStatePropertyAll(5),
-                              padding: const WidgetStatePropertyAll(EdgeInsets.symmetric(horizontal: 30, vertical: 10))
+                            ),
+                            elevation: const WidgetStatePropertyAll(3),
                           ),
-                          child: const Text(
+                          child: Text(
                             'Se connecter',
                             style: TextStyle(
-                              fontSize: 18,
+                              fontSize: screenWidth * (isPortrait ? 0.04 : 0.03),
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
                             ),
                           ),
                         ),
-                        const SizedBox(height: 10.0),
-                        TextButton(onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => const InfluenceurSignUp()),
-                          );
-                        }, child: const Text('Inscrivez-vous',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),)),
-                        const SizedBox(height: 10.0),
-                        ElevatedButton.icon(
+                      ),
+                      SizedBox(height: screenHeight * (isPortrait ? 0.015 : 0.08),),
+                      TextButton(onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const InfluenceurSignUp()),
+                        );
+                      }, child: Text('Inscrivez-vous',
+                        style: TextStyle(
+                          fontSize: screenWidth * (isPortrait ? 0.04 : 0.03),
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),)),
+                      SizedBox(height: screenHeight * (isPortrait ? 0.015 : 0.08),),
+                      SizedBox(
+                        width: screenWidth * (isPortrait ? 0.9 : 0.8),
+                        height: screenHeight * (isPortrait ? 0.06 : 0.2),
+                        child: ElevatedButton.icon(
                           style: const ButtonStyle(
                             shape: WidgetStatePropertyAll(
                               RoundedRectangleBorder(
-                                borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                                borderRadius: BorderRadius.all(Radius.circular(10.0)),
                                 side: BorderSide(color: Color(0xff072858)),
                               ),
                             ),
-                            elevation: WidgetStatePropertyAll(5),
+                            elevation: WidgetStatePropertyAll(3),
                           ),
                           onPressed: () => {},
-                          label: const Text(
+                          label: Text(
                             'Google',
-                            style: TextStyle(fontWeight: FontWeight.bold, color: Color(0xff072858)),
+                            style: TextStyle(fontSize: screenWidth * (isPortrait ? 0.04 : 0.03), fontWeight: FontWeight.bold, color: const Color(0xff072858)),
                           ),
                           icon: Image.asset('assets/images/google_signup.png'),
                         ),
-                      ],
-                    ),
+                      ),
+                      SizedBox(height: screenHeight * (isPortrait ? 0.05 : 0.15),),
+                    ],
                   ),
-                )
+                ),
               ],
             ),
           ],

@@ -54,13 +54,19 @@ class _BeforeHomeState extends State<BeforeHome> {
 
   @override
   Widget build(BuildContext context) {
+
+    final mediaQuery = MediaQuery.of(context);
+    final screenWidth = mediaQuery.size.width;
+    final screenHeight = mediaQuery.size.height;
+    final isPortrait = mediaQuery.orientation == Orientation.portrait;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(_title[_selectIndex], style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white),),
         centerTitle: true,
         backgroundColor: const Color(0XFFFCBC1C),
         leading: Padding(
-          padding: const EdgeInsets.only(left: 5),
+          padding: EdgeInsets.only(left: screenWidth * 0.01),
           child: Image.asset('assets/logos/icon.png'),
         ),
         actions: [
@@ -71,7 +77,7 @@ class _BeforeHomeState extends State<BeforeHome> {
                   // Ouvre le drawer
                   Scaffold.of(context).openDrawer();
                 },
-                icon: const Icon(Icons.menu, size: 35, color: Color(0xff072858)),
+                icon: Icon(Icons.menu, size: screenWidth * (isPortrait ? 0.1 : 0.05), color: const Color(0xff072858)),
               );
             },
           ),
@@ -82,29 +88,28 @@ class _BeforeHomeState extends State<BeforeHome> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            const SizedBox(
-              height: 300,
+            SizedBox(
+              height: screenHeight * (isPortrait ? 0.35 : 0.5),
               child: DrawerHeader(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Color(0XFFFCBC1C),
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     CircleAvatar(
-                      radius: 70,
-                      backgroundImage: AssetImage('assets/images/profil.jpg'),
+                      radius: screenWidth * (isPortrait ? 0.15 : 0.04),
+                      backgroundImage: const AssetImage('assets/images/profil.jpg'),
                     ),
-                    SizedBox(height: 20),
-                    Text('Gafour YEKINI', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
-                    Text('yekiniabdougafour@gmail.com', style: TextStyle(color: Colors.white, fontSize: 12)),
+                    SizedBox(height: screenHeight * (isPortrait ? 0.04 : 0.03)),
+                    Text('Gafour YEKINI', style: TextStyle(color: Colors.white, fontSize: screenWidth * (isPortrait ? 0.04 : 0.02), fontWeight: FontWeight.bold)),
+                    Text('yekiniabdougafour@gmail.com', style: TextStyle(color: Colors.white, fontSize: screenWidth * (isPortrait ? 0.03 : 0.01))),
                   ],
                 ),
               ),
             ),
-            const SizedBox(height: 30),
             Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05, vertical: screenHeight * 0.03),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -112,92 +117,92 @@ class _BeforeHomeState extends State<BeforeHome> {
                     onPressed: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) => const Profil()));
                     },
-                    child: const Row(
+                    child: Row(
                       mainAxisSize: MainAxisSize.min, // Empêche le Row de prendre toute la largeur
                       children: [
-                        Icon(Icons.person, color: Color(0xff072858)),
-                        SizedBox(width: 50), // Espacement entre l'icône et le texte
+                        const Icon(Icons.person, color: Color(0xff072858)),
+                        SizedBox(width: screenWidth * (isPortrait ? 0.1 : 0.05)), // Espacement entre l'icône et le texte
                         Text(
                           'Profil',
-                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xff072858)),
+                          style: TextStyle(fontSize: screenWidth * (isPortrait ? 0.04 : 0.02), fontWeight: FontWeight.bold, color: const Color(0xff072858)),
                         ),
                       ],
                     ),
                   ),
-                  const SizedBox(height: 25),
+                  SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.05)),
                   TextButton(
                     onPressed: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) => const Notifications()));
                     },
-                    child: const Row(
+                    child: Row(
                       mainAxisSize: MainAxisSize.min, // Empêche le Row de prendre toute la largeur
                       children: [
-                        Icon(Icons.notifications, color: Color(0xff072858)),
-                        SizedBox(width: 50), // Espacement entre l'icône et le texte
+                        const Icon(Icons.notifications, color: Color(0xff072858)),
+                        SizedBox(width: screenWidth * (isPortrait ? 0.1 : 0.05)), // Espacement entre l'icône et le texte
                         Text(
                           'Notifications',
-                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xff072858)),
+                          style: TextStyle(fontSize: screenWidth * (isPortrait ? 0.04 : 0.02), fontWeight: FontWeight.bold, color: const Color(0xff072858)),
                         ),
                       ],
                     ),
                   ),
-                  const SizedBox(height: 25),
+                  SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.05)),
                   TextButton(
                     onPressed: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) => const Settings()));
                     },
-                    child: const Row(
+                    child: Row(
                       mainAxisSize: MainAxisSize.min, // Empêche le Row de prendre toute la largeur
                       children: [
-                        Icon(Icons.settings, color: Color(0xff072858)),
-                        SizedBox(width: 50), // Espacement entre l'icône et le texte
+                        const Icon(Icons.settings, color: Color(0xff072858)),
+                        SizedBox(width: screenWidth * (isPortrait ? 0.1 : 0.05)), // Espacement entre l'icône et le texte
                         Text(
                           'Paramètres',
-                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xff072858)),
+                          style: TextStyle(fontSize: screenWidth * (isPortrait ? 0.04 : 0.02), fontWeight: FontWeight.bold, color: const Color(0xff072858)),
                         ),
                       ],
                     ),
                   ),
-                  const SizedBox(height: 25),
+                  SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.05)),
                   TextButton(
                     onPressed: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) => const Help()));
                     },
-                    child: const Row(
+                    child: Row(
                       mainAxisSize: MainAxisSize.min, // Empêche le Row de prendre toute la largeur
                       children: [
-                        Icon(Icons.help, color: Color(0xff072858)),
-                        SizedBox(width: 50), // Espacement entre l'icône et le texte
+                        const Icon(Icons.help, color: Color(0xff072858)),
+                        SizedBox(width: screenWidth * (isPortrait ? 0.1 : 0.05)), // Espacement entre l'icône et le texte
                         Text(
                           'Aide',
-                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xff072858)),
+                          style: TextStyle(fontSize: screenWidth * (isPortrait ? 0.04 : 0.02), fontWeight: FontWeight.bold, color: const Color(0xff072858)),
                         ),
                       ],
                     ),
                   ),
-                  const SizedBox(height: 25),
+                  SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.05)),
                   TextButton(
                     onPressed: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) => const InfluenceurLogin()));
                     },
-                    child: const Row(
+                    child: Row(
                       mainAxisSize: MainAxisSize.min, // Empêche le Row de prendre toute la largeur
                       children: [
-                        Icon(Icons.logout, color: Colors.red),
-                        SizedBox(width: 50), // Espacement entre l'icône et le texte
+                        const Icon(Icons.logout, color: Colors.red),
+                        SizedBox(width: screenWidth * (isPortrait ? 0.1 : 0.05)), // Espacement entre l'icône et le texte
                         Text(
                           'Déconnexion',
-                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.red),
+                          style: TextStyle(fontSize: screenWidth * (isPortrait ? 0.04 : 0.02), fontWeight: FontWeight.bold, color: Colors.red),
                         ),
                       ],
                     ),
                   ),
-                  const SizedBox(height: 80),
+                  SizedBox(height: screenHeight * (isPortrait ? 0.08 : 0.1)),
                   Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       const Icon(Icons.library_books, color: Color(0xff072858),),
-                      const SizedBox(width: 30),
+                      SizedBox(width: screenWidth * 0.05),
                       RichText(
                         text: const TextSpan(
                           style: TextStyle(
@@ -221,7 +226,6 @@ class _BeforeHomeState extends State<BeforeHome> {
                 ],
               ),
             ),
-            const SizedBox(height: 10),
           ],
         ),
       ),
@@ -234,11 +238,11 @@ class _BeforeHomeState extends State<BeforeHome> {
           BottomNavigationBarItem(icon: Icon(Icons.fact_check), label: 'Preuve'),
         ],
         currentIndex: _selectIndex,
-        elevation: 5.0,
+        elevation: 3.0,
         unselectedItemColor: Colors.black,
         selectedItemColor: const Color(0xff072858),
-        unselectedLabelStyle: const TextStyle(fontSize: 10.0),
-        selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 10.0),
+        unselectedLabelStyle: TextStyle(fontSize: screenWidth * (isPortrait ? 0.025 : 0.02),),
+        selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: screenWidth * (isPortrait ? 0.025 : 0.02),),
         backgroundColor: const Color(0XFFFCBC1C),
         type: BottomNavigationBarType.fixed,
         onTap: _onItemTapped,

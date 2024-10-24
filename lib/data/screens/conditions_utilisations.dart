@@ -10,6 +10,12 @@ class ConditionsUtilisations extends StatefulWidget {
 class _ConditionsUtilisationsState extends State<ConditionsUtilisations> {
   @override
   Widget build(BuildContext context) {
+
+    final mediaQuery = MediaQuery.of(context);
+    final screenHeight = mediaQuery.size.height;
+    final screenWidth = mediaQuery.size.width;
+    final isPortrait = mediaQuery.orientation == Orientation.portrait;
+
     return Scaffold(
       appBar: AppBar(
           title: const Text('Conditions d\'utilisation', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),),
@@ -18,9 +24,9 @@ class _ConditionsUtilisationsState extends State<ConditionsUtilisations> {
           leading: IconButton(onPressed: () {
             Navigator.of(context).pop();
           }, icon: const Icon(Icons.arrow_back, color: Colors.white,))),
-      body: const SingleChildScrollView(
-        padding: EdgeInsets.all(20),
-        child: Text(
+      body: SingleChildScrollView(
+        padding: EdgeInsets.symmetric(horizontal: screenWidth * (isPortrait ? 0.05 : 0.1), vertical: screenHeight * (isPortrait ? 0.03 : 0.1)),
+        child: const Text(
         '''
 Conditions d'Utilisation de SPACEBOOST
 

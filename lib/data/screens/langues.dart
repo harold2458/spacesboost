@@ -13,6 +13,12 @@ class _LanguesState extends State<Langues> {
 
   @override
   Widget build(BuildContext context) {
+
+    final mediaQuery = MediaQuery.of(context);
+    final screenHeight = mediaQuery.size.height;
+    final screenWidth = mediaQuery.size.width;
+    final isPortrait = mediaQuery.orientation == Orientation.portrait;
+
     return Scaffold(
       appBar: AppBar(
           title: const Text('Langues', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),),
@@ -22,7 +28,7 @@ class _LanguesState extends State<Langues> {
             Navigator.of(context).pop();
           }, icon: const Icon(Icons.arrow_back, color: Colors.white,))),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.only(right: 20, top: 20, bottom: 20),
+        padding: EdgeInsets.symmetric(horizontal: screenWidth * (isPortrait ? 0.05 : 0.1), vertical: screenHeight * (isPortrait ? 0.03 : 0.1)),
         child: Column(
           children: <Widget>[
             Row(
@@ -38,13 +44,13 @@ class _LanguesState extends State<Langues> {
                     });
                   },
                 ),),
-                const CircleAvatar(
-                  radius: 25,
-                  backgroundImage: AssetImage('assets/images/francais.png'),
+                CircleAvatar(
+                  radius: screenWidth * (isPortrait ? 0.06 : 0.04),
+                  backgroundImage: const AssetImage('assets/images/francais.png'),
                 ),
               ],
             ),
-            const SizedBox(height: 20),
+            SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.1),),
             Row(
               children: [
                 Expanded(child: RadioListTile<String>(
@@ -58,13 +64,13 @@ class _LanguesState extends State<Langues> {
                     });
                   },
                 ),),
-                const CircleAvatar(
-                  radius: 25,
-                  backgroundImage: AssetImage('assets/images/anglais.png'),
+                CircleAvatar(
+                  radius: screenWidth * (isPortrait ? 0.06 : 0.04),
+                  backgroundImage: const AssetImage('assets/images/anglais.png'),
                 ),
               ],
             ),
-            const SizedBox(height: 20),
+            SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.1),),
             Row(
               children: [
                 Expanded(child: RadioListTile<String>(
@@ -78,13 +84,13 @@ class _LanguesState extends State<Langues> {
                     });
                   },
                 ),),
-                const CircleAvatar(
-                  radius: 25,
-                  backgroundImage: AssetImage('assets/images/espagnol.png'),
+                CircleAvatar(
+                  radius: screenWidth * (isPortrait ? 0.06 : 0.04),
+                  backgroundImage: const AssetImage('assets/images/espagnol.png'),
                 ),
               ],
             ),
-            const SizedBox(height: 20),
+            SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.1),),
             Row(
               children: [
                 Expanded(child: RadioListTile<String>(
@@ -98,37 +104,41 @@ class _LanguesState extends State<Langues> {
                     });
                   },
                 ),),
-                const CircleAvatar(
-                  radius: 25,
-                  backgroundImage: AssetImage('assets/images/allemand.png'),
+                CircleAvatar(
+                  radius: screenWidth * (isPortrait ? 0.06 : 0.04),
+                  backgroundImage: const AssetImage('assets/images/allemand.png'),
                 ),
               ],
             ),
-            const SizedBox(height: 100),
-            ElevatedButton(
-              onPressed: () {
-                // Action à réaliser après la sélection
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('Langue sélectionnée: $_selectedLanguage'),
+            SizedBox(height: screenHeight * (isPortrait ? 0.2 : 0.2),),
+            SizedBox(
+              width: screenWidth * (isPortrait ? 0.9 : 0.8), // Largeur du bouton ajustée
+              height: screenHeight * (isPortrait ? 0.06 : 0.2),
+              child: ElevatedButton(
+                onPressed: () {
+                  // Action à réaliser après la sélection
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Langue sélectionnée: $_selectedLanguage'),
+                    ),
+                  );
+                },
+                style: ButtonStyle(
+                  backgroundColor: const WidgetStatePropertyAll(Color(0xfffcbc1c)),
+                  shape: WidgetStatePropertyAll(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10), // Bordures arrondies
+                    ),
                   ),
-                );
-              },
-              style: ButtonStyle(
-                backgroundColor: const WidgetStatePropertyAll(Color(0xfffcbc1c)),
-                shape: WidgetStatePropertyAll(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20), // Bordures arrondies
-                  ),
+                  elevation: const WidgetStatePropertyAll(3),
                 ),
-                elevation: const WidgetStatePropertyAll(5),
+                child: Text('Valider', style: TextStyle(
+                  fontSize: screenWidth * (isPortrait ? 0.04 : 0.03),
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),),
               ),
-              child: const Text('Valider', style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),),
-            ),
+            )
           ],
         ),
       )

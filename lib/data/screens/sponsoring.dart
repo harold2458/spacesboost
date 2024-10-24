@@ -29,39 +29,43 @@ class _SponsoringState extends State<Sponsoring> {
 
   @override
   Widget build(BuildContext context) {
+
+    final mediaQuery = MediaQuery.of(context);
+    final screenHeight = mediaQuery.size.height;
+    final screenWidth = mediaQuery.size.width;
+    final isPortrait = mediaQuery.orientation == Orientation.portrait;
+
     return Scaffold(
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
+        padding: EdgeInsets.symmetric(horizontal: screenWidth * (isPortrait ? 0.03 : 0.1), vertical: screenHeight * (isPortrait ? 0.03 : 0.1)),
         child: Column(
             children: [
-              const SizedBox(height: 30),
-              Image.asset('assets/images/parrainage.png', width: 270,),
-              const SizedBox(height: 50),
+              Image.asset('assets/images/parrainage.png', width: screenWidth * (isPortrait ? 0.6 : 0.2),),
+              SizedBox(height: screenHeight * (isPortrait ? 0.04 : 0.1),),
               Row(
-                  children: [
-                    Container(
-                      margin: const EdgeInsets.only(left: 30),
-                      child: const Text('Votre code de parrainage :', style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xff072858)
-                      ),),
-                    )
-                  ]),
-              const SizedBox(height: 20),
+                children: [
+                  Text('Votre code de parrainage :', style: TextStyle(
+                      fontSize: screenWidth * (isPortrait ? 0.04 : 0.03),
+                      fontWeight: FontWeight.bold,
+                      color: const Color(0xff072858)
+                  ),),
+                ],
+              ),
+              SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.1),),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.03, vertical: screenHeight * (isPortrait ? 0.01 : 0.08)),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.grey[200],
                 ),
-                width: 350,
+                width: screenWidth * (isPortrait ? 0.9 : 0.8), // Largeur du bouton ajustée
+                height: screenHeight * (isPortrait ? 0.08 : 0.2),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       parrainageCode,
-                      style: const TextStyle(fontWeight: FontWeight.w500),
+                      //style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                     IconButton(
                       icon: const Icon(Icons.copy, color: Color(0xff072858)),
@@ -70,46 +74,48 @@ class _SponsoringState extends State<Sponsoring> {
                   ],
                 ),
               ),
-              const SizedBox(height: 40),
-              ElevatedButton(
-                onPressed: () => copierCode(context),
-                style: ButtonStyle(
-                  backgroundColor: const WidgetStatePropertyAll(Color(0xff072858)),
-                  shape: WidgetStatePropertyAll(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20), // Bordures arrondies
+              SizedBox(height: screenHeight * (isPortrait ? 0.05 : 0.1),),
+              SizedBox(
+                width: screenWidth * (isPortrait ? 0.9 : 0.8),
+                height: screenHeight * (isPortrait ? 0.06 : 0.2),
+                child: ElevatedButton(
+                  onPressed: () => copierCode(context),
+                  style: ButtonStyle(
+                    backgroundColor: const WidgetStatePropertyAll(Color(0xff072858)),
+                    shape: WidgetStatePropertyAll(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10), // Bordures arrondies
+                      ),
                     ),
+                    elevation: const WidgetStatePropertyAll(3),
                   ),
-                  elevation: const WidgetStatePropertyAll(5),
-                ),
-                child: const Text(
-                  "Copier le code",
-                  style: TextStyle(fontSize: 18, color: Colors.white),
+                  child: Text(
+                    "Copier le code",
+                    style: TextStyle(fontSize: screenWidth * (isPortrait ? 0.04 : 0.03),
+                        fontWeight: FontWeight.bold, color: Colors.white),
+                  ),
                 ),
               ),
-              const SizedBox(height: 60),
+              SizedBox(height: screenHeight * (isPortrait ? 0.05 : 0.1),),
               Row(
                   children: [
-                    Container(
-                      margin: const EdgeInsets.only(left: 30),
-                      child: const Text('Partager :', style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xff072858)
-                      ),),
-                    )
+                    Text('Partager :', style: TextStyle(
+                        fontSize: screenWidth * (isPortrait ? 0.04 : 0.03),
+                        fontWeight: FontWeight.bold,
+                        color: const Color(0xff072858)
+                    ),),
                   ]),
-              const SizedBox(height: 30),
+              SizedBox(height: screenHeight * (isPortrait ? 0.04 : 0.1),),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  IconButton(onPressed: () { }, icon: Image.asset('assets/images/twitter.png', width: 40,),),
-                  const SizedBox(width: 25),
-                  IconButton(onPressed: () { }, icon: Image.asset('assets/images/linkedin.png', width: 40),),
-                  const SizedBox(width: 25),
-                  IconButton(onPressed: () { }, icon: Image.asset('assets/images/whatsapp.png', width: 40),),
-                  const SizedBox(width: 25),
-                  IconButton(onPressed: () { }, icon: Image.asset('assets/images/facebook.png', width: 40),),
+                  IconButton(onPressed: () { }, icon: Image.asset('assets/images/twitter.png', width: screenWidth * (isPortrait ? 0.1 : 0.08)),),
+                  SizedBox(width: screenWidth * (isPortrait ? 0.06 : 0.1)),
+                  IconButton(onPressed: () { }, icon: Image.asset('assets/images/linkedin.png', width: screenWidth * (isPortrait ? 0.1 : 0.08)),),
+                  SizedBox(width: screenWidth * (isPortrait ? 0.06 : 0.1)),
+                  IconButton(onPressed: () { }, icon: Image.asset('assets/images/whatsapp.png', width: screenWidth * (isPortrait ? 0.1 : 0.08)),),
+                  SizedBox(width: screenWidth * (isPortrait ? 0.06 : 0.1)),
+                  IconButton(onPressed: () { }, icon: Image.asset('assets/images/facebook.png', width: screenWidth * (isPortrait ? 0.1 : 0.08)),),
                 ],
               )
             ]

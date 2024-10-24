@@ -64,14 +64,20 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+
+    final mediaQuery = MediaQuery.of(context);
+    final screenHeight = mediaQuery.size.height;
+    final screenWidth = mediaQuery.size.width;
+    final isPortrait = mediaQuery.orientation == Orientation.portrait;
+
     return Scaffold(
       body: SingleChildScrollView(
+        padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.03, vertical: screenHeight * (isPortrait ? 0.03 : 0.1)),
         child: Column(
           children: [
-            const SizedBox(height: 10),
             SizedBox(
-              height: 330,
-              width: 250,
+              height: screenHeight * (isPortrait ? 0.3 : 0.4),
+              width: screenWidth * (isPortrait ? 0.6 : 0.4),
               child: PageView.builder(
                 controller: _pageController,
                 itemCount: imgList.length,
@@ -82,152 +88,149 @@ class _HomeState extends State<Home> {
                 },
               ),
             ),
-            const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Column(
+            SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.1),),
+            SizedBox(
+              //width: screenWidth * (isPortrait ? 0.49 : 0.25),
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: _toggleBalance,
+                style: ButtonStyle(
+                  backgroundColor: const WidgetStatePropertyAll(Color(0xff072858)), // Couleur de fond
+                  //padding: const WidgetStatePropertyAll(EdgeInsets.symmetric(vertical: 10, horizontal: 20)), // Espacement
+                  shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10), // Coins arrondis
+                  )),
+                  elevation: const WidgetStatePropertyAll(3),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    SizedBox(
-                      width: 160,
-                      height: 160,
-                      child: ElevatedButton(
-                          style: ButtonStyle(
-                            backgroundColor: const WidgetStatePropertyAll(Colors.white),
-                            shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
-                            elevation: const WidgetStatePropertyAll(15),
-                          ),
-                          onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => const BeforeHome(initialIndex: 0)));
-                          }, child: Column(
-                        children: [
-                          const SizedBox(height: 15),
-                          Center(child: Image.asset('assets/images/campagne.png', width: 100,),),
-                          const SizedBox(height: 20),
-                          const Text('Campagne', style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xff072858)
-                          ),)
-                        ],
-                      )),
+                    // Icône
+                    Icon(
+                      _isBalanceVisible ? Icons.visibility_off : Icons.visibility,
+                      color: Colors.white,
                     ),
-                    const SizedBox(height: 40),
-                    SizedBox(
-                      width: 160,
-                      height: 160,
-                      child: ElevatedButton(
-                          style: ButtonStyle(
-                            backgroundColor: const WidgetStatePropertyAll(Colors.white),
-                            shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
-                            elevation: const WidgetStatePropertyAll(15),
-                          ),
-                          onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => const BeforeHome(initialIndex: 3)));
-                          }, child: Column(
-                        children: [
-                          const SizedBox(height: 15),
-                          Center(child: Image.asset('assets/images/retrait.png', width: 100,),),
-                          const SizedBox(height: 20),
-                          const Text('Retrait', style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xff072858)
-                          ),)
-                        ],
-                      )),
+                    SizedBox(width: screenWidth * (isPortrait ? 0.05 : 0.05),), // Espacement entre l'icône et le texte
+                    // Texte
+                    Text(
+                      _isBalanceVisible
+                          ? '\$ $_balanceAmount' // Afficher le montant
+                          : 'Afficher solde', // Afficher le texte initial
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                     ),
                   ],
                 ),
-                const SizedBox(width: 20),
-                Column(
-                  children: [
-                    SizedBox(
-                      width: 175,
-                      child: ElevatedButton(
-                        onPressed: _toggleBalance,
-                        style: ButtonStyle(
-                          backgroundColor: const WidgetStatePropertyAll(Color(0xff072858)), // Couleur de fond
-                          padding: const WidgetStatePropertyAll(EdgeInsets.symmetric(vertical: 10, horizontal: 20)), // Espacement
-                          shape: WidgetStatePropertyAll(RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8), // Coins arrondis
-                          )),
-                          elevation: const WidgetStatePropertyAll(10),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            // Icône
-                            Icon(
-                              _isBalanceVisible ? Icons.visibility_off : Icons.visibility,
-                              color: Colors.white,
-                            ),
-                            const SizedBox(width: 10), // Espacement entre l'icône et le texte
-                            // Texte
-                            Text(
-                              _isBalanceVisible
-                                  ? '\$ $_balanceAmount' // Afficher le montant
-                                  : 'Afficher solde', // Afficher le texte initial
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ],
-                        ),
+              ),
+            ),
+            SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.1)),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: screenHeight * (isPortrait ? 0.2 : 0.3),
+                  width: screenWidth * (isPortrait ? 0.4 : 0.2),
+                  child: ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: const WidgetStatePropertyAll(Colors.white),
+                        shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
+                        elevation: const WidgetStatePropertyAll(3),
                       ),
-                    ),
-                    const SizedBox(height: 20),
-                    SizedBox(
-                      width: 160,
-                      height: 160,
-                      child: ElevatedButton(
-                          style: ButtonStyle(
-                            backgroundColor: const WidgetStatePropertyAll(Colors.white),
-                            shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
-                            elevation: const WidgetStatePropertyAll(15),
-                          ),
-                          onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => const BeforeHome(initialIndex: 1)));
-                          }, child: Column(
-                        children: [
-                          const SizedBox(height: 15),
-                          Center(child: Image.asset('assets/images/parrainage.png', width: 100,),),
-                          const SizedBox(height: 20),
-                          const Text('Parrainage', style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xff072858)
-                          ),)
-                        ],
-                      )),
-                    ),
-                    const SizedBox(height: 20),
-                    SizedBox(
-                      width: 160,
-                      height: 160,
-                      child: ElevatedButton(
-                          style: ButtonStyle(
-                            backgroundColor: const WidgetStatePropertyAll(Colors.white),
-                            shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
-                            elevation: const WidgetStatePropertyAll(15),
-                          ),
-                          onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => const BeforeHome(initialIndex: 4)));
-                          }, child: Column(
-                        children: [
-                          const SizedBox(height: 10),
-                          Center(child: Image.asset('assets/images/preuve.png', width: 60,),),
-                          const SizedBox(height: 20),
-                          const Text('Preuve', style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xff072858)
-                          ),)
-                        ],
-                      )),
-                    ),
-                  ],
-                )
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const BeforeHome(initialIndex: 0)));
+                      }, child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Center(child: Image.asset('assets/images/campagne.png', width: screenWidth * (isPortrait ? 0.25 : 0.1),),),
+                      SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.05),),
+                      const Text('Campagne', style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xff072858)
+                      ),)
+                    ],
+                  )),
+                ),
+                SizedBox(width: screenWidth * (isPortrait ? 0.07 : 0.15),),
+                SizedBox(
+                  height: screenHeight * (isPortrait ? 0.2 : 0.3),
+                  width: screenWidth * (isPortrait ? 0.4 : 0.2),
+                  child: ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: const WidgetStatePropertyAll(Colors.white),
+                        shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
+                        elevation: const WidgetStatePropertyAll(3),
+                      ),
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const BeforeHome(initialIndex: 1)));
+                      }, child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Center(child: Image.asset('assets/images/parrainage.png', width: screenWidth * (isPortrait ? 0.25 : 0.1),),),
+                      SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.05),),
+                      const Text('Parrainage', style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xff072858)
+                      ),)
+                    ],
+                  )),
+                ),
               ],
             ),
-            const SizedBox(height: 20),
+            SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.15),),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: screenHeight * (isPortrait ? 0.2 : 0.3),
+                  width: screenWidth * (isPortrait ? 0.4 : 0.2),
+                  child: ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: const WidgetStatePropertyAll(Colors.white),
+                        shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
+                        elevation: const WidgetStatePropertyAll(3),
+                      ),
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const BeforeHome(initialIndex: 3)));
+                      }, child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Center(child: Image.asset('assets/images/retrait.png', width: screenWidth * (isPortrait ? 0.25 : 0.1),),),
+                      SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.05),),
+                      const Text('Retrait', style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xff072858)
+                      ),)
+                    ],
+                  )),
+                ),
+                SizedBox(width: screenWidth * (isPortrait ? 0.07 : 0.15),),
+                SizedBox(
+                  height: screenHeight * (isPortrait ? 0.2 : 0.3),
+                  width: screenWidth * (isPortrait ? 0.4 : 0.2),
+                  child: ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: const WidgetStatePropertyAll(Colors.white),
+                        shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
+                        elevation: const WidgetStatePropertyAll(3),
+                      ),
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const BeforeHome(initialIndex: 4)));
+                      }, child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Center(child: Image.asset('assets/images/preuve.png', width: screenWidth * (isPortrait ? 0.15 : 0.05),),),
+                      SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.05),),
+                      const Text('Preuve', style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xff072858)
+                      ),)
+                    ],
+                  )),
+                ),
+              ],
+            ),
           ],
         ),
       )

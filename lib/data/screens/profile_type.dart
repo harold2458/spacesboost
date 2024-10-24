@@ -9,52 +9,71 @@ class ProfileType extends StatefulWidget {
 }
 
 class _ProfileTypeState extends State<ProfileType> {
+
   @override
   Widget build(BuildContext context) {
+
+    final mediaQuery = MediaQuery.of(context);
+    final screenWidth = mediaQuery.size.width;
+    final screenHeight = mediaQuery.size.height;
+    final isPortrait = mediaQuery.orientation == Orientation.portrait;
+
     return Scaffold(
-       body: Column(
-         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(
-            'assets/logos/logo.png',
-            height: 100,
-          ),
-          const SizedBox(height: 170),
-          const Text(
-            'Veuillez choisir le type de profil',
-            style: TextStyle(fontSize: 18),
-          ),
-          const SizedBox(height: 50),
-          ElevatedButton(
-            onPressed: () {
-            },
-            style: ButtonStyle(
-                backgroundColor: const WidgetStatePropertyAll(Color(0xff072858)),
-                shape: WidgetStatePropertyAll(RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20), // Bordures arrondies
-                ),),
-                elevation: const WidgetStatePropertyAll(5),
-                padding: const WidgetStatePropertyAll(EdgeInsets.symmetric(horizontal: 55, vertical: 15))
-            ),
-            child: const Text('Entreprise', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white)),
-          ),
-          const SizedBox(height: 30),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const InfluenceurLogin()));
-            },
-            style: ButtonStyle(
-              backgroundColor: const WidgetStatePropertyAll(Color(0xfffcbc1c)),
-              shape: WidgetStatePropertyAll(RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20), // Bordures arrondies
-              ),),
-              elevation: const WidgetStatePropertyAll(5),
-              padding: const WidgetStatePropertyAll(EdgeInsets.symmetric(horizontal: 50, vertical: 15))
-            ),
-            child: const Text('Influenceur', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white)),
-          ),
-        ],
-      ),
+      appBar: AppBar(),
+       body: SingleChildScrollView(
+         padding: EdgeInsets.symmetric(horizontal: screenWidth * (isPortrait ? 0.05 : 0.1)),
+         child: Center(
+           child: Column(
+             children: [
+               SizedBox(height: screenHeight * (isPortrait ? 0.1 : 0.2)),
+               Image.asset(
+                 'assets/logos/logo.png',
+               ),
+               SizedBox(height: screenHeight * (isPortrait ? 0.2 : 0.2)),
+               Text(
+                 'Veuillez choisir le type de profil',
+                 style: TextStyle(fontSize: screenWidth * (isPortrait ? 0.05 : 0.03)),
+               ),
+               SizedBox(height: screenHeight * (isPortrait ? 0.08 : 0.2)),
+               SizedBox(
+                 width: double.infinity, // Largeur du bouton ajustée
+                 height: screenHeight * (isPortrait ? 0.07 : 0.2),
+                 child: ElevatedButton(
+                   onPressed: () {
+                   },
+                   style: ButtonStyle(
+                     backgroundColor: const WidgetStatePropertyAll(Color(0xff072858)),
+                     shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+                       borderRadius: BorderRadius.circular(20), // Bordures arrondies
+                     ),),
+                     elevation: const WidgetStatePropertyAll(5),
+                   ),
+                   child: Text('Entreprise', style: TextStyle(fontSize: screenWidth * (isPortrait ? 0.05 : 0.03), fontWeight: FontWeight.bold, color: Colors.white)),
+                 ),
+               ),
+               SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.06)),
+               SizedBox(
+                 width: double.infinity, // Largeur du bouton ajustée
+                 height: screenHeight * (isPortrait ? 0.07 : 0.2),
+                 child: ElevatedButton(
+                   onPressed: () {
+                     Navigator.push(context, MaterialPageRoute(builder: (context) => const InfluenceurLogin()));
+                   },
+                   style: ButtonStyle(
+                     backgroundColor: const WidgetStatePropertyAll(Color(0xfffcbc1c)),
+                     shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+                       borderRadius: BorderRadius.circular(20), // Bordures arrondies
+                     ),),
+                     elevation: const WidgetStatePropertyAll(5),
+                   ),
+                   child: Text('Influenceur', style: TextStyle(fontSize: screenWidth * (isPortrait ? 0.05 : 0.03), fontWeight: FontWeight.bold, color: Colors.white)),
+                 ),
+               ),
+               SizedBox(height: isPortrait ? screenHeight * 0 : screenHeight * 0.1)
+             ],
+           ),
+         ),
+       )
     );
   }
 }

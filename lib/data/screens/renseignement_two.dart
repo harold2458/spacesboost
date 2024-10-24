@@ -47,9 +47,14 @@ class _RenseignementTwoState extends State<RenseignementTwo> {
   String? selectedCountry;
   String? selectedCity;
 
-
   @override
   Widget build(BuildContext context) {
+
+    final mediaQuery = MediaQuery.of(context);
+    final screenHeight = mediaQuery.size.height;
+    final screenWidth = mediaQuery.size.width;
+    final isPortrait = mediaQuery.orientation == Orientation.portrait;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Renseignement', style: TextStyle(fontWeight: FontWeight.bold),),
@@ -58,31 +63,29 @@ class _RenseignementTwoState extends State<RenseignementTwo> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const SizedBox(height: 10,),
+            SizedBox(height: screenHeight * (isPortrait ? 0.01 : 0.1),),
             Center(
               child: Image.asset(
-                'assets/images/information.png', height: 170,
+                'assets/images/information.png', height: screenHeight * (isPortrait ? 0.2 : 0.5),
               ),
             ),
-            const SizedBox(height: 20,),
+            SizedBox(height: screenHeight * (isPortrait ? 0.02 : 0.1),),
             Stack(
               children: [
                 Positioned.fill(
-                    child: Transform.translate(offset: const Offset(0, 50), child: Image.asset(
-                      'assets/images/forme_jaune.png',
+                    child: Transform.translate(offset: Offset(0, screenHeight * (isPortrait ? 0.08 : 0.6)), child: Image.asset(
+                      'assets/images/forme_jaune3.png',
                       fit: BoxFit.cover, // L'image couvre toute la zone
                     ),)),
                 SizedBox(
                   width: double.infinity,
-                  height: 510,
                   child: Form(
                       key: _formKey,
                       child: Column(
                         children: [
                           // Dropdown pour le pays
                           SizedBox(
-                            width: 310,
-                            height: 50,
+                            width: screenWidth * (isPortrait ? 0.9 : 0.8),
                             child: DropdownButtonFormField<String>(
                               decoration: InputDecoration(
                                 labelText: 'Pays',
@@ -115,11 +118,10 @@ class _RenseignementTwoState extends State<RenseignementTwo> {
                               },
                             ),
                           ),
-                          const SizedBox(height: 15.0),
+                          SizedBox(height: screenHeight * (isPortrait ? 0.02 : 0.1),),
                           // Dropdown pour la ville (dépendant du pays sélectionné)
                           SizedBox(
-                            width: 310,
-                            height: 50,
+                            width: screenWidth * (isPortrait ? 0.9 : 0.8),
                             child: DropdownButtonFormField<String>(
                               decoration: InputDecoration(
                                 labelText: 'Ville',
@@ -152,35 +154,34 @@ class _RenseignementTwoState extends State<RenseignementTwo> {
                                 });
                               },
                               // Désactiver le champ si aucun pays n'est sélectionné
-                              disabledHint: const Text('*Veuillez d\'abord sélectionner un pays', style: TextStyle(color: Colors.grey, fontSize: 12)),
+                              disabledHint: Text('*Veuillez d\'abord sélectionner un pays', style: TextStyle(color: Colors.grey, fontSize: screenWidth * 0.03)),
                             ),
                           ),
+                          SizedBox(height: screenHeight * (isPortrait ? 0.01 : 0.05),),
                           SizedBox(
-                              width: 330,
-                              height: 40,
-                              child: Transform.translate(offset: const Offset(-17, -5),
-                                child: Row(
-                                  children: [
-                                    const Icon(Icons.info_outline, color: Colors.red),
-                                    const SizedBox(width: 5.0),
-                                    Expanded(  // Ajout d'Expanded ici
-                                      child: Marquee(
-                                        text: 'Vous pouvez cocher un ou plusieurs réseaux sociaux et renseigner le lien correspondant :',
-                                        style: const TextStyle(fontStyle: FontStyle.italic),
-                                        scrollAxis: Axis.horizontal,
-                                        blankSpace: 20.0,
-                                        velocity: 30.0,
-                                        pauseAfterRound: const Duration(seconds: 1),
-                                        startPadding: 10.0,
-                                      ),
+                              width: screenWidth * 0.8,
+                              height: screenHeight * (isPortrait ? 0.03 : 0.1),
+                              child: Row(
+                                children: [
+                                  const Icon(Icons.info_outline, color: Colors.red),
+                                  SizedBox(width: screenWidth * 0.02),
+                                  Expanded(  // Ajout d'Expanded ici
+                                    child: Marquee(
+                                      text: 'Vous pouvez cocher un ou plusieurs réseaux sociaux et renseigner le lien correspondant :',
+                                      style: const TextStyle(fontStyle: FontStyle.italic),
+                                      scrollAxis: Axis.horizontal,
+                                      blankSpace: 20.0,
+                                      velocity: 30.0,
+                                      pauseAfterRound: const Duration(seconds: 1),
+                                      startPadding: 10.0,
                                     ),
-                                  ],
-                                ),)
+                                  ),
+                                ],
+                              ),
                           ),
-                          const SizedBox(height: 5.0),
+                          SizedBox(height: screenHeight * (isPortrait ? 0.01 : 0.05),),
                           SizedBox(
-                            width: 330,
-                            height: 50,
+                            width: screenWidth * (isPortrait ? 0.9 : 0.8),
                             child: CheckboxListTile(
                               title: const Text('Instagram', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),),
                               value: isInstagram,
@@ -194,14 +195,14 @@ class _RenseignementTwoState extends State<RenseignementTwo> {
                           ),
                           if (isInstagram)
                             SizedBox(
-                              width: 310,
-                              height: 35,
+                              width: screenWidth * (isPortrait ? 0.9 : 0.8),
+                              height: screenHeight * (isPortrait ? 0.05 : 0.1),
                               child: TextFormField(
                                 decoration: InputDecoration(
                                   labelText: 'Lien vers votre profil Instagram',
                                   hintText: '*https://www.instagram.com/gafour/',
-                                  labelStyle: const TextStyle(color: Colors.white, fontSize: 14),
-                                  hintStyle: const TextStyle(color: Colors.white, fontSize: 12),
+                                  labelStyle: TextStyle(color: Colors.white, fontSize: screenWidth * (isPortrait ? 0.03 : 0.02)),
+                                  hintStyle: TextStyle(color: Colors.white, fontSize: screenWidth * (isPortrait ? 0.03 : 0.02)),
                                   prefixIcon: const Icon(
                                     Icons.link,
                                     color: Color(0xff072858),
@@ -228,10 +229,10 @@ class _RenseignementTwoState extends State<RenseignementTwo> {
                                 },
                               ),
                             )
-                          else const SizedBox(height: 35.0),
+                          else SizedBox(height: screenHeight * (isPortrait ? 0.05 : 0.1),),
+                          SizedBox(height: screenHeight * (isPortrait ? 0.005 : 0.05),),
                           SizedBox(
-                            width: 330,
-                            height: 50,
+                            width: screenWidth * (isPortrait ? 0.9 : 0.8),
                             child: CheckboxListTile(
                               title: const Text('YouTube', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),),
                               value: isYouTube,
@@ -245,14 +246,14 @@ class _RenseignementTwoState extends State<RenseignementTwo> {
                           ),
                           if (isYouTube)
                             SizedBox(
-                              width: 310,
-                              height: 35,
+                              width: screenWidth * (isPortrait ? 0.9 : 0.8),
+                              height: screenHeight * (isPortrait ? 0.05 : 0.1),
                               child: TextFormField(
                                 decoration: InputDecoration(
                                   labelText: 'Lien vers votre chaîne YouTube',
                                   hintText: '*https://www.youtube.com/gafour/',
-                                  labelStyle: const TextStyle(color: Colors.white, fontSize: 14),
-                                  hintStyle: const TextStyle(color: Colors.white, fontSize: 12),
+                                  labelStyle: TextStyle(color: Colors.white, fontSize: screenWidth * (isPortrait ? 0.03 : 0.02)),
+                                  hintStyle: TextStyle(color: Colors.white, fontSize: screenWidth * (isPortrait ? 0.03 : 0.02)),
                                   prefixIcon: const Icon(
                                     Icons.link,
                                     color: Color(0xff072858),
@@ -279,10 +280,10 @@ class _RenseignementTwoState extends State<RenseignementTwo> {
                                 },
                               ),
                             )
-                          else const SizedBox(height: 35.0),
+                          else SizedBox(height: screenHeight * (isPortrait ? 0.05 : 0.1),),
+                          SizedBox(height: screenHeight * (isPortrait ? 0.005 : 0.05),),
                           SizedBox(
-                            width: 330,
-                            height: 50,
+                            width: screenWidth * (isPortrait ? 0.9 : 0.8),
                             child: CheckboxListTile(
                               title: const Text('Facebook', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),),
                               value: isFacebook,
@@ -296,14 +297,14 @@ class _RenseignementTwoState extends State<RenseignementTwo> {
                           ),
                           if (isFacebook)
                             SizedBox(
-                              width: 310,
-                              height: 35,
+                              width: screenWidth * (isPortrait ? 0.9 : 0.8),
+                              height: screenHeight * (isPortrait ? 0.05 : 0.1),
                               child: TextFormField(
                                 decoration: InputDecoration(
                                   labelText: 'Lien vers votre profil Facebook',
                                   hintText: '*https://www.facebook.com/gafour/',
-                                  labelStyle: const TextStyle(color: Colors.white, fontSize: 14),
-                                  hintStyle: const TextStyle(color: Colors.white, fontSize: 12),
+                                  labelStyle: TextStyle(color: Colors.white, fontSize: screenWidth * (isPortrait ? 0.03 : 0.02)),
+                                  hintStyle: TextStyle(color: Colors.white, fontSize: screenWidth * (isPortrait ? 0.03 : 0.02)),
                                   prefixIcon: const Icon(
                                     Icons.link,
                                     color: Color(0xff072858),
@@ -330,14 +331,15 @@ class _RenseignementTwoState extends State<RenseignementTwo> {
                                 },
                               ),
                             )
-                          else const SizedBox(height: 35.0),
+                          else SizedBox(height: screenHeight * (isPortrait ? 0.05 : 0.1),),
+                          SizedBox(height: screenHeight * (isPortrait ? 0.005 : 0.05),),
                           SizedBox(
-                            height: 35,
+                            height: screenHeight * (isPortrait ? 0.05 : 0.1),
                             child: CheckboxListTile(
                               title: Row(
                                 children: [
-                                  const Text('J\'accepte les ', style: TextStyle(
-                                      fontSize: 16,
+                                  Text('J\'accepte les ', style: TextStyle(
+                                      fontSize: screenWidth * (isPortrait ? 0.03 : 0.02),
                                       fontStyle: FontStyle.italic
                                   ),),
                                   TextButton(
@@ -346,13 +348,13 @@ class _RenseignementTwoState extends State<RenseignementTwo> {
                                         context: context,
                                         builder: (BuildContext context) {
                                           return AlertDialog(
-                                            title: const Text('Conditions d\'utilisation',
+                                            title: Text('Conditions d\'utilisation',
                                               style: TextStyle(
-                                                fontSize: 18,
+                                                fontSize: screenWidth * 0.04,
                                                 fontWeight: FontWeight.bold,
-                                                color: Color(0xff072858),
+                                                color: const Color(0xff072858),
                                               ),),
-                                            content: const SingleChildScrollView(child: Text(
+                                            content: SingleChildScrollView(child: Text(
                                               '''
 Conditions d'Utilisation de SPACEBOOST
 
@@ -373,7 +375,7 @@ Bienvenue dans notre application dédiée aux influenceurs souhaitant promouvoir
 En utilisant cette application, vous reconnaissez avoir lu, compris et accepté ces conditions d'utilisation.
 
 Merci de votre compréhension et bonne utilisation de notre application !
-        ''', style: TextStyle(fontSize: 12),
+        ''', style: TextStyle(fontSize: screenWidth * 0.03),
                                               textAlign: TextAlign.justify,),),
                                             actions: [
                                               TextButton(
@@ -387,9 +389,9 @@ Merci de votre compréhension et bonne utilisation de notre application !
                                         },
                                       );
                                     },
-                                    child: const Text(
+                                    child: Text(
                                       'conditions d\'utilisation',
-                                      style: TextStyle(fontStyle: FontStyle.italic, fontWeight: FontWeight.bold, color: Color(0xff072858)),
+                                      style: TextStyle(fontSize: screenWidth * (isPortrait ? 0.03 : 0.02), fontStyle: FontStyle.italic, fontWeight: FontWeight.bold, color: const Color(0xff072858)),
                                     ),
                                   ),
                                 ],
@@ -404,34 +406,38 @@ Merci de votre compréhension et bonne utilisation de notre application !
                               activeColor: const Color(0xff072858),
                             ),
                           ),
-                          const SizedBox(height: 10.0),
-                          ElevatedButton(
-                            onPressed: () {
-                              if (_formKey.currentState!.validate()) {
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => const BeforeHome()));
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(content: Text('Formulaire soumis avec succès!')),
-                                );
-                              }
-                            },
-                            style: ButtonStyle(
-                              backgroundColor: const WidgetStatePropertyAll(Color(0xff072858)),
-                              shape: WidgetStatePropertyAll(
-                                RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20), // Bordures arrondies
+                          SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.05),),
+                          SizedBox(
+                            width: screenWidth * (isPortrait ? 0.9 : 0.8),
+                            child: ElevatedButton(
+                              onPressed: () {
+                                if (_formKey.currentState!.validate()) {
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => const BeforeHome()));
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(content: Text('Formulaire soumis avec succès!')),
+                                  );
+                                }
+                              },
+                              style: ButtonStyle(
+                                backgroundColor: const WidgetStatePropertyAll(Color(0xff072858)),
+                                shape: WidgetStatePropertyAll(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10), // Bordures arrondies
+                                  ),
                                 ),
+                                elevation: const WidgetStatePropertyAll(3),
                               ),
-                              elevation: const WidgetStatePropertyAll(5),
-                            ),
-                            child: const Text(
-                              'Envoyer',
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
+                              child: Text(
+                                'Envoyer',
+                                style: TextStyle(
+                                  fontSize: screenWidth * (isPortrait ? 0.04 : 0.03),
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                           ),
+                          SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.1),),
                         ],
                       )),
                 ),

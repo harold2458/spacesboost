@@ -19,6 +19,12 @@ class _ProfilState extends State<Profil> {
 
   @override
   Widget build(BuildContext context) {
+
+    final mediaQuery = MediaQuery.of(context);
+    final screenHeight = mediaQuery.size.height;
+    final screenWidth = mediaQuery.size.width;
+    final isPortrait = mediaQuery.orientation == Orientation.portrait;
+
     return Scaffold(
         appBar: AppBar(
           title: const Text('Profil', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),),
@@ -28,172 +34,190 @@ class _ProfilState extends State<Profil> {
             Navigator.of(context).pop();
           }, icon: const Icon(Icons.arrow_back, color: Colors.white,))),
         body: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.symmetric(horizontal: screenWidth * (isPortrait ? 0.05 : 0.1), vertical: screenHeight * (isPortrait ? 0.03 : 0.1)),
           child: Column(
             children: [
-              const SizedBox(height: 20),
-              const CircleAvatar(
-                radius: 100,
-                backgroundImage: AssetImage('assets/images/profil.jpg'),
+              CircleAvatar(
+                radius: screenWidth * (isPortrait ? 0.2 : 0.1),
+                backgroundImage: const AssetImage('assets/images/profil.jpg'),
               ),
-              const SizedBox(height: 30),
+              SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.1),),
               Center(
                 child: Container(
                   decoration: const BoxDecoration(
                       color: Color(0XFFFCBC1C)
                   ),
-                  width: 270,
-                  height: 1,
+                  width: screenWidth * (isPortrait ? 0.6 : 0.5),
+                  height: screenHeight * (isPortrait ? 0.001 : 0.002),
                 ),
               ),
-              const SizedBox(height: 30),
-              Row(
-                children: [
-                  RichText(
-                      text: const TextSpan(
-                        style: TextStyle(fontFamily: 'Poppins'),
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: 'Nom de l’utilisateur : ',
-                            style: TextStyle(fontSize: 16.0,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xff072858)),
-                          ),
-                          TextSpan(
-                              text: 'Gafour YEKINI',
-                              style: TextStyle(color: Colors.black,)
-                          ),
-                        ],
-                      )),
-                ]
+              SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.1),),
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.3), // Couleur de l'ombre
+                      spreadRadius: 2, // Rayon de diffusion
+                      blurRadius: 2, // Flou de l'ombre
+                      offset: const Offset(0, 2), // Décalage de l'ombre
+                    ),
+                  ],
+                ),
+                padding: EdgeInsets.all(screenWidth * (isPortrait ? 0.04 : 0.02)),
+                child: Column(
+                  children: [
+                    Row(
+                        children: [
+                          RichText(
+                              text: TextSpan(
+                                style: const TextStyle(fontFamily: 'Poppins'),
+                                children: <TextSpan>[
+                                  TextSpan(
+                                    text: 'Nom de l’utilisateur : ',
+                                    style: TextStyle(fontSize: screenWidth * (isPortrait ? 0.04 : 0.03),
+                                        fontWeight: FontWeight.bold,
+                                        color: const Color(0xff072858)),
+                                  ),
+                                  const TextSpan(
+                                      text: 'Gafour YEKINI',
+                                      style: TextStyle(color: Colors.black,)
+                                  ),
+                                ],
+                              )),
+                        ]
+                    ),
+                    SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.1),),
+                    Row(
+                      children: [
+                        RichText(
+                            text: TextSpan(
+                              style: const TextStyle(fontFamily: 'Poppins'),
+                              children: <TextSpan>[
+                                TextSpan(
+                                  text: 'Email de l’utilisateur : ',
+                                  style: TextStyle(fontSize: screenWidth * (isPortrait ? 0.04 : 0.03),
+                                      fontWeight: FontWeight.bold,
+                                      color: const Color(0xff072858)),
+                                ),
+                                TextSpan(
+                                    text: 'yekiniabdougafour@gmail.com',
+                                    style: TextStyle(fontSize: screenWidth * (isPortrait ? 0.02 : 0.02), color: Colors.black,)
+                                ),
+                              ],
+                            )),
+                      ],
+                    ),
+                    SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.1),),
+                    Row(
+                      children: [
+                        RichText(
+                            text: TextSpan(
+                              style: const TextStyle(fontFamily: 'Poppins'),
+                              children: <TextSpan>[
+                                TextSpan(
+                                  text: 'Numéro de l’utilisateur : ',
+                                  style: TextStyle(fontSize: screenWidth * (isPortrait ? 0.04 : 0.03),
+                                      fontWeight: FontWeight.bold,
+                                      color: const Color(0xff072858)),
+                                ),
+                                const TextSpan(
+                                    text: '+229 60126604',
+                                    style: TextStyle(color: Colors.black,)
+                                ),
+                              ],
+                            )),
+                      ],
+                    ),
+                    SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.1),),
+                    Row(
+                      children: [
+                        RichText(
+                            text: TextSpan(
+                              style: const TextStyle(fontFamily: 'Poppins'),
+                              children: <TextSpan>[
+                                TextSpan(
+                                  text: 'Type d\'influenceur : ',
+                                  style: TextStyle(fontSize: screenWidth * (isPortrait ? 0.04 : 0.03),
+                                      fontWeight: FontWeight.bold,
+                                      color: const Color(0xff072858)),
+                                ),
+                                const TextSpan(
+                                    text: 'Danseur',
+                                    style: TextStyle(color: Colors.black,)
+                                ),
+                              ],
+                            )),
+                      ],
+                    ),
+                    SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.1),),
+                    Row(
+                      children: [
+                        RichText(
+                            text: TextSpan(
+                              style: const TextStyle(fontFamily: 'Poppins'),
+                              children: <TextSpan>[
+                                TextSpan(
+                                  text: 'Domaine d\'influence : ',
+                                  style: TextStyle(fontSize: screenWidth * (isPortrait ? 0.04 : 0.03),
+                                      fontWeight: FontWeight.bold,
+                                      color: const Color(0xff072858)),
+                                ),
+                                const TextSpan(
+                                    text: 'Film',
+                                    style: TextStyle(color: Colors.black,)
+                                ),
+                              ],
+                            )),
+                      ],
+                    ),
+                    SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.1),),
+                    Row(
+                      children: [
+                        RichText(
+                            text: TextSpan(
+                              style: const TextStyle(fontFamily: 'Poppins'),
+                              children: <TextSpan>[
+                                TextSpan(
+                                  text: 'Pays de l’utilisateur : ',
+                                  style: TextStyle(fontSize: screenWidth * (isPortrait ? 0.04 : 0.03),
+                                      fontWeight: FontWeight.bold,
+                                      color: const Color(0xff072858)),
+                                ),
+                                const TextSpan(
+                                    text: 'Bénin',
+                                    style: TextStyle(color: Colors.black,)
+                                ),
+                              ],
+                            )),
+                      ],
+                    ),
+                    SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.1),),
+                    Row(
+                      children: [
+                        RichText(
+                            text: TextSpan(
+                              style: const TextStyle(fontFamily: 'Poppins'),
+                              children: <TextSpan>[
+                                TextSpan(
+                                  text: 'Ville de l’utilisateur : ',
+                                  style: TextStyle(fontSize: screenWidth * (isPortrait ? 0.04 : 0.03),
+                                      fontWeight: FontWeight.bold,
+                                      color: const Color(0xff072858)),
+                                ),
+                                const TextSpan(
+                                    text: 'Abomey-Calavi',
+                                    style: TextStyle(color: Colors.black,)
+                                ),
+                              ],
+                            )),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-              const SizedBox(height: 20),
-              Row(
-                children: [
-                  RichText(
-                      text: const TextSpan(
-                        style: TextStyle(fontFamily: 'Poppins'),
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: 'Email de l’utilisateur : ',
-                            style: TextStyle(fontSize: 16.0,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xff072858)),
-                          ),
-                          TextSpan(
-                              text: 'yekiniabdougafour@gmail.com',
-                              style: TextStyle(fontSize: 10.0, color: Colors.black,)
-                          ),
-                        ],
-                      )),
-                ],
-              ),
-              const SizedBox(height: 20),
-              Row(
-                children: [
-                  RichText(
-                      text: const TextSpan(
-                        style: TextStyle(fontFamily: 'Poppins'),
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: 'Numéro de l’utilisateur : ',
-                            style: TextStyle(fontSize: 16.0,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xff072858)),
-                          ),
-                          TextSpan(
-                              text: '+229 60126604',
-                              style: TextStyle(color: Colors.black,)
-                          ),
-                        ],
-                      )),
-                ],
-              ),
-              const SizedBox(height: 20),
-              Row(
-                children: [
-                  RichText(
-                      text: const TextSpan(
-                        style: TextStyle(fontFamily: 'Poppins'),
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: 'Type d\'influenceur : ',
-                            style: TextStyle(fontSize: 16.0,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xff072858)),
-                          ),
-                          TextSpan(
-                              text: 'Danseur',
-                              style: TextStyle(color: Colors.black,)
-                          ),
-                        ],
-                      )),
-                ],
-              ),
-              const SizedBox(height: 20),
-              Row(
-                children: [
-                  RichText(
-                      text: const TextSpan(
-                        style: TextStyle(fontFamily: 'Poppins'),
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: 'Domaine d\'influence : ',
-                            style: TextStyle(fontSize: 16.0,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xff072858)),
-                          ),
-                          TextSpan(
-                              text: 'Film',
-                              style: TextStyle(color: Colors.black,)
-                          ),
-                        ],
-                      )),
-                ],
-              ),
-              const SizedBox(height: 20),
-              Row(
-                children: [
-                  RichText(
-                      text: const TextSpan(
-                        style: TextStyle(fontFamily: 'Poppins'),
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: 'Pays de l’utilisateur : ',
-                            style: TextStyle(fontSize: 16.0,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xff072858)),
-                          ),
-                          TextSpan(
-                              text: 'Bénin',
-                              style: TextStyle(color: Colors.black,)
-                          ),
-                        ],
-                      )),
-                ],
-              ),
-              const SizedBox(height: 20),
-              Row(
-                children: [
-                  RichText(
-                      text: const TextSpan(
-                        style: TextStyle(fontFamily: 'Poppins'),
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: 'Ville de l’utilisateur : ',
-                            style: TextStyle(fontSize: 16.0,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xff072858)),
-                          ),
-                          TextSpan(
-                              text: 'Abomey-Calavi',
-                              style: TextStyle(color: Colors.black,)
-                          ),
-                        ],
-                      )),
-                ],
-              ),
-              const SizedBox(height: 50),
+              SizedBox(height: screenHeight * (isPortrait ? 0.05 : 0.15),),
               Stack(
                 children: [
                   Container(
@@ -201,23 +225,23 @@ class _ProfilState extends State<Profil> {
                       border: Border.all(color: const Color(0XFFFCBC1C)),
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    width: 360,
-                    height: 240,
+                    width: double.infinity,
+                    height: screenHeight * (isPortrait ? 0.32 : 0.9),
                   ),
-                  Transform.translate(offset: const Offset(40, -15),
+                  Transform.translate(offset: Offset(screenWidth * (isPortrait ? 0.1 : 0.1), -screenHeight * (isPortrait ? 0.03 : 0.08)),
                     child: Container(
                       decoration: const BoxDecoration(
                           color: Color(0xfff7f7fd)
                       ),
-                      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-                      child: const Text('Changement du mot de passe :', style: TextStyle(
-                        fontSize: 18,
+                      padding: EdgeInsets.symmetric(horizontal: screenWidth * (isPortrait ? 0.05 : 0.03), vertical: screenHeight * (isPortrait ? 0.01 : 0.02)),
+                      child: Text('Changement du mot de passe :', style: TextStyle(
+                        fontSize: screenWidth * (isPortrait ? 0.04 : 0.03),
                         fontWeight: FontWeight.bold,
                         color: Colors.grey,
                       ),),
                     ),
                   ),
-                  Transform.translate(offset: const Offset(20, 25),
+                  Transform.translate(offset: Offset(screenWidth * (isPortrait ? 0.05 : 0.05), screenHeight * (isPortrait ? 0.03 : 0.1)),
                     child: Column(
                       children: [
                         Form(
@@ -225,7 +249,7 @@ class _ProfilState extends State<Profil> {
                             child: Column(
                               children: [
                                 SizedBox(
-                                  width: 310,
+                                  width: screenWidth * (isPortrait ? 0.8 : 0.7),
                                   child: TextFormField(
                                     keyboardType: TextInputType.text,
                                     controller: _passwordController,
@@ -260,9 +284,9 @@ class _ProfilState extends State<Profil> {
                                     },
                                   ),
                                 ),
-                                const SizedBox(height: 20.0),
+                                SizedBox(height: screenHeight * (isPortrait ? 0.02 : 0.1),),
                                 SizedBox(
-                                  width: 310,
+                                  width: screenWidth * (isPortrait ? 0.8 : 0.7),
                                   child: TextFormField(
                                     keyboardType: TextInputType.text,
                                     controller: _confirmPasswordController,
@@ -297,24 +321,28 @@ class _ProfilState extends State<Profil> {
                                     },
                                   ),
                                 ),
-                                const SizedBox(height: 20),
-                                ElevatedButton(
-                                  onPressed: _submitForm,
-                                  style: ButtonStyle(
-                                    backgroundColor: const WidgetStatePropertyAll(Color(0xfffcbc1c)),
-                                    shape: WidgetStatePropertyAll(
-                                      RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(20), // Bordures arrondies
+                                SizedBox(height: screenHeight * (isPortrait ? 0.04 : 0.1),),
+                                SizedBox(
+                                  width: screenWidth * (isPortrait ? 0.8 : 0.7), // Largeur du bouton ajustée
+                                  height: screenHeight * (isPortrait ? 0.06 : 0.2),
+                                  child: ElevatedButton(
+                                    onPressed: _submitForm,
+                                    style: ButtonStyle(
+                                      backgroundColor: const WidgetStatePropertyAll(Color(0xfffcbc1c)),
+                                      shape: WidgetStatePropertyAll(
+                                        RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(10), // Bordures arrondies
+                                        ),
                                       ),
+                                      elevation: const WidgetStatePropertyAll(3),
                                     ),
-                                    elevation: const WidgetStatePropertyAll(5),
+                                    child: Text("Envoyer", style: TextStyle(
+                                      fontSize: screenWidth * (isPortrait ? 0.04 : 0.03),
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),),
                                   ),
-                                  child: const Text("Envoyer", style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                  ),),
-                                ),
+                                )
                               ],
                             )),
                       ],
@@ -322,7 +350,7 @@ class _ProfilState extends State<Profil> {
                   )
                 ],
               ),
-              const SizedBox(height: 30),
+              SizedBox(height: screenHeight * (isPortrait ? 0 : 0.1),),
             ],
           ),
         )

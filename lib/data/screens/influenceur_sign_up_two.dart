@@ -20,6 +20,12 @@ class _InfluenceurSignUpTwoState extends State<InfluenceurSignUpTwo> {
 
   @override
   Widget build(BuildContext context) {
+
+    final mediaQuery = MediaQuery.of(context);
+    final screenHeight = mediaQuery.size.height;
+    final screenWidth = mediaQuery.size.width;
+    final isPortrait = mediaQuery.orientation == Orientation.portrait;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Inscription', style: TextStyle(fontWeight: FontWeight.bold),),
@@ -27,24 +33,22 @@ class _InfluenceurSignUpTwoState extends State<InfluenceurSignUpTwo> {
       ),
       body: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/images/signin.png', height: 230,),
-            const SizedBox(height: 20,),
+            SizedBox(height: screenHeight * (isPortrait ? 0.01 : 0.1),),
+            Image.asset('assets/images/signin.png', height: screenHeight * (isPortrait ? 0.25 : 0.5),),
+            SizedBox(height: screenHeight * (isPortrait ? 0.02 : 0.15),),
             Stack(
               children: [
                 Positioned.fill(
-                    child: Image.asset('assets/images/forme_jaune.png', fit: BoxFit.cover,)),
+                    child: Image.asset('assets/images/forme_jaune3.png', fit: BoxFit.cover,),),
                 SizedBox(
                   width: double.infinity,
-                  height: 510,
                   child: Form(
                     key: _formKey,
                     child: Column(
                       children: [
-                        const SizedBox(height: 15,),
                         SizedBox(
-                          width: 310,
+                          width: screenWidth * (isPortrait ? 0.9 : 0.8),
                           child: TextFormField(
                             keyboardType: TextInputType.text,
                             controller: _passwordController,
@@ -79,9 +83,9 @@ class _InfluenceurSignUpTwoState extends State<InfluenceurSignUpTwo> {
                             },
                           ),
                         ),
-                        const SizedBox(height: 70.0),
+                        SizedBox(height: screenHeight * (isPortrait ? 0.1 : 0.1)),
                         SizedBox(
-                          width: 310,
+                          width: screenWidth * (isPortrait ? 0.9 : 0.8),
                           child: TextFormField(
                             keyboardType: TextInputType.text,
                             controller: _confirmPasswordController,
@@ -118,9 +122,9 @@ class _InfluenceurSignUpTwoState extends State<InfluenceurSignUpTwo> {
                             },
                           ),
                         ),
-                        const SizedBox(height: 20.0),
+                        SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.08)),
                         SizedBox(
-                          width: 310,
+                          width: screenWidth * (isPortrait ? 0.9 : 0.8),
                           child: TextFormField(
                             keyboardType: TextInputType.phone,
                             controller: _phoneController,
@@ -151,49 +155,54 @@ class _InfluenceurSignUpTwoState extends State<InfluenceurSignUpTwo> {
                             },
                           ),
                         ),
-                        const SizedBox(height: 30.0),
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => const Welcome()),
-                            );
-                          },
-                          style: ButtonStyle(
-                            backgroundColor: const WidgetStatePropertyAll(Color(0xff072858)),
-                            shape: WidgetStatePropertyAll(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20), // Bordures arrondies
+                        SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.1)),
+                        SizedBox(
+                          width: screenWidth * (isPortrait ? 0.9 : 0.8), // Largeur du bouton ajustée
+                          height: screenHeight * (isPortrait ? 0.06 : 0.2),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => const Welcome()),
+                              );
+                            },
+                            style: ButtonStyle(
+                              backgroundColor: const WidgetStatePropertyAll(Color(0xff072858)),
+                              shape: WidgetStatePropertyAll(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10), // Bordures arrondies
+                                ),
                               ),
+                              elevation: const WidgetStatePropertyAll(3),
                             ),
-                            elevation: const WidgetStatePropertyAll(5),
-                          ),
-                          child: const Text(
-                            'S\'inscrire',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
+                            child: Text(
+                              'S\'inscrire',
+                              style: TextStyle(
+                                fontSize: screenWidth * (isPortrait ? 0.04 : 0.03),
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ),
-                        const SizedBox(height: 50.0),
-                        const Text('Avez-vous deja un compte ?', style: TextStyle(
-                          fontSize: 18,
+                        SizedBox(height: screenHeight * (isPortrait ? 0.05 : 0.1)),
+                        Text('Avez-vous deja un compte ?', style: TextStyle(
+                          fontSize: screenWidth * (isPortrait ? 0.04 : 0.03),
                           color: Colors.white,
                         ),),
-                        const SizedBox(height: 10.0),
+                        SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.1)),
                         TextButton(onPressed: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute(builder: (context) => const InfluenceurLogin()),
                           );
-                        }, child: const Text('Connectez-vous !',
+                        }, child: Text('Connectez-vous !',
                           style: TextStyle(
-                            fontSize: 18,
+                            fontSize: screenWidth * (isPortrait ? 0.04 : 0.03),
                             fontWeight: FontWeight.bold,
-                            color: Color(0xff072858),
+                            color: const Color(0xff072858),
                           ),)),
+                        SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.1)),
                       ],
                     ),
                   ),

@@ -18,6 +18,12 @@ class _InfluenceurSignUpState extends State<InfluenceurSignUp> {
 
   @override
   Widget build(BuildContext context) {
+
+    final mediaQuery = MediaQuery.of(context);
+    final screenHeight = mediaQuery.size.height;
+    final screenWidth = mediaQuery.size.width;
+    final isPortrait = mediaQuery.orientation == Orientation.portrait;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Inscription', style: TextStyle(fontWeight: FontWeight.bold),),
@@ -25,23 +31,21 @@ class _InfluenceurSignUpState extends State<InfluenceurSignUp> {
       ),
       body: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/images/signin.png', height: 230,),
-            const SizedBox(height: 20,),
-            Stack(
-              children: [
-                Positioned.fill(
-                    child: Image.asset('assets/images/forme_jaune.png', fit: BoxFit.cover,)),
-                SizedBox(
-                  height: 510,
-                  child: Form(
+            SizedBox(height: screenHeight * (isPortrait ? 0.01 : 0.1),),
+            Image.asset('assets/images/signin.png', height: screenHeight * (isPortrait ? 0.25 : 0.5),),
+            SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.15),),
+            SizedBox(
+              height: isPortrait ? screenHeight * 0.6 : null,
+              child: Stack(
+                children: [
+                  Positioned.fill(child: Image.asset('assets/images/forme_jaune3.png', fit: BoxFit.cover)),
+                  Form(
                     key: _formKey,
                     child: Column(
                       children: [
-                        const SizedBox(height: 15,),
                         SizedBox(
-                          width: 310,
+                          width: screenWidth * (isPortrait ? 0.9 : 0.8),
                           child: TextFormField(
                             keyboardType: TextInputType.text,
                             controller: _firstNameController,
@@ -72,9 +76,9 @@ class _InfluenceurSignUpState extends State<InfluenceurSignUp> {
                             },
                           ),
                         ),
-                        const SizedBox(height: 70.0),
+                        SizedBox(height: screenHeight * (isPortrait ? 0.08 : 0.1)),
                         SizedBox(
-                          width: 310,
+                          width: screenWidth * (isPortrait ? 0.9 : 0.8),
                           child: TextFormField(
                             keyboardType: TextInputType.text,
                             controller: _lastNameController,
@@ -105,9 +109,9 @@ class _InfluenceurSignUpState extends State<InfluenceurSignUp> {
                             },
                           ),
                         ),
-                        const SizedBox(height: 20.0),
+                        SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.1)),
                         SizedBox(
-                          width: 310,
+                          width: screenWidth * (isPortrait ? 0.9 : 0.8),
                           child: TextFormField(
                             keyboardType: TextInputType.text,
                             controller: _emailController,
@@ -138,87 +142,96 @@ class _InfluenceurSignUpState extends State<InfluenceurSignUp> {
                             },
                           ),
                         ),
-                        const SizedBox(height: 30.0),
+                        SizedBox(height: screenHeight * (isPortrait ? 0.025 : 0.1)),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Container(
-                              width: 100.0,
-                              height: 0.7,
+                              width: screenWidth * 0.2,
+                              height: screenHeight * (isPortrait ? 0.001 : 0.005),
                               decoration: const BoxDecoration(color: Color(0xff072858)),
                             ),
-                            const SizedBox(width: 10.0),
+                            SizedBox(width: screenWidth * 0.06),
                             const Text('ou', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
-                            const SizedBox(width: 10.0),
+                            SizedBox(width: screenWidth * 0.06),
                             Container(
-                              width: 100.0,
-                              height: 0.7,
+                              width: screenWidth * 0.2,
+                              height: screenHeight * (isPortrait ? 0.001 : 0.005),
                               decoration: const BoxDecoration(color: Color(0xff072858)),
                             ),
                           ],
                         ),
-                        const SizedBox(height: 20.0),
-                        ElevatedButton.icon(
-                          style: const ButtonStyle(
-                            shape: WidgetStatePropertyAll(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.all(Radius.circular(25.0)),
-                                side: BorderSide(color: Color(0xff072858)),
-                              ),
-                            ),
-                            elevation: WidgetStatePropertyAll(5),
-                          ),
-                          onPressed: () => {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => const Welcome()))
-                          },
-                          label: const Text(
-                            'Google',
-                            style: TextStyle(fontWeight: FontWeight.bold, color: Color(0xff072858)),
-                          ),
-                          icon: Image.asset('assets/images/google_signup.png'),
-                        ),
-                        const SizedBox(height: 40),
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => const InfluenceurSignUpTwo()),
-                            );
-                          },
-                          style: ButtonStyle(
-                            backgroundColor: const WidgetStatePropertyAll(Color(0xff072858)),
-                            shape: WidgetStatePropertyAll(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20), // Bordures arrondies
-                              ),
-                            ),
-                            elevation: const WidgetStatePropertyAll(5),
-                          ),
-                          child: const SizedBox(
-                            width: 110,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'Suivant',
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                  ),
+                        SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.1)),
+                        SizedBox(
+                          width: screenWidth * (isPortrait ? 0.9 : 0.8), // Largeur du bouton ajustée
+                          height: screenHeight * (isPortrait ? 0.06 : 0.2),
+                          child: ElevatedButton.icon(
+                            style: const ButtonStyle(
+                              shape: WidgetStatePropertyAll(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  side: BorderSide(color: Color(0xff072858)),
                                 ),
-                                SizedBox(width: 10),
-                                Icon(Icons.arrow_right_alt, color: Colors.white),
-                              ],
+                              ),
+                              elevation: WidgetStatePropertyAll(3),
+                            ),
+                            onPressed: () => {
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => const Welcome()))
+                            },
+                            label: Text(
+                              'Google',
+                              style: TextStyle(fontSize: screenWidth * (isPortrait ? 0.04 : 0.03), fontWeight: FontWeight.bold, color: const Color(0xff072858)),
+                            ),
+                            icon: Image.asset('assets/images/google_signup.png'),
+                          ),
+                        ),
+                        SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.1)),
+                        SizedBox(
+                          width: screenWidth * (isPortrait ? 0.9 : 0.8), // Largeur du bouton ajustée
+                          height: screenHeight * (isPortrait ? 0.06 : 0.2),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => const InfluenceurSignUpTwo()),
+                              );
+                            },
+                            style: ButtonStyle(
+                              backgroundColor: const WidgetStatePropertyAll(Color(0xff072858)),
+                              shape: WidgetStatePropertyAll(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10), // Bordures arrondies
+                                ),
+                              ),
+                              elevation: const WidgetStatePropertyAll(3),
+                            ),
+                            child: SizedBox(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Suivant',
+                                    style: TextStyle(
+                                      fontSize: screenWidth * (isPortrait ? 0.04 : 0.03),
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  SizedBox(width: screenWidth * (isPortrait ? 0.03 : 0.04)),
+                                  const Icon(Icons.arrow_right_alt, color: Colors.white),
+                                ],
+                              ),
                             ),
                           ),
                         ),
+                        SizedBox(height: screenHeight * (isPortrait ? 0 : 0.15),),
                       ],
                     ),
                   ),
-                )
-              ],
-            ),
+                ],
+              ),
+            )
+            //SizedBox(height: screenHeight * (isPortrait ? 0.02 : 0.04)),
           ],
         ),
       ),

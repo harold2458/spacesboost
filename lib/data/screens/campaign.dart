@@ -30,13 +30,19 @@ class _CampaignState extends State<Campaign> with SingleTickerProviderStateMixin
 
   @override
   Widget build(BuildContext context) {
+
+    final mediaQuery = MediaQuery.of(context);
+    final screenHeight = mediaQuery.size.height;
+    final screenWidth = mediaQuery.size.width;
+    final isPortrait = mediaQuery.orientation == Orientation.portrait;
+
     return Scaffold(
       body: Stack(
         children: [
           Column(
             children: [
-                Expanded(
-                  child: Transform.translate(offset: const Offset(0, 90),
+              Expanded(
+                child: Transform.translate(offset: Offset(0, screenHeight * (isPortrait ? 0.1 : 0.17)),
                   child: TabBarView(
                     controller: _tabController,
                     children: const [
@@ -45,20 +51,21 @@ class _CampaignState extends State<Campaign> with SingleTickerProviderStateMixin
                       Creation()
                     ],
                   ),
-                  ),
+                ),
               )
             ],
           ),
-          Image.asset('assets/images/forme_jaune_haut.png', width: double.infinity, fit: BoxFit.cover,),
-          Transform.translate(offset: const Offset(0, -320),
+          if(isPortrait)
+            Image.asset('assets/images/forme_jaune_haut.png', width: double.infinity, fit: BoxFit.cover,),
+          Transform.translate(offset: Offset(0, -screenHeight * (isPortrait ? 0.35 : 0.18)),
           child: Center(
             child: Container(
               decoration: BoxDecoration(
                   color: const Color(0xfffae99a),
                   borderRadius: BorderRadius.circular(10)
               ),
-              width: 330,
-              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+              width: screenWidth * (isPortrait ? 0.8 : 0.5),
+              padding: EdgeInsets.symmetric(vertical: screenHeight * (isPortrait ? 0.005 : 0.03), horizontal: screenWidth * (isPortrait ? 0.02 : 0.03),),
               //color: Colors.yellow, // Couleur de fond du TabBar
               child: TabBar(
                 controller: _tabController,
@@ -70,11 +77,11 @@ class _CampaignState extends State<Campaign> with SingleTickerProviderStateMixin
                   color: const Color(0xfffcbc1c), // Couleur de fond de l'item sélectionné
                   borderRadius: BorderRadius.circular(5), // Optionnel : pour arrondir les bords
                 ),
-                tabs: const [
+                tabs: [
                   Tab(
                       child: SizedBox(
-                        width: 80,
-                        child: Column(
+                        width: screenWidth * (isPortrait ? 0.2 : 0.1),
+                        child: const Column(
                           children: [
                             Icon(Icons.campaign),
                             Text('Annonce')
@@ -84,19 +91,19 @@ class _CampaignState extends State<Campaign> with SingleTickerProviderStateMixin
                   ),
                   Tab(
                       child: SizedBox(
-                        width: 80,
+                        width: screenWidth * (isPortrait ? 0.2 : 0.1),
                         child: Column(
                           children: [
-                            Icon(Icons.card_giftcard),
-                            Text('Promotion')
+                            const Icon(Icons.card_giftcard),
+                            Text('Promotion', style: TextStyle(fontSize: isPortrait ? screenWidth * 0.03 : null),)
                           ],
                         ),
                       )
                   ),
                   Tab(
                       child: SizedBox(
-                        width: 80,
-                        child: Column(
+                        width: screenWidth * (isPortrait ? 0.2 : 0.1),
+                        child: const Column(
                           children: [
                             Icon(Icons.brush),
                             Text('Création')
