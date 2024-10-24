@@ -1,8 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:projet_mobile/data/screens/avant_home.dart';
-import 'package:projet_mobile/data/screens/home_entrentreprise.dart';
 import 'package:projet_mobile/data/screens/login_entreprise.dart';
+import 'package:projet_mobile/data/screens/welcome.dart';
 
 class RegisterEntreprise extends StatefulWidget {
   const RegisterEntreprise({super.key});
@@ -12,7 +12,7 @@ class RegisterEntreprise extends StatefulWidget {
 }
 
 class _RegisterEntrepriseState extends State<RegisterEntreprise> {
-   final TextEditingController firstNameController = TextEditingController();
+  final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController companyNameController = TextEditingController();
@@ -40,13 +40,16 @@ class _RegisterEntrepriseState extends State<RegisterEntreprise> {
     // Logique d'inscription à implémenter
     print("Inscription réussie");
     // Redirection après inscription
-    Navigator.push(context, MaterialPageRoute(builder: (context) =>const AvantHome()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const Welcome()));
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-        title: const Text('Sign Up', style: TextStyle(color: Colors.white)),
+      appBar: AppBar(
+        title: const Text('Inscription ', style: TextStyle(color: Colors.white),
+        ),
+        centerTitle: true,
         backgroundColor: Color(0xFF072858), // Couleur S
       ),
       body: SingleChildScrollView(
@@ -63,7 +66,7 @@ class _RegisterEntrepriseState extends State<RegisterEntreprise> {
 
             // Image d'inscription
             Image.asset(
-              'assets/images/register.png', // Remplacez par votre image
+              'assets/images/sign Up.png', // Remplacez par votre image
               height: 200,
             ),
             const SizedBox(height: 20),
@@ -88,19 +91,31 @@ class _RegisterEntrepriseState extends State<RegisterEntreprise> {
 
             const SizedBox(height: 20),
 
-            // Bouton d'inscription
-            ElevatedButton(
-              onPressed: signUp, // Effectue l'action d'inscription
-              style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15),
+            // Bouton d'inscription avec dégradé jaune
+            Container(
+              width: double.infinity, // Même largeur que les champs de texte
+              height: 60, // Hauteur pour correspondre aux champs de texte
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                gradient: const LinearGradient(
+                  colors: [Colors.yellow, Colors.orange], // Dégradé jaune à orange
                 ),
-                padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 50),
-                backgroundColor: Color(0xFF072858), // Couleur Spaceboost pour le bouton
               ),
-              child: const Text(
-                'S\'inscrire',
-                style: TextStyle(fontSize: 18, color: Colors.white),
+              child: ElevatedButton(
+                onPressed: signUp, // Effectue l'action d'inscription
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.transparent, // Transparence pour laisser apparaître le dégradé
+                  shadowColor: Colors.transparent, // Pas d'ombre
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                ),
+                child: isPasswordVisible
+                    ? const CircularProgressIndicator(color: Colors.white)
+                    : const Text(
+                  'S\'inscrire',
+                  style: TextStyle(fontSize: 18, color: Colors.white),
+                ),
               ),
             ),
 
@@ -120,13 +135,13 @@ class _RegisterEntrepriseState extends State<RegisterEntreprise> {
                   TextSpan(
                     text: "Connectez-vous",
                     style: const TextStyle(
-                      color: Color(0xFF0000FF),
+                      color: Color(0xFF072858),
                       fontSize: 20, // Taille de police plus grande
                       fontWeight: FontWeight.bold, // Gras
                     ),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) =>const LoginEntreprise())); // Redirection vers la connexion
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginEntreprise())); // Redirection vers la connexion
                       },
                   ),
                 ],
@@ -148,7 +163,7 @@ class _RegisterEntrepriseState extends State<RegisterEntreprise> {
         decoration: InputDecoration(
           labelText: labelText,
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(20), // Coins arrondis à 20
           ),
         ),
       ),
@@ -171,7 +186,7 @@ class _RegisterEntrepriseState extends State<RegisterEntreprise> {
             onPressed: toggleVisibility,
           ),
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(20), // Coins arrondis à 20
           ),
         ),
       ),

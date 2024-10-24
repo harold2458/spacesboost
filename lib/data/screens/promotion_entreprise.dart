@@ -23,7 +23,7 @@ class _PromotionEntrepriseState extends State<PromotionEntreprise> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                'Sélectionnez les plateformes sur lesquelles vos produits seront mis en avant. Multipliez vos chances de succès en atteignant un public plus large et diversifié.',
+                'Plus proche de vos clients! Diffuser vos publicités à une audience très large et spécifique avec nos influenceurs qui collent avec votre marque.',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 15,
@@ -31,353 +31,118 @@ class _PromotionEntrepriseState extends State<PromotionEntreprise> {
                 ),
               ),
               const SizedBox(height: 20),
+              buildInfluencerRow(isCheckedmarko, 'Nom prenom', 'Domaine / Lieu', 'assets/icons/profile2.png'),
+              const SizedBox(height: 20),
+              buildInfluencerRow(isCheckedmarkos, 'Nom prenom', 'Domaine / Lieu', 'assets/icons/profile2.png'),
+              const SizedBox(height: 20),
+              buildInfluencerRow(isCheckedmarkoz, 'Nom prenom', 'Domaine / Lieu', 'assets/icons/profile2.png'),
+              const SizedBox(height: 20),
+              buildInfluencerRow(isCheckedmark, 'Nom prenom', 'Domaine / Lieu', 'assets/icons/profile2.png'),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget buildInfluencerRow(bool isChecked, String name, String domain, String imagePath) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Checkbox(
+          value: isChecked,
+          onChanged: (bool? value) {
+            setState(() {
+              isChecked = value ?? false;
+            });
+          },
+        ),
+        Image.asset(
+          imagePath,
+          width: 50,
+          height: 50,
+        ),
+        const SizedBox(width: 20),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                name,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                domain,
+                style: const TextStyle(
+                  fontSize: 14,
+                  color: Colors.grey,
+                ),
+              ),
+              const SizedBox(height: 10),
+              // Exemple d'affichage de followers
               Row(
-                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Checkbox(
-                    value: isCheckedmarko,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        isCheckedmarko = value ?? false;
-                      });
-                    },
-                  ),
                   Image.asset(
-                    'assets/icons/profile2.png',
-                    width: 50,
-                    height: 50,
+                    'assets/icons/whatsapp2.png',
+                    width: 30,
+                    height: 30,
                   ),
-                  const SizedBox(width: 20),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Nom prenom',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 4),
-                        Text(
-                          'Domaine / Lieu',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.grey,
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        Row(
-                          children: [
-                            Image.asset(
-                              'assets/icons/whatsapp2.png',
-                              width: 30,
-                              height: 30,
-                            ),
-                            const SizedBox(width: 3),
-                            const Text(
-                              '5k Followers', // Nombre de followers
-                              style: TextStyle(fontSize: 12),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 10),
-                        Row(
-                          children: [
-                            Image.asset(
-                              'assets/icons/tiktok2.png',
-                              width: 30,
-                              height: 30,
-                            ),
-                            const SizedBox(width: 3),
-                            const Text(
-                              '12k Followers', // Nombre de followers
-                              style: TextStyle(fontSize: 12),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+                  const SizedBox(width: 3),
+                  const Text(
+                    '5k Followers',
+                    style: TextStyle(fontSize: 12),
                   ),
-                  const SizedBox(width: 10),
-                  ElevatedButton(
-                    onPressed: () {
-                      // Action à effectuer lors de l'appui sur le bouton
-                    },
-                    style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all(Color(0xff072858)),
-                    ),
-                    child: const Text(
-                      'Ajouter',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  )
                 ],
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
               Row(
-                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Checkbox(
-                    value: isCheckedmarkos,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        isCheckedmarkos = value ?? false;
-                      });
-                    },
-                  ),
                   Image.asset(
-                    'assets/icons/profile2.png',
-                    width: 50,
-                    height: 50,
+                    'assets/icons/tiktok2.png',
+                    width: 30,
+                    height: 30,
                   ),
-                  const SizedBox(width: 20),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Nom prenom',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 4),
-                        Text(
-                          'Domaine / Lieu',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.grey,
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        Row(
-                          children: [
-                            Image.asset(
-                              'assets/icons/instagram.jpeg',
-                              width: 30,
-                              height: 30,
-                            ),
-                            const SizedBox(width: 3),
-                            const Text(
-                              '5k Followers', // Nombre de followers
-                              style: TextStyle(fontSize: 12),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 10),
-                        Row(
-                          children: [
-                            Image.asset(
-                              'assets/icons/twitter.png',
-                              width: 30,
-                              height: 30,
-                            ),
-                            const SizedBox(width: 3),
-                            const Text(
-                              '12k Followers', // Nombre de followers
-                              style: TextStyle(fontSize: 12),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+                  const SizedBox(width: 3),
+                  const Text(
+                    '12k Followers',
+                    style: TextStyle(fontSize: 12),
                   ),
-                  const SizedBox(width: 10),
-                  ElevatedButton(
-                    onPressed: () {
-                      // Action à effectuer lors de l'appui sur le bouton
-                    },
-                    style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all(Color(0xff072858)),
-                    ),
-                    child: const Text(
-                      'Ajouter',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  )
-                ],
-              ),
-              const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Checkbox(
-                    value: isCheckedmarkoz,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        isCheckedmarkoz = value ?? false;
-                      });
-                    },
-                  ),
-                  Image.asset(
-                    'assets/icons/profile2.png',
-                    width: 50,
-                    height: 50,
-                  ),
-                  const SizedBox(width: 20),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Nom prenom',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 4),
-                        Text(
-                          'Domaine / Lieu',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.grey,
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        Row(
-                          children: [
-                            Image.asset(
-                              'assets/icons/telegram.png',
-                              width: 30,
-                              height: 30,
-                            ),
-                            const SizedBox(width: 3),
-                            const Text(
-                              '5k Followers', // Nombre de followers
-                              style: TextStyle(fontSize: 12),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 10),
-                        Row(
-                          children: [
-                            Image.asset(
-                              'assets/icons/facebook.png',
-                              width: 30,
-                              height: 30,
-                            ),
-                            const SizedBox(width: 3),
-                            const Text(
-                              '12k Followers', // Nombre de followers
-                              style: TextStyle(fontSize: 12),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  ElevatedButton(
-                    onPressed: () {
-                      // Action à effectuer lors de l'appui sur le bouton
-                    },
-                    style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all(Color(0xff072858)),
-                    ),
-                    child: const Text(
-                      'Ajouter',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  )
-                ],
-              ),
-              const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Checkbox(
-                    value: isCheckedmark,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        isCheckedmark = value ?? false;
-                      });
-                    },
-                  ),
-                  Image.asset(
-                    'assets/icons/profile2.png',
-                    width: 50,
-                    height: 50,
-                  ),
-                  const SizedBox(width: 20),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Nom prenom',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 4),
-                        Text(
-                          'Domaine / Lieu',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.grey,
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        Row(
-                          children: [
-                            Image.asset(
-                              'assets/icons/youtube.png',
-                              width: 30,
-                              height: 30,
-                            ),
-                            const SizedBox(width: 3),
-                            const Text(
-                              '5k Followers', // Nombre de followers
-                              style: TextStyle(fontSize: 12),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 10),
-                        Row(
-                          children: [
-                            Image.asset(
-                              'assets/icons/linkedln.png',
-                              width: 30,
-                              height: 30,
-                            ),
-                            const SizedBox(width: 3),
-                            const Text(
-                              '12k Followers', // Nombre de followers
-                              style: TextStyle(fontSize: 12),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  ElevatedButton(
-                    onPressed: () {
-                      // Action à effectuer lors de l'appui sur le bouton
-                    },
-                    style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all(Color(0xff072858)),
-                    ),
-                    child: const Text(
-                      'Ajouter',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  )
                 ],
               ),
             ],
           ),
         ),
-      ),
+        const SizedBox(width: 10),
+        Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Colors.amber, Colors.amberAccent], // Utilisation d'une liste de couleurs pour le dégradé
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+            borderRadius: BorderRadius.circular(20), // Coins arrondis
+          ),
+          child: TextButton(
+            style: TextButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20), // Arrondi des bords
+              ),
+              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20), // Ajustement de la taille du bouton
+            ),
+            onPressed: () {
+              // Action à effectuer lors de l'appui sur le bouton
+            },
+            child: const Text(
+              'Ajouter',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        )
+      ],
     );
   }
 }

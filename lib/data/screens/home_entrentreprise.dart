@@ -12,7 +12,7 @@ class HomeEntreprise extends StatefulWidget {
 }
 
 class _HomeEntrepriseState extends State<HomeEntreprise> {
-  
+
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +27,8 @@ class _HomeEntrepriseState extends State<HomeEntreprise> {
             color: const Color(
                 0xff072858), // Couleur de la section profil et AppBar
             borderRadius: const BorderRadius.only(
-              bottomLeft: Radius.circular(30),
-              bottomRight: Radius.circular(30),
+              bottomLeft: Radius.circular(70),
+              bottomRight: Radius.circular(70),
             ),
             border: Border.all(
               color: Colors.transparent,
@@ -41,13 +41,13 @@ class _HomeEntrepriseState extends State<HomeEntreprise> {
 
               // Section du profil avec prénom et nom
               CircleAvatar(
-                radius: 100,
+                radius: 80,
                 backgroundImage: AssetImage(
                     'assets/icons/profile2.png'), // Chemin vers l'image du profil
               ),
               SizedBox(height: 20),
               Text(
-                'Prénom Nom',
+                'Harold DIDAVI',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -55,7 +55,7 @@ class _HomeEntrepriseState extends State<HomeEntreprise> {
                 ),
               ),
               Text(
-                'Rôle',
+                'Developpeur',
                 style: TextStyle(fontSize: 16, color: Colors.white),
               ),
             ],
