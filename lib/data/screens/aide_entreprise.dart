@@ -8,9 +8,18 @@ class AideEntreprise extends StatefulWidget {
 }
 
 class _AideEntrepriseState extends State<AideEntreprise> {
+
+ 
+
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+
+    final mediaQuery = MediaQuery.of(context);
+    final screenHeight = mediaQuery.size.height;
+    final screenWidth = mediaQuery.size.width;
+    final isPortrait = mediaQuery.orientation == Orientation.portrait;
+    
+    return Scaffold(
       body: Center(
         child: Text("Hello"),
       ),
