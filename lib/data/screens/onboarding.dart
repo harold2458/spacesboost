@@ -10,16 +10,16 @@ class Onboarding extends StatefulWidget {
 }
 
 class _OnboardingState extends State<Onboarding> {
-   int _currentPage = 0;
+  int _currentPage = 0;
   late PageController _pageController;
 
   final List<Map<String, String>> imgList = [
-    {'image': 'assets/images/Campagne P.png', 'text': 'Campagne Publicitaire'},
-    {'image': 'assets/images/image2.png', 'text': 'Promotion des Produits'},
-    {'image': 'assets/images/image3.jpg', 'text': 'Création de contenus'},
-    {'image': 'assets/images/image4.png', 'text': 'Taxi Boost'},
-    {'image': 'assets/images/image5.png', 'text': 'Boutique'},
-    {'image': 'assets/images/sondage.png', 'text': 'Sondage'},
+    {'image': 'assets/images/Campagne_P.png', 'titre': 'Campagne Publicitaire', 'description': 'Votre clientèle est ici !\nCréer et gérer des campagnes publicitaires complètes et performantes.'},
+    {'image': 'assets/images/image2.png', 'titre': 'Promotion des Produits', 'description': 'Plus proche de vos clients\nDiffuser vos publicités à une audience très large et spécifique avec nos influenceurs qui collent avec votre marque.'},
+    {'image': 'assets/images/image3.png', 'titre': 'Création de contenus', 'description': 'Contenus attrayants\nObtenez des contenus posts, images, stories, et vidéos mettant en scène votre marque via nos influenceurs.'},
+    {'image': 'assets/images/image4.png', 'titre': 'Taxi Boost', 'description': 'Off Line\nDes taxis mis à votre disposition pour être le support de vos publicités afin d\'avoir une visibilité accrue.'},
+    {'image': 'assets/images/image5.png', 'titre': 'Boutique', 'description': 'À chacun sa boutique !\nCréer votre boutique et vendre vos articles facilement. On s\'occupe de la livraision.'},
+    {'image': 'assets/images/sondage.png', 'titre': 'Sondage', 'description': 'Maximum de réponses\nObtenir rapidement des réponses de vos enquêtes ou sondages près de votre cible.'},
   ];
 
   @override
@@ -29,7 +29,7 @@ class _OnboardingState extends State<Onboarding> {
 
     // Défilement automatique
     Future.delayed(Duration.zero, () {
-      Timer.periodic(Duration(seconds: 3), (Timer timer) {
+      Timer.periodic(const Duration(seconds: 5), (Timer timer) {
         if (_currentPage < imgList.length - 1) {
           _currentPage++;
         } else {
@@ -38,7 +38,7 @@ class _OnboardingState extends State<Onboarding> {
 
         _pageController.animateToPage(
           _currentPage,
-          duration: Duration(milliseconds: 300),
+          duration: const Duration(milliseconds: 300),
           curve: Curves.easeInOut,
         );
       });
@@ -51,6 +51,7 @@ class _OnboardingState extends State<Onboarding> {
     super.dispose();
   }
 
+<<<<<<< HEAD
   void _onNextPage() {
     if (_currentPage < imgList.length - 1) {
       setState(() {
@@ -65,89 +66,114 @@ class _OnboardingState extends State<Onboarding> {
       // Rediriger vers la page de login
      /*  Navigator.pushReplacementNamed(context, '/profil'); */
     }
+=======
+  bool _imagesLoaded = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Préchargement des images avec un contexte valide
+    _preloadImages();
+>>>>>>> 2a3ede11d66a49bf2f6ae7f40037befa6f1f7ac7
   }
+
+  // Fonction de préchargement des images
+  Future<void> _preloadImages() async {
+    await Future.wait([
+      precacheImage(const AssetImage('assets/images/Campagne_P.png'), context),
+      precacheImage(const AssetImage('assets/images/image2.png'), context),
+      precacheImage(const AssetImage('assets/images/image3.png'), context),
+      precacheImage(const AssetImage('assets/images/image4.png'), context),
+      precacheImage(const AssetImage('assets/images/image5.png'), context),
+      precacheImage(const AssetImage('assets/images/sondage.png'), context),
+    ]);
+
+    setState(() {
+      _imagesLoaded = true;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-       backgroundColor: Colors.white,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+    final mediaQuery = MediaQuery.of(context);
+    final screenHeight = mediaQuery.size.height;
+    final screenWidth = mediaQuery.size.width;
+    final isPortrait = mediaQuery.orientation == Orientation.portrait; // Vérification de l'orientation
+
+    return Scaffold(
+      appBar: AppBar(),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.symmetric(horizontal: screenWidth * (isPortrait ? 0.05 : 0.1)),
         child: Column(
           children: [
-            SizedBox(height: 50),
-            Align(
-              alignment: Alignment.topRight,
-              child: TextButton(
-                onPressed: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>const ProfileType())), // Action pour passer l'étape
-                child: Text(
-                  'Passer',
-                  style: TextStyle(
-                    color: Color(0xfffcbc1c), // Utilisation du jaune
-                    fontSize: 16,
-                  ),
-                ),
-              ),
-            ),
-            Expanded(
+            SizedBox(
+              height: screenHeight * (isPortrait ? 0.6 : 1.3),
               child: PageView.builder(
                 controller: _pageController,
                 itemCount: imgList.length,
                 itemBuilder: (context, index) {
                   return Column(
                     children: [
-                      Spacer(),
+                      !_imagesLoaded ?
+                      const CircularProgressIndicator(color: Color(0XFFFCBC1C),) :
                       Image.asset(
-                        imgList[index]['image']!,
-                        height: 250,
+                        imgList[index]['image'] ?? 'assets/images/default.png',
+                        width: screenWidth * (isPortrait ? 0.5 : 0.3), // Largeur proportionnelle
                       ),
-                      Spacer(),
+                      SizedBox(height: screenHeight * (isPortrait ? 0.08 : 0.2)), // Espacement proportionnel
                       Text(
-                        imgList[index]['text']!,
+                        imgList[index]['titre'] ?? 'Titre indisponible',
                         style: TextStyle(
-                          fontSize: 24,
+                          fontSize: screenWidth * (isPortrait ? 0.05 : 0.03), // Texte adaptatif
                           fontWeight: FontWeight.bold,
-                          color: Colors.black87,
                         ),
                         textAlign: TextAlign.center,
                       ),
-                      SizedBox(height: 10),
-                      const Text(
-                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. '
-                        'Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, '
-                        'vitae scelerisque enim ligula venenatis dolor.',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.black54,
-                        ),
+                      SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.06)),
+                      Text(
+                        imgList[index]['description'] ?? 'Description indisponible',
                         textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: screenWidth * (isPortrait ? 0.04 : 0.02)),
                       ),
-                      Spacer(),
                     ],
                   );
                 },
               ),
             ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _onNextPage,
-              style: ElevatedButton.styleFrom(
-                foregroundColor: Color(0xfffcbc1c),
-                backgroundColor: Colors.white, // Bordure et texte en jaune
-                side: BorderSide(color: Color(0xfffcbc1c)),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
+            SizedBox(height: isPortrait ? screenHeight * 0.08 : screenHeight * 0.1), // Espacement selon orientation
+            SizedBox(
+              width: double.infinity,
+              height: screenHeight * (isPortrait ? 0.07 : 0.2),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const ProfileType()),
+                  );
+                },
+                style: ButtonStyle(
+                  side: const WidgetStatePropertyAll(
+                    BorderSide(color: Color(0xff072858)),
+                  ),
+                  elevation: const WidgetStatePropertyAll(3),
+                  shape: WidgetStatePropertyAll(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  backgroundColor: const WidgetStatePropertyAll(Colors.white),
                 ),
-                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 12),
-              ),
-              child: const Text(
-                'Étape Suivante',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Color(0xfffcbc1c), // Texte en jaune
+                child: Text(
+                  'Étape Suivante',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: screenWidth * (isPortrait ? 0.05 : 0.03), // Texte adaptatif
+                    color: const Color(0xff072858),
+                  ),
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: isPortrait ? screenHeight * 0 : screenHeight * 0.1),
           ],
         ),
       ),

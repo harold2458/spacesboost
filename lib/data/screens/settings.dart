@@ -62,12 +62,14 @@ class _SettingsState extends State<Settings> {
                 padding: EdgeInsets.all(screenWidth * (isPortrait ? 0.02 : 0.03)),
                 child: TextButton(onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => const SondageEntreprise()));
+
                 }, child: Row(
                     children: [
                       const Icon(Icons.event_note, color: Color(0xfffcbc1c)),
                       SizedBox(width: screenWidth * (isPortrait ? 0.1 : 0.05),),
                       Text(
                         'Sondage',
+
                         style: TextStyle(
                             fontSize: screenWidth * (isPortrait ? 0.04 : 0.03),
                             fontWeight: FontWeight.bold,
@@ -158,6 +160,7 @@ class _SettingsState extends State<Settings> {
                 padding: EdgeInsets.all(screenWidth * (isPortrait ? 0.02 : 0.03)),
                 child: TextButton(onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => const Parrainage()));
+
                 }, child: Row(
                     children: [
                       const Icon(Icons.group_add, color: Color(0xfffcbc1c)),
@@ -190,6 +193,7 @@ class _SettingsState extends State<Settings> {
                 padding: EdgeInsets.all(screenWidth * (isPortrait ? 0.02 : 0.03)),
                 child: TextButton(onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => const ConditionUtilisations()));
+
                 }, child: Row(
                     children: [
                       const Icon(Icons.description, color: Color(0xfffcbc1c)),
@@ -211,3 +215,4 @@ class _SettingsState extends State<Settings> {
     );
   }
 }
+

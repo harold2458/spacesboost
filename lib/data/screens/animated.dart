@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:projet_mobile/data/screens/onboarding.dart';
 
 class Animated extends StatefulWidget {
-  const Animated({super.key}); // Notez que j'ai corrigé le nom de la classe ici
+  const Animated({super.key});
 
   @override
   State<Animated> createState() => _AnimatedState();
@@ -22,13 +22,13 @@ class _AnimatedState extends State<Animated> with SingleTickerProviderStateMixin
 
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 5),
+      duration: const Duration(seconds: 5),
     );
 
     // Rocket animation: moves from bottom to top
     _rocketAnimation = Tween<Offset>(
-      begin: Offset(0, 1),
-      end: Offset(0, -1),
+      begin: const Offset(0, 1),
+      end: const Offset(0, -1),
     ).animate(CurvedAnimation(
       parent: _controller,
       curve: Curves.easeInOut,
@@ -40,13 +40,13 @@ class _AnimatedState extends State<Animated> with SingleTickerProviderStateMixin
       end: 1,
     ).animate(CurvedAnimation(
       parent: _controller,
-      curve: Interval(0.5, 1.0, curve: Curves.easeIn),
+      curve: const Interval(0.5, 1.0, curve: Curves.easeIn),
     ));
 
     // Left curtain animation
     _curtainLeftAnimation = Tween<Offset>(
-      begin: Offset(0, 0),
-      end: Offset(-1, -1),
+      begin: const Offset(0, 0),
+      end: const Offset(-1, -1),
     ).animate(CurvedAnimation(
       parent: _controller,
       curve: Curves.easeInOut,
@@ -54,8 +54,8 @@ class _AnimatedState extends State<Animated> with SingleTickerProviderStateMixin
 
     // Right curtain animation
     _curtainRightAnimation = Tween<Offset>(
-      begin: Offset(0, 0),
-      end: Offset(1, -1),
+      begin: const Offset(0, 0),
+      end: const Offset(1, -1),
     ).animate(CurvedAnimation(
       parent: _controller,
       curve: Curves.easeInOut,
@@ -63,7 +63,7 @@ class _AnimatedState extends State<Animated> with SingleTickerProviderStateMixin
 
     // Start the animation and then navigate to the next page
     _controller.forward().then((value) {
-      Timer(Duration(seconds: 4), () {
+      Timer(const Duration(seconds: 4), () {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => const Onboarding()),
@@ -80,6 +80,12 @@ class _AnimatedState extends State<Animated> with SingleTickerProviderStateMixin
 
   @override
   Widget build(BuildContext context) {
+
+    final mediaQuery = MediaQuery.of(context);
+    final screenWidth = mediaQuery.size.width;
+    final screenHeight = mediaQuery.size.height;
+    final isPortrait = mediaQuery.orientation == Orientation.portrait;
+
     return Scaffold(
       body: Stack(
         children: [
@@ -93,7 +99,7 @@ class _AnimatedState extends State<Animated> with SingleTickerProviderStateMixin
             child: Center(
               child: Image.asset(
                 'assets/logos/rocket.jpg',
-                height: 100,
+                height: screenHeight * (isPortrait ? 0.1 : 0.3),
               ),
             ),
           ),
@@ -103,12 +109,12 @@ class _AnimatedState extends State<Animated> with SingleTickerProviderStateMixin
             child: Align(
               alignment: Alignment.bottomCenter,
               child: Container(
-                width: MediaQuery.of(context).size.width / 2,
-                height: MediaQuery.of(context).size.height,
+                width: screenWidth / 2,
+                height: screenHeight,
                 decoration: BoxDecoration(
-                  color: Color(0xfffcbc1c),
+                  color: const Color(0xfffcbc1c),
                   borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(MediaQuery.of(context).size.width / 2),
+                    bottomRight: Radius.circular(screenWidth / 2),
                   ),
                 ),
               ),
@@ -120,12 +126,12 @@ class _AnimatedState extends State<Animated> with SingleTickerProviderStateMixin
             child: Align(
               alignment: Alignment.bottomCenter,
               child: Container(
-                width: MediaQuery.of(context).size.width / 2,
-                height: MediaQuery.of(context).size.height,
+                width: screenWidth / 2,
+                height: screenHeight,
                 decoration: BoxDecoration(
-                  color: Color(0xfffcbc1c),
+                  color: const Color(0xfffcbc1c),
                   borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(MediaQuery.of(context).size.width / 2),
+                    bottomLeft: Radius.circular(screenWidth / 2),
                   ),
                 ),
               ),
@@ -137,7 +143,7 @@ class _AnimatedState extends State<Animated> with SingleTickerProviderStateMixin
             child: Center(
               child: Image.asset(
                 'assets/logos/logo.png',
-                height: 100,
+                height: screenHeight * 0.1,
               ),
             ),
           ),
