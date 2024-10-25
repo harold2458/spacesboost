@@ -37,7 +37,7 @@ class _NotificationsState extends State<Notifications> {
                       color: Colors.black.withOpacity(0.3), // Couleur de l'ombre
                       spreadRadius: 2, // Rayon de diffusion
                       blurRadius: 2, // Flou de l'ombre
-                      offset: const Offset(0, 3), // Décalage de l'ombre
+                      offset: const Offset(0, 2), // Décalage de l'ombre
                     ),
                   ],
                 ),
@@ -47,7 +47,7 @@ class _NotificationsState extends State<Notifications> {
                     const Icon(Icons.notifications, color: Colors.red,),
                     SizedBox(width: screenWidth * (isPortrait ? 0.03 : 0.1),),
                     const Text(
-                      'Votre candidature a ete envoyee avec\nsucces, veuillez a chaque fois consulter\nvotre mail pour l\'avancement. Merci .. !',
+                      'Votre candidature a ete envoyee\navec succes, veuillez a chaque fois\nconsulter votre mail pour\nl\'avancement. Merci .. !',
                       style: TextStyle(fontStyle: FontStyle.italic),
                       textAlign: TextAlign.justify,
                     ),
@@ -64,7 +64,7 @@ class _NotificationsState extends State<Notifications> {
                       color: Colors.black.withOpacity(0.3), // Couleur de l'ombre
                       spreadRadius: 2, // Rayon de diffusion
                       blurRadius: 2, // Flou de l'ombre
-                      offset: const Offset(0, 3), // Décalage de l'ombre
+                      offset: const Offset(0, 2), // Décalage de l'ombre
                     ),
                   ],
                 ),
@@ -74,7 +74,7 @@ class _NotificationsState extends State<Notifications> {
                     const Icon(Icons.notifications, color: Colors.red,),
                     SizedBox(width: screenWidth * (isPortrait ? 0.03 : 0.1),),
                     const Text(
-                      'Votre candidature a ete envoyee avec\nsucces, veuillez a chaque fois consulter\nvotre mail pour l\'avancement. Merci .. !',
+                      'Votre candidature a ete envoyee\navec succes, veuillez a chaque fois\nconsulter votre mail pour\nl\'avancement. Merci .. !',
                       style: TextStyle(fontStyle: FontStyle.italic),
                       textAlign: TextAlign.justify,
                     ),
@@ -91,7 +91,7 @@ class _NotificationsState extends State<Notifications> {
                       color: Colors.black.withOpacity(0.3), // Couleur de l'ombre
                       spreadRadius: 2, // Rayon de diffusion
                       blurRadius: 2, // Flou de l'ombre
-                      offset: const Offset(0, 3), // Décalage de l'ombre
+                      offset: const Offset(0, 2), // Décalage de l'ombre
                     ),
                   ],
                 ),
@@ -101,7 +101,7 @@ class _NotificationsState extends State<Notifications> {
                     const Icon(Icons.notifications, color: Colors.red,),
                     SizedBox(width: screenWidth * (isPortrait ? 0.03 : 0.1),),
                     const Text(
-                      'Votre candidature a ete envoyee avec\nsucces, veuillez a chaque fois consulter\nvotre mail pour l\'avancement. Merci .. !',
+                      'Votre candidature a ete envoyee\navec succes, veuillez a chaque fois\nconsulter votre mail pour\nl\'avancement. Merci .. !',
                       style: TextStyle(fontStyle: FontStyle.italic),
                       textAlign: TextAlign.justify,
                     ),
@@ -118,7 +118,7 @@ class _NotificationsState extends State<Notifications> {
                       color: Colors.black.withOpacity(0.3), // Couleur de l'ombre
                       spreadRadius: 2, // Rayon de diffusion
                       blurRadius: 2, // Flou de l'ombre
-                      offset: const Offset(0, 3), // Décalage de l'ombre
+                      offset: const Offset(0, 2), // Décalage de l'ombre
                     ),
                   ],
                 ),
@@ -128,7 +128,7 @@ class _NotificationsState extends State<Notifications> {
                     const Icon(Icons.notifications, color: Colors.red,),
                     SizedBox(width: screenWidth * (isPortrait ? 0.03 : 0.1),),
                     const Text(
-                      'Votre candidature a ete envoyee avec\nsucces, veuillez a chaque fois consulter\nvotre mail pour l\'avancement. Merci .. !',
+                      'Votre candidature a ete envoyee\navec succes, veuillez a chaque fois\nconsulter votre mail pour\nl\'avancement. Merci .. !',
                       style: TextStyle(fontStyle: FontStyle.italic),
                       textAlign: TextAlign.justify,
                     ),
@@ -145,7 +145,7 @@ class _NotificationsState extends State<Notifications> {
                       color: Colors.black.withOpacity(0.3), // Couleur de l'ombre
                       spreadRadius: 2, // Rayon de diffusion
                       blurRadius: 2, // Flou de l'ombre
-                      offset: const Offset(0, 3), // Décalage de l'ombre
+                      offset: const Offset(0, 2), // Décalage de l'ombre
                     ),
                   ],
                 ),
@@ -155,7 +155,7 @@ class _NotificationsState extends State<Notifications> {
                     const Icon(Icons.notifications, color: Colors.red,),
                     SizedBox(width: screenWidth * (isPortrait ? 0.03 : 0.1),),
                     const Text(
-                      'Votre candidature a ete envoyee avec\nsucces, veuillez a chaque fois consulter\nvotre mail pour l\'avancement. Merci .. !',
+                      'Votre candidature a ete envoyee\navec succes, veuillez a chaque fois\nconsulter votre mail pour\nl\'avancement. Merci .. !',
                       style: TextStyle(fontStyle: FontStyle.italic),
                       textAlign: TextAlign.justify,
                     ),
@@ -172,7 +172,7 @@ class _NotificationsState extends State<Notifications> {
                       color: Colors.black.withOpacity(0.3), // Couleur de l'ombre
                       spreadRadius: 2, // Rayon de diffusion
                       blurRadius: 2, // Flou de l'ombre
-                      offset: const Offset(0, 3), // Décalage de l'ombre
+                      offset: const Offset(0, 2), // Décalage de l'ombre
                     ),
                   ],
                 ),
@@ -182,7 +182,7 @@ class _NotificationsState extends State<Notifications> {
                     const Icon(Icons.notifications, color: Colors.red,),
                     SizedBox(width: screenWidth * (isPortrait ? 0.03 : 0.1),),
                     const Text(
-                      'Votre candidature a ete envoyee avec\nsucces, veuillez a chaque fois consulter\nvotre mail pour l\'avancement. Merci .. !',
+                      'Votre candidature a ete envoyee\navec succes, veuillez a chaque fois\nconsulter votre mail pour\nl\'avancement. Merci .. !',
                       style: TextStyle(fontStyle: FontStyle.italic),
                       textAlign: TextAlign.justify,
                     ),
@@ -199,7 +199,7 @@ class _NotificationsState extends State<Notifications> {
                       color: Colors.black.withOpacity(0.3), // Couleur de l'ombre
                       spreadRadius: 2, // Rayon de diffusion
                       blurRadius: 2, // Flou de l'ombre
-                      offset: const Offset(0, 3), // Décalage de l'ombre
+                      offset: const Offset(0, 2), // Décalage de l'ombre
                     ),
                   ],
                 ),
@@ -209,7 +209,7 @@ class _NotificationsState extends State<Notifications> {
                     const Icon(Icons.notifications, color: Colors.red,),
                     SizedBox(width: screenWidth * (isPortrait ? 0.03 : 0.1),),
                     const Text(
-                      'Votre candidature a ete envoyee avec\nsucces, veuillez a chaque fois consulter\nvotre mail pour l\'avancement. Merci .. !',
+                      'Votre candidature a ete envoyee\navec succes, veuillez a chaque fois\nconsulter votre mail pour\nl\'avancement. Merci .. !',
                       style: TextStyle(fontStyle: FontStyle.italic),
                       textAlign: TextAlign.justify,
                     ),
@@ -226,7 +226,7 @@ class _NotificationsState extends State<Notifications> {
                       color: Colors.black.withOpacity(0.3), // Couleur de l'ombre
                       spreadRadius: 2, // Rayon de diffusion
                       blurRadius: 2, // Flou de l'ombre
-                      offset: const Offset(0, 3), // Décalage de l'ombre
+                      offset: const Offset(0, 2), // Décalage de l'ombre
                     ),
                   ],
                 ),
@@ -236,7 +236,7 @@ class _NotificationsState extends State<Notifications> {
                     const Icon(Icons.notifications, color: Colors.red,),
                     SizedBox(width: screenWidth * (isPortrait ? 0.03 : 0.1),),
                     const Text(
-                      'Votre candidature a ete envoyee avec\nsucces, veuillez a chaque fois consulter\nvotre mail pour l\'avancement. Merci .. !',
+                      'Votre candidature a ete envoyee\navec succes, veuillez a chaque fois\nconsulter votre mail pour\nl\'avancement. Merci .. !',
                       style: TextStyle(fontStyle: FontStyle.italic),
                       textAlign: TextAlign.justify,
                     ),
@@ -253,7 +253,7 @@ class _NotificationsState extends State<Notifications> {
                       color: Colors.black.withOpacity(0.3), // Couleur de l'ombre
                       spreadRadius: 2, // Rayon de diffusion
                       blurRadius: 2, // Flou de l'ombre
-                      offset: const Offset(0, 3), // Décalage de l'ombre
+                      offset: const Offset(0, 2), // Décalage de l'ombre
                     ),
                   ],
                 ),
@@ -263,7 +263,7 @@ class _NotificationsState extends State<Notifications> {
                     const Icon(Icons.notifications, color: Colors.red,),
                     SizedBox(width: screenWidth * (isPortrait ? 0.03 : 0.1),),
                     const Text(
-                      'Votre candidature a ete envoyee avec\nsucces, veuillez a chaque fois consulter\nvotre mail pour l\'avancement. Merci .. !',
+                      'Votre candidature a ete envoyee\navec succes, veuillez a chaque fois\nconsulter votre mail pour\nl\'avancement. Merci .. !',
                       style: TextStyle(fontStyle: FontStyle.italic),
                       textAlign: TextAlign.justify,
                     ),
@@ -280,7 +280,7 @@ class _NotificationsState extends State<Notifications> {
                       color: Colors.black.withOpacity(0.3), // Couleur de l'ombre
                       spreadRadius: 2, // Rayon de diffusion
                       blurRadius: 2, // Flou de l'ombre
-                      offset: const Offset(0, 3), // Décalage de l'ombre
+                      offset: const Offset(0, 2), // Décalage de l'ombre
                     ),
                   ],
                 ),
@@ -290,7 +290,7 @@ class _NotificationsState extends State<Notifications> {
                     const Icon(Icons.notifications, color: Colors.red,),
                     SizedBox(width: screenWidth * (isPortrait ? 0.03 : 0.1),),
                     const Text(
-                      'Votre candidature a ete envoyee avec\nsucces, veuillez a chaque fois consulter\nvotre mail pour l\'avancement. Merci .. !',
+                      'Votre candidature a ete envoyee\navec succes, veuillez a chaque fois\nconsulter votre mail pour\nl\'avancement. Merci .. !',
                       style: TextStyle(fontStyle: FontStyle.italic),
                       textAlign: TextAlign.justify,
                     ),

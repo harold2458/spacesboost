@@ -62,6 +62,35 @@ class _HomeState extends State<Home> {
     });
   }
 
+  bool _imagesLoaded = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Préchargement des images avec un contexte valide
+    _preloadImages();
+  }
+
+  // Fonction de préchargement des images
+  Future<void> _preloadImages() async {
+    await Future.wait([
+      precacheImage(const AssetImage('assets/images/Campagne_P.png'), context),
+      precacheImage(const AssetImage('assets/images/image2.png'), context),
+      precacheImage(const AssetImage('assets/images/image3.png'), context),
+      precacheImage(const AssetImage('assets/images/image4.png'), context),
+      precacheImage(const AssetImage('assets/images/image5.png'), context),
+      precacheImage(const AssetImage('assets/images/sondage.png'), context),
+      precacheImage(const AssetImage('assets/images/campagne.png'), context),
+      precacheImage(const AssetImage('assets/images/parrainage.png'), context),
+      precacheImage(const AssetImage('assets/images/retrait.png'), context),
+      precacheImage(const AssetImage('assets/images/preuve.png'), context),
+    ]);
+
+    setState(() {
+      _imagesLoaded = true;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -82,7 +111,9 @@ class _HomeState extends State<Home> {
                 controller: _pageController,
                 itemCount: imgList.length,
                 itemBuilder: (context, index) {
-                  return Image.asset(
+                  return !_imagesLoaded ?
+                  const CircularProgressIndicator(color: Color(0XFFFCBC1C),) :
+                    Image.asset(
                     imgList[index]['image'] ?? 'assets/images/default.png',
                   );
                 },
@@ -143,7 +174,9 @@ class _HomeState extends State<Home> {
                       }, child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Center(child: Image.asset('assets/images/campagne.png', width: screenWidth * (isPortrait ? 0.25 : 0.1),),),
+                      Center(child: !_imagesLoaded ?
+                      const CircularProgressIndicator(color: Color(0XFFFCBC1C),) :
+                      Image.asset('assets/images/campagne.png', width: screenWidth * (isPortrait ? 0.25 : 0.1),),),
                       SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.05),),
                       const Text('Campagne', style: TextStyle(
                           fontWeight: FontWeight.bold,
@@ -167,7 +200,9 @@ class _HomeState extends State<Home> {
                       }, child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Center(child: Image.asset('assets/images/parrainage.png', width: screenWidth * (isPortrait ? 0.25 : 0.1),),),
+                      Center(child: !_imagesLoaded ?
+                      const CircularProgressIndicator(color: Color(0XFFFCBC1C),) :
+                      Image.asset('assets/images/parrainage.png', width: screenWidth * (isPortrait ? 0.25 : 0.1),),),
                       SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.05),),
                       const Text('Parrainage', style: TextStyle(
                           fontWeight: FontWeight.bold,
@@ -196,7 +231,9 @@ class _HomeState extends State<Home> {
                       }, child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Center(child: Image.asset('assets/images/retrait.png', width: screenWidth * (isPortrait ? 0.25 : 0.1),),),
+                      Center(child: !_imagesLoaded ?
+                      const CircularProgressIndicator(color: Color(0XFFFCBC1C),) :
+                      Image.asset('assets/images/retrait.png', width: screenWidth * (isPortrait ? 0.25 : 0.1),),),
                       SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.05),),
                       const Text('Retrait', style: TextStyle(
                           fontWeight: FontWeight.bold,
@@ -220,7 +257,9 @@ class _HomeState extends State<Home> {
                       }, child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Center(child: Image.asset('assets/images/preuve.png', width: screenWidth * (isPortrait ? 0.15 : 0.05),),),
+                      Center(child: !_imagesLoaded ?
+                      const CircularProgressIndicator(color: Color(0XFFFCBC1C),) :
+                      Image.asset('assets/images/preuve.png', width: screenWidth * (isPortrait ? 0.15 : 0.05),),),
                       SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.05),),
                       const Text('Preuve', style: TextStyle(
                           fontWeight: FontWeight.bold,

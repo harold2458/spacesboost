@@ -1,4 +1,5 @@
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class Proof extends StatefulWidget {
@@ -45,6 +46,30 @@ class _ProofState extends State<Proof> {
     }*/
   }
 
+  bool _imagesLoaded = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Préchargement des images avec un contexte valide
+    _preloadImages();
+  }
+
+  // Fonction de préchargement des images
+  Future<void> _preloadImages() async {
+    try {
+      await precacheImage(const AssetImage('assets/images/proof.jpg'), context);
+      setState(() {
+        _imagesLoaded = true;
+      });
+    } catch (e) {
+      if (kDebugMode) {
+        print('Erreur lors du préchargement de l\'image : $e');
+      }
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
 
@@ -58,6 +83,8 @@ class _ProofState extends State<Proof> {
         padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.03, vertical: screenHeight * (isPortrait ? 0.03 : 0.1)),
         child: Column(
           children: [
+            !_imagesLoaded ?
+            const CircularProgressIndicator(color: Color(0XFFFCBC1C),) :
             Image.asset('assets/images/proof.jpg', width: screenWidth * (isPortrait ? 0.6 : 0.2),),
             SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.1),),
             SizedBox(

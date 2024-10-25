@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 
@@ -114,6 +115,29 @@ class _ContentState extends State<Content> {
     );
   }
 
+  bool _imagesLoaded = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Préchargement des images avec un contexte valide
+    _preloadImages();
+  }
+
+  // Fonction de préchargement des images
+  Future<void> _preloadImages() async {
+    try {
+      await precacheImage(const AssetImage('assets/images/annonce.jpg'), context);
+      setState(() {
+        _imagesLoaded = true;
+      });
+    } catch (e) {
+      if (kDebugMode) {
+        print('Erreur lors du préchargement de l\'image : $e');
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -154,7 +178,8 @@ class _ContentState extends State<Content> {
                 ],
               ), textAlign: TextAlign.justify,),
               SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.1),),
-              Image.asset('assets/images/annonce.jpg', width: screenWidth * (isPortrait ? 0.7 : 0.3),),
+              !_imagesLoaded ?
+              const CircularProgressIndicator(color: Color(0XFFFCBC1C),) : Image.asset('assets/images/annonce.jpg', width: screenWidth * (isPortrait ? 0.7 : 0.3),),
               SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.1),),
               RichText(
                 text: TextSpan(

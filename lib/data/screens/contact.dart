@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class Contact extends StatefulWidget {
@@ -31,6 +32,29 @@ class _ContactState extends State<Contact> {
     }*/
   }
 
+  bool _imagesLoaded = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Préchargement des images avec un contexte valide
+    _preloadImages();
+  }
+
+  // Fonction de préchargement des images
+  Future<void> _preloadImages() async {
+    try {
+      await precacheImage(const AssetImage('assets/images/contact.png'), context);
+      setState(() {
+        _imagesLoaded = true;
+      });
+    } catch (e) {
+      if (kDebugMode) {
+        print('Erreur lors du préchargement de l\'image : $e');
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -52,6 +76,8 @@ class _ContactState extends State<Contact> {
         child: Center(
           child: Column(
             children: [
+              !_imagesLoaded ?
+              const CircularProgressIndicator(color: Color(0XFFFCBC1C),) :
               Image.asset('assets/images/contact.png', width: screenWidth * (isPortrait ? 0.6 : 0.2),),
               SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.1),),
               TextField(

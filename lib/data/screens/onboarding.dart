@@ -51,6 +51,31 @@ class _OnboardingState extends State<Onboarding> {
     super.dispose();
   }
 
+  bool _imagesLoaded = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Préchargement des images avec un contexte valide
+    _preloadImages();
+  }
+
+  // Fonction de préchargement des images
+  Future<void> _preloadImages() async {
+    await Future.wait([
+      precacheImage(const AssetImage('assets/images/Campagne_P.png'), context),
+      precacheImage(const AssetImage('assets/images/image2.png'), context),
+      precacheImage(const AssetImage('assets/images/image3.png'), context),
+      precacheImage(const AssetImage('assets/images/image4.png'), context),
+      precacheImage(const AssetImage('assets/images/image5.png'), context),
+      precacheImage(const AssetImage('assets/images/sondage.png'), context),
+    ]);
+
+    setState(() {
+      _imagesLoaded = true;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
@@ -72,6 +97,8 @@ class _OnboardingState extends State<Onboarding> {
                 itemBuilder: (context, index) {
                   return Column(
                     children: [
+                      !_imagesLoaded ?
+                      const CircularProgressIndicator(color: Color(0XFFFCBC1C),) :
                       Image.asset(
                         imgList[index]['image'] ?? 'assets/images/default.png',
                         width: screenWidth * (isPortrait ? 0.5 : 0.3), // Largeur proportionnelle

@@ -9,8 +9,38 @@ class Welcome extends StatefulWidget {
 }
 
 class _WelcomeState extends State<Welcome> {
+  bool _imagesLoaded = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Préchargement des images avec un contexte valide
+    _preloadImages();
+  }
+
+  // Fonction de préchargement des images
+  Future<void> _preloadImages() async {
+    await Future.wait([
+      precacheImage(const AssetImage('assets/images/bg_welcome.jpg'), context),
+      precacheImage(const AssetImage('assets/images/welcome.png'), context),
+    ]);
+
+    setState(() {
+      _imagesLoaded = true;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    /*if (!_imagesLoaded) {
+      return const Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(
+            color: Color(0XFFFCBC1C),
+          ),
+        ),
+      );
+    }*/
 
     final mediaQuery = MediaQuery.of(context);
     final screenHeight = mediaQuery.size.height;
@@ -27,7 +57,7 @@ class _WelcomeState extends State<Welcome> {
           ),
         ),
         centerTitle: true,
-        backgroundColor: Colors.yellow,
+        backgroundColor: const Color(0xfffcbc1c),
         leading: IconButton(
           onPressed: () {
             Navigator.of(context).pop();
@@ -38,8 +68,15 @@ class _WelcomeState extends State<Welcome> {
           ),
         ),
       ),
-      body: isPortrait ?
-      Stack(
+      body: !_imagesLoaded ?
+      const Center(
+        child: CircularProgressIndicator(
+          color: Color(0XFFFCBC1C),
+        ),
+      ) :
+
+    isPortrait
+          ? Stack(
         children: [
           Container(
             decoration: const BoxDecoration(
@@ -51,21 +88,21 @@ class _WelcomeState extends State<Welcome> {
           ),
           Column(
             children: [
-              SizedBox(height: screenHeight * (isPortrait ? 0.06 : 0.2)),
+              SizedBox(height: screenHeight * 0.06),
               Center(
                 child: Text(
                   'Bienvenue sur SPACEBOOST !',
                   style: TextStyle(
-                    fontSize: screenWidth * (isPortrait ? 0.05 : 0.04),
+                    fontSize: screenWidth * 0.05,
                     color: const Color(0xff072858),
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
-              SizedBox(height: screenHeight * (isPortrait ? 0.07 : 0.1)),
-              Padding(padding: EdgeInsets.symmetric(
-                  horizontal: screenWidth * 0.02
-              ),
+              SizedBox(height: screenHeight * 0.03),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: screenWidth * 0.02),
                 child: const Text(
                   'Découvrez nos fonctionnalités et profitez\n'
                       'd\'une expérience simplifiée pour collaborer\n'
@@ -77,70 +114,73 @@ class _WelcomeState extends State<Welcome> {
                   textAlign: TextAlign.center,
                 ),
               ),
-              const Spacer(), // Ajoute un espace flexible
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Image.asset(
-                    'assets/images/welcome.png',
-                    height: screenHeight * (isPortrait ? 0.5 : 0.1),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      color: const Color(0xff072858),
+              const Spacer(),
+              Align(
+                alignment: Alignment.centerRight,
+                child: Stack(
+                  children: [
+                    Image.asset(
+                      'assets/images/welcome.png',
+                      height: screenHeight * 0.6,
                     ),
-                    width: screenWidth * (isPortrait ? 0.13 : 0.1),
-                    //height: screenHeight * (isPortrait ? 0.05 : 0.1),
-                    child: IconButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const Renseignement(),
+                    Transform.translate(
+                      offset: Offset(screenWidth * 0.6, 0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          color: const Color(0xff072858),
+                        ),
+                        width: screenWidth * 0.13,
+                        child: IconButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                const Renseignement(),
+                              ),
+                            );
+                          },
+                          icon: Icon(
+                            Icons.arrow_right_alt,
+                            color: Colors.white,
+                            size: screenWidth * 0.1,
                           ),
-                        );
-                      },
-                      icon: Icon(
-                        Icons.arrow_right_alt,
-                        color: Colors.white,
-                        size: screenWidth * (isPortrait ? 0.1 : 0.1),
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),
         ],
       )
-          :
-      SingleChildScrollView(
+          : SingleChildScrollView(
         child: Stack(
           children: [
             Container(
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/images/bg_welcome.jpg'),
+                  image: AssetImage('assets/images/bg_welcome.png'),
                   fit: BoxFit.cover,
                 ),
               ),
             ),
             Column(
               children: [
-                SizedBox(height: screenHeight * (isPortrait ? 0.06 : 0.2)),
+                SizedBox(height: screenHeight * 0.2),
                 Center(
                   child: Text(
                     'Bienvenue sur SPACEBOOST !',
                     style: TextStyle(
-                      fontSize: screenWidth * (isPortrait ? 0.05 : 0.03),
+                      fontSize: screenWidth * 0.03,
                       color: const Color(0xff072858),
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
-                SizedBox(height: screenHeight * (isPortrait ? 0.07 : 0.2)),
+                SizedBox(height: screenHeight * 0.2),
                 const Text(
                   'Découvrez nos fonctionnalités et profitez d\'une\n'
                       'expérience simplifiée pour collaborer avec les\n'
@@ -151,37 +191,39 @@ class _WelcomeState extends State<Welcome> {
                   ),
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(height: screenHeight * (isPortrait ? 0.1 : 0.2 )),
+                SizedBox(height: screenHeight * 0.2),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Image.asset(
-                      'assets/images/welcome.png',
-                      height: screenHeight * (isPortrait ? 0.5 : 0.8),
-                    ),
+                    const Spacer(),
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
                         color: const Color(0xff072858),
                       ),
-                      width: screenWidth * (isPortrait ? 0.13 : 0.07),
-                      //height: screenHeight * (isPortrait ? 0.05 : 0.1),
+                      width: screenWidth * 0.07,
                       child: IconButton(
                         onPressed: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const Renseignement(),
+                              builder: (context) =>
+                              const Renseignement(),
                             ),
                           );
                         },
                         icon: Icon(
                           Icons.arrow_right_alt,
                           color: Colors.white,
-                          size: screenWidth * (isPortrait ? 0.1 : 0.05),
+                          size: screenWidth * 0.05,
                         ),
                       ),
+                    ),
+                    SizedBox(width: screenWidth * 0.4),
+                    Image.asset(
+                      'assets/images/welcome.png',
+                      height: screenHeight * 0.8,
                     ),
                   ],
                 ),
@@ -189,7 +231,7 @@ class _WelcomeState extends State<Welcome> {
             ),
           ],
         ),
-      )
+      ),
     );
   }
 }

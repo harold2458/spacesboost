@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:projet_mobile/data/screens/promotion.dart';
-
 import 'annonce.dart';
 import 'creation.dart';
 
@@ -66,7 +65,6 @@ class _CampaignState extends State<Campaign> with SingleTickerProviderStateMixin
               ),
               width: screenWidth * (isPortrait ? 0.8 : 0.5),
               padding: EdgeInsets.symmetric(vertical: screenHeight * (isPortrait ? 0.005 : 0.03), horizontal: screenWidth * (isPortrait ? 0.02 : 0.03),),
-              //color: Colors.yellow, // Couleur de fond du TabBar
               child: TabBar(
                 controller: _tabController,
                 labelColor: Colors.white, // Couleur du texte de l'item sélectionné

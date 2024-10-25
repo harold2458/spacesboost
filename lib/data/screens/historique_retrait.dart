@@ -45,9 +45,9 @@ class _HistoriqueRetraitState extends State<HistoriqueRetrait> {
               child: Row(
                 children: [
                   const Icon(Icons.local_atm, color: Colors.red,),
-                  SizedBox(width: screenWidth * (isPortrait ? 0.05 : 0.1),),
+                  SizedBox(width: screenWidth * (isPortrait ? 0.03 : 0.1),),
                   const Text(
-                    'Votre avez retire une somme de \$500\nde votre compte SPACEBOOST.\nMerci .. !',
+                    'Votre avez retire une somme de\n\$500 de votre compte SPACEBOOST\nMerci .. !',
                     style: TextStyle(fontStyle: FontStyle.italic),
                     textAlign: TextAlign.justify,
                   ),
@@ -72,9 +72,9 @@ class _HistoriqueRetraitState extends State<HistoriqueRetrait> {
               child: Row(
                 children: [
                   const Icon(Icons.local_atm, color: Colors.red,),
-                  SizedBox(width: screenWidth * (isPortrait ? 0.05 : 0.1),),
+                  SizedBox(width: screenWidth * (isPortrait ? 0.03 : 0.1),),
                   const Text(
-                    'Votre avez retire une somme de \$500\nde votre compte SPACEBOOST.\nMerci .. !',
+                    'Votre avez retire une somme de\n\$500 de votre compte SPACEBOOST\nMerci .. !',
                     style: TextStyle(fontStyle: FontStyle.italic),
                     textAlign: TextAlign.justify,
                   ),
@@ -99,9 +99,9 @@ class _HistoriqueRetraitState extends State<HistoriqueRetrait> {
               child: Row(
                 children: [
                   const Icon(Icons.local_atm, color: Colors.red,),
-                  SizedBox(width: screenWidth * (isPortrait ? 0.05 : 0.1),),
+                  SizedBox(width: screenWidth * (isPortrait ? 0.03 : 0.1),),
                   const Text(
-                    'Votre avez retire une somme de \$500\nde votre compte SPACEBOOST.\nMerci .. !',
+                    'Votre avez retire une somme de\n\$500 de votre compte SPACEBOOST\nMerci .. !',
                     style: TextStyle(fontStyle: FontStyle.italic),
                     textAlign: TextAlign.justify,
                   ),
@@ -126,9 +126,9 @@ class _HistoriqueRetraitState extends State<HistoriqueRetrait> {
               child: Row(
                 children: [
                   const Icon(Icons.local_atm, color: Colors.red,),
-                  SizedBox(width: screenWidth * (isPortrait ? 0.05 : 0.1),),
+                  SizedBox(width: screenWidth * (isPortrait ? 0.03 : 0.1),),
                   const Text(
-                    'Votre avez retire une somme de \$500\nde votre compte SPACEBOOST.\nMerci .. !',
+                    'Votre avez retire une somme de\n\$500 de votre compte SPACEBOOST\nMerci .. !',
                     style: TextStyle(fontStyle: FontStyle.italic),
                     textAlign: TextAlign.justify,
                   ),
@@ -153,9 +153,9 @@ class _HistoriqueRetraitState extends State<HistoriqueRetrait> {
               child: Row(
                 children: [
                   const Icon(Icons.local_atm, color: Colors.red,),
-                  SizedBox(width: screenWidth * (isPortrait ? 0.05 : 0.1),),
+                  SizedBox(width: screenWidth * (isPortrait ? 0.03 : 0.1),),
                   const Text(
-                    'Votre avez retire une somme de \$500\nde votre compte SPACEBOOST.\nMerci .. !',
+                    'Votre avez retire une somme de\n\$500 de votre compte SPACEBOOST\nMerci .. !',
                     style: TextStyle(fontStyle: FontStyle.italic),
                     textAlign: TextAlign.justify,
                   ),
@@ -180,9 +180,9 @@ class _HistoriqueRetraitState extends State<HistoriqueRetrait> {
               child: Row(
                 children: [
                   const Icon(Icons.local_atm, color: Colors.red,),
-                  SizedBox(width: screenWidth * (isPortrait ? 0.05 : 0.1),),
+                  SizedBox(width: screenWidth * (isPortrait ? 0.03 : 0.1),),
                   const Text(
-                    'Votre avez retire une somme de \$500\nde votre compte SPACEBOOST.\nMerci .. !',
+                    'Votre avez retire une somme de\n\$500 de votre compte SPACEBOOST\nMerci .. !',
                     style: TextStyle(fontStyle: FontStyle.italic),
                     textAlign: TextAlign.justify,
                   ),
@@ -207,9 +207,9 @@ class _HistoriqueRetraitState extends State<HistoriqueRetrait> {
               child: Row(
                 children: [
                   const Icon(Icons.local_atm, color: Colors.red,),
-                  SizedBox(width: screenWidth * (isPortrait ? 0.05 : 0.1),),
+                  SizedBox(width: screenWidth * (isPortrait ? 0.03 : 0.1),),
                   const Text(
-                    'Votre avez retire une somme de \$500\nde votre compte SPACEBOOST.\nMerci .. !',
+                    'Votre avez retire une somme de\n\$500 de votre compte SPACEBOOST\nMerci .. !',
                     style: TextStyle(fontStyle: FontStyle.italic),
                     textAlign: TextAlign.justify,
                   ),
@@ -234,9 +234,9 @@ class _HistoriqueRetraitState extends State<HistoriqueRetrait> {
               child: Row(
                 children: [
                   const Icon(Icons.local_atm, color: Colors.red,),
-                  SizedBox(width: screenWidth * (isPortrait ? 0.05 : 0.1),),
+                  SizedBox(width: screenWidth * (isPortrait ? 0.03 : 0.1),),
                   const Text(
-                    'Votre avez retire une somme de \$500\nde votre compte SPACEBOOST.\nMerci .. !',
+                    'Votre avez retire une somme de\n\$500 de votre compte SPACEBOOST\nMerci .. !',
                     style: TextStyle(fontStyle: FontStyle.italic),
                     textAlign: TextAlign.justify,
                   ),

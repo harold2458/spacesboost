@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projet_mobile/data/screens/edit_profil.dart';
 
 class Profil extends StatefulWidget {
   const Profil({super.key});
@@ -144,7 +145,7 @@ class _ProfilState extends State<Profil> {
                                       color: const Color(0xff072858)),
                                 ),
                                 const TextSpan(
-                                    text: 'Danseur',
+                                    text: 'Mode',
                                     style: TextStyle(color: Colors.black,)
                                 ),
                               ],
@@ -165,7 +166,7 @@ class _ProfilState extends State<Profil> {
                                       color: const Color(0xff072858)),
                                 ),
                                 const TextSpan(
-                                    text: 'Film',
+                                    text: 'Photos',
                                     style: TextStyle(color: Colors.black,)
                                 ),
                               ],
@@ -215,6 +216,36 @@ class _ProfilState extends State<Profil> {
                       ],
                     ),
                   ],
+                ),
+              ),
+              SizedBox(height: screenHeight * (isPortrait ? 0.05 : 0.15),),
+              SizedBox(
+                width: screenWidth * (isPortrait ? 0.9 : 0.8),
+                height: screenHeight * (isPortrait ? 0.07 : 0.2),
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const EditProfil()),
+                    );
+                  },
+                  style: ButtonStyle(
+                    backgroundColor: const WidgetStatePropertyAll(Color(0xfffcbc1c)),
+                    shape: WidgetStatePropertyAll(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10), // Bordures arrondies
+                      ),
+                    ),
+                    elevation: const WidgetStatePropertyAll(3),
+                  ),
+                  child: Text(
+                    'Modifier le profil',
+                    style: TextStyle(
+                      fontSize: screenWidth * (isPortrait ? 0.04 : 0.03),
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
               ),
               SizedBox(height: screenHeight * (isPortrait ? 0.05 : 0.15),),
@@ -328,7 +359,7 @@ class _ProfilState extends State<Profil> {
                                   child: ElevatedButton(
                                     onPressed: _submitForm,
                                     style: ButtonStyle(
-                                      backgroundColor: const WidgetStatePropertyAll(Color(0xfffcbc1c)),
+                                      backgroundColor: const WidgetStatePropertyAll(Color(0xff072858)),
                                       shape: WidgetStatePropertyAll(
                                         RoundedRectangleBorder(
                                           borderRadius: BorderRadius.circular(10), // Bordures arrondies

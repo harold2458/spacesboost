@@ -44,9 +44,9 @@ class _ProfileTypeState extends State<ProfileType> {
                    style: ButtonStyle(
                      backgroundColor: const WidgetStatePropertyAll(Color(0xff072858)),
                      shape: WidgetStatePropertyAll(RoundedRectangleBorder(
-                       borderRadius: BorderRadius.circular(20), // Bordures arrondies
+                       borderRadius: BorderRadius.circular(10), // Bordures arrondies
                      ),),
-                     elevation: const WidgetStatePropertyAll(5),
+                     elevation: const WidgetStatePropertyAll(3),
                    ),
                    child: Text('Entreprise', style: TextStyle(fontSize: screenWidth * (isPortrait ? 0.05 : 0.03), fontWeight: FontWeight.bold, color: Colors.white)),
                  ),
@@ -62,9 +62,9 @@ class _ProfileTypeState extends State<ProfileType> {
                    style: ButtonStyle(
                      backgroundColor: const WidgetStatePropertyAll(Color(0xfffcbc1c)),
                      shape: WidgetStatePropertyAll(RoundedRectangleBorder(
-                       borderRadius: BorderRadius.circular(20), // Bordures arrondies
+                       borderRadius: BorderRadius.circular(10), // Bordures arrondies
                      ),),
-                     elevation: const WidgetStatePropertyAll(5),
+                     elevation: const WidgetStatePropertyAll(3),
                    ),
                    child: Text('Influenceur', style: TextStyle(fontSize: screenWidth * (isPortrait ? 0.05 : 0.03), fontWeight: FontWeight.bold, color: Colors.white)),
                  ),

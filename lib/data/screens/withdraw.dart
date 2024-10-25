@@ -18,6 +18,32 @@ class _WithdrawState extends State<Withdraw> {
     });
   }
 
+  bool _imagesLoaded = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Préchargement des images avec un contexte valide
+    _preloadImages();
+  }
+
+  // Fonction de préchargement des images
+  Future<void> _preloadImages() async {
+    await Future.wait([
+      precacheImage(const AssetImage('assets/images/paypal.png'), context),
+      precacheImage(const AssetImage('assets/images/visa.png'), context),
+      precacheImage(const AssetImage('assets/images/mastercard.png'), context),
+      precacheImage(const AssetImage('assets/images/bitcoin.png'), context),
+      precacheImage(const AssetImage('assets/images/mtnmomo.png'), context),
+      precacheImage(const AssetImage('assets/images/moovmoney.png'), context),
+      precacheImage(const AssetImage('assets/images/gain.png'), context),
+    ]);
+
+    setState(() {
+      _imagesLoaded = true;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -119,7 +145,8 @@ class _WithdrawState extends State<Withdraw> {
                                 ),
                                 onPressed: () {
 
-                                }, icon: Image.asset('assets/images/paypal.png', width: screenWidth * 0.1)),
+                                }, icon: !_imagesLoaded ?
+                            const CircularProgressIndicator(color: Color(0XFFFCBC1C),) : Image.asset('assets/images/paypal.png', width: screenWidth * 0.1)),
                           ),
                           SizedBox(width: screenWidth * 0.06),
                           SizedBox(
@@ -133,7 +160,8 @@ class _WithdrawState extends State<Withdraw> {
                                 ),
                                 onPressed: () {
 
-                                }, icon: Image.asset('assets/images/visa.png', width: screenWidth * (isPortrait ? 0.1 : 0.3),)),
+                                }, icon: !_imagesLoaded ?
+                            const CircularProgressIndicator(color: Color(0XFFFCBC1C),) : Image.asset('assets/images/visa.png', width: screenWidth * (isPortrait ? 0.1 : 0.3),)),
                           ),
                           SizedBox(width: screenWidth * 0.06),
                           SizedBox(
@@ -147,7 +175,8 @@ class _WithdrawState extends State<Withdraw> {
                                 ),
                                 onPressed: () {
 
-                                }, icon: Image.asset('assets/images/mastercard.png', width: screenWidth * 0.1)),
+                                }, icon: !_imagesLoaded ?
+                            const CircularProgressIndicator(color: Color(0XFFFCBC1C),) : Image.asset('assets/images/mastercard.png', width: screenWidth * 0.1)),
                           ),
                         ],
                       ),
@@ -168,7 +197,8 @@ class _WithdrawState extends State<Withdraw> {
                                 ),
                                 onPressed: () {
 
-                                }, icon: Image.asset('assets/images/bitcoin.png', width: screenWidth * 0.1)),
+                                }, icon: !_imagesLoaded ?
+                            const CircularProgressIndicator(color: Color(0XFFFCBC1C),) : Image.asset('assets/images/bitcoin.png', width: screenWidth * 0.1)),
                           ),
                           SizedBox(width: screenWidth * 0.06),
                           SizedBox(
@@ -182,7 +212,8 @@ class _WithdrawState extends State<Withdraw> {
                                 ),
                                 onPressed: () {
 
-                                }, icon: Image.asset('assets/images/mtnmomo.png', width: screenWidth * (isPortrait ? 0.1 : 0.3),)),
+                                }, icon: !_imagesLoaded ?
+                            const CircularProgressIndicator(color: Color(0XFFFCBC1C),) : Image.asset('assets/images/mtnmomo.png', width: screenWidth * (isPortrait ? 0.1 : 0.3),)),
                           ),
                           SizedBox(width: screenWidth * 0.06),
                           SizedBox(
@@ -196,7 +227,8 @@ class _WithdrawState extends State<Withdraw> {
                                 ),
                                 onPressed: () {
 
-                                }, icon: Image.asset('assets/images/moovmoney.png', width: screenWidth * 0.1)),
+                                }, icon: !_imagesLoaded ?
+                            const CircularProgressIndicator(color: Color(0XFFFCBC1C),) : Image.asset('assets/images/moovmoney.png', width: screenWidth * 0.1)),
                           ),
                         ],
                       ),
@@ -209,7 +241,8 @@ class _WithdrawState extends State<Withdraw> {
           const Spacer(),
           Align(
             alignment: Alignment.bottomRight,
-            child: Image.asset('assets/images/gain.png', height: screenHeight * 0.35),
+            child: !_imagesLoaded ?
+            const CircularProgressIndicator(color: Color(0XFFFCBC1C),) : Image.asset('assets/images/gain.png', height: screenHeight * 0.35),
           )
         ],
       ) :
@@ -305,7 +338,8 @@ class _WithdrawState extends State<Withdraw> {
                                   ),
                                   onPressed: () {
 
-                                  }, icon: Image.asset('assets/images/paypal.png', width: screenWidth * 0.08,)),
+                                  }, icon: !_imagesLoaded ?
+                              const CircularProgressIndicator(color: Color(0XFFFCBC1C),) : Image.asset('assets/images/paypal.png', width: screenWidth * 0.08,)),
                             ),
                             SizedBox(width: screenWidth * 0.07,),
                             SizedBox(
@@ -319,7 +353,8 @@ class _WithdrawState extends State<Withdraw> {
                                   ),
                                   onPressed: () {
 
-                                  }, icon: Image.asset('assets/images/visa.png', width: screenWidth * 0.1)),
+                                  }, icon: !_imagesLoaded ?
+                              const CircularProgressIndicator(color: Color(0XFFFCBC1C),) : Image.asset('assets/images/visa.png', width: screenWidth * 0.1)),
                             ),
                             SizedBox(width: screenWidth * 0.07),
                             SizedBox(
@@ -333,7 +368,8 @@ class _WithdrawState extends State<Withdraw> {
                                   ),
                                   onPressed: () {
 
-                                  }, icon: Image.asset('assets/images/mastercard.png', width: screenWidth * 0.1)),
+                                  }, icon: !_imagesLoaded ?
+                              const CircularProgressIndicator(color: Color(0XFFFCBC1C),) : Image.asset('assets/images/mastercard.png', width: screenWidth * 0.1)),
                             ),
                           ],
                         ),
@@ -354,7 +390,8 @@ class _WithdrawState extends State<Withdraw> {
                                   ),
                                   onPressed: () {
 
-                                  }, icon: Image.asset('assets/images/bitcoin.png', width: screenWidth * 0.1)),
+                                  }, icon: !_imagesLoaded ?
+                              const CircularProgressIndicator(color: Color(0XFFFCBC1C),) : Image.asset('assets/images/bitcoin.png', width: screenWidth * 0.1)),
                             ),
                             SizedBox(width: screenWidth * 0.07),
                             SizedBox(
@@ -368,7 +405,8 @@ class _WithdrawState extends State<Withdraw> {
                                   ),
                                   onPressed: () {
 
-                                  }, icon: Image.asset('assets/images/mtnmomo.png', width: screenWidth * 0.1)),
+                                  }, icon: !_imagesLoaded ?
+                              const CircularProgressIndicator(color: Color(0XFFFCBC1C),) : Image.asset('assets/images/mtnmomo.png', width: screenWidth * 0.1)),
                             ),
                             SizedBox(width: screenWidth * 0.07),
                             SizedBox(
@@ -382,7 +420,8 @@ class _WithdrawState extends State<Withdraw> {
                                   ),
                                   onPressed: () {
 
-                                  }, icon: Image.asset('assets/images/moovmoney.png', width: screenWidth * 0.1)),
+                                  }, icon: !_imagesLoaded ?
+                              const CircularProgressIndicator(color: Color(0XFFFCBC1C),) : Image.asset('assets/images/moovmoney.png', width: screenWidth * 0.1)),
                             ),
                           ],
                         ),
@@ -395,7 +434,8 @@ class _WithdrawState extends State<Withdraw> {
             SizedBox(height: screenHeight * 0.1,),
             Align(
               alignment: Alignment.bottomRight,
-              child: Image.asset('assets/images/gain.png', height: screenHeight * 0.5,),
+              child: !_imagesLoaded ?
+              const CircularProgressIndicator(color: Color(0XFFFCBC1C),) : Image.asset('assets/images/gain.png', height: screenHeight * 0.5,),
             )
           ],
         ),

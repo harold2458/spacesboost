@@ -27,6 +27,30 @@ class _SponsoringState extends State<Sponsoring> {
     });
   }
 
+  bool _imagesLoaded = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Préchargement des images avec un contexte valide
+    _preloadImages();
+  }
+
+  // Fonction de préchargement des images
+  Future<void> _preloadImages() async {
+    await Future.wait([
+      precacheImage(const AssetImage('assets/images/parrainage.png'), context),
+      precacheImage(const AssetImage('assets/images/twitter.png'), context),
+      precacheImage(const AssetImage('assets/images/linkedin.png'), context),
+      precacheImage(const AssetImage('assets/images/whatsapp.png'), context),
+      precacheImage(const AssetImage('assets/images/facebook.png'), context),
+    ]);
+
+    setState(() {
+      _imagesLoaded = true;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -40,6 +64,8 @@ class _SponsoringState extends State<Sponsoring> {
         padding: EdgeInsets.symmetric(horizontal: screenWidth * (isPortrait ? 0.03 : 0.1), vertical: screenHeight * (isPortrait ? 0.03 : 0.1)),
         child: Column(
             children: [
+              !_imagesLoaded ?
+              const CircularProgressIndicator(color: Color(0XFFFCBC1C),) :
               Image.asset('assets/images/parrainage.png', width: screenWidth * (isPortrait ? 0.6 : 0.2),),
               SizedBox(height: screenHeight * (isPortrait ? 0.04 : 0.1),),
               Row(
@@ -109,13 +135,17 @@ class _SponsoringState extends State<Sponsoring> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  IconButton(onPressed: () { }, icon: Image.asset('assets/images/twitter.png', width: screenWidth * (isPortrait ? 0.1 : 0.08)),),
+                  IconButton(onPressed: () { }, icon: !_imagesLoaded ?
+                  const CircularProgressIndicator(color: Color(0XFFFCBC1C),) : Image.asset('assets/images/twitter.png', width: screenWidth * (isPortrait ? 0.1 : 0.08)),),
                   SizedBox(width: screenWidth * (isPortrait ? 0.06 : 0.1)),
-                  IconButton(onPressed: () { }, icon: Image.asset('assets/images/linkedin.png', width: screenWidth * (isPortrait ? 0.1 : 0.08)),),
+                  IconButton(onPressed: () { }, icon: !_imagesLoaded ?
+                  const CircularProgressIndicator(color: Color(0XFFFCBC1C),) : Image.asset('assets/images/linkedin.png', width: screenWidth * (isPortrait ? 0.1 : 0.08)),),
                   SizedBox(width: screenWidth * (isPortrait ? 0.06 : 0.1)),
-                  IconButton(onPressed: () { }, icon: Image.asset('assets/images/whatsapp.png', width: screenWidth * (isPortrait ? 0.1 : 0.08)),),
+                  IconButton(onPressed: () { }, icon: !_imagesLoaded ?
+                  const CircularProgressIndicator(color: Color(0XFFFCBC1C),) : Image.asset('assets/images/whatsapp.png', width: screenWidth * (isPortrait ? 0.1 : 0.08)),),
                   SizedBox(width: screenWidth * (isPortrait ? 0.06 : 0.1)),
-                  IconButton(onPressed: () { }, icon: Image.asset('assets/images/facebook.png', width: screenWidth * (isPortrait ? 0.1 : 0.08)),),
+                  IconButton(onPressed: () { }, icon: !_imagesLoaded ?
+                  const CircularProgressIndicator(color: Color(0XFFFCBC1C),) : Image.asset('assets/images/facebook.png', width: screenWidth * (isPortrait ? 0.1 : 0.08)),),
                 ],
               )
             ]

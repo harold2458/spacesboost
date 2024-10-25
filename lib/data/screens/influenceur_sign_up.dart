@@ -231,7 +231,6 @@ class _InfluenceurSignUpState extends State<InfluenceurSignUp> {
                 ],
               ),
             )
-            //SizedBox(height: screenHeight * (isPortrait ? 0.02 : 0.04)),
           ],
         ),
       ),
