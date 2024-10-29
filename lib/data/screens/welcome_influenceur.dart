@@ -1,47 +1,18 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'avant_home.dart';
+import 'package:projet_mobile/data/screens/before_home.dart';
 
-class Welcome extends StatefulWidget {
-  const Welcome({super.key});
+class WelcomeInfluenceur extends StatefulWidget {
+  const WelcomeInfluenceur({super.key});
 
   @override
-  State<Welcome> createState() => _WelcomeState();
+  State<WelcomeInfluenceur> createState() => _WelcomeInfluenceurState();
 }
 
-class _WelcomeState extends State<Welcome> {
-
-  bool _imagesLoaded = false;
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    // Préchargement des images avec un contexte valide
-    _preloadImages();
-  }
-
-  // Fonction de préchargement des images
-  Future<void> _preloadImages() async {
-    await Future.wait([
-      precacheImage(const AssetImage('assets/images/bg_welcome.jpg'), context),
-      precacheImage(const AssetImage('assets/images/welcome.png'), context),
-    ]);
-
-    setState(() {
-      _imagesLoaded = true;
-    });
-  }
-
+class _WelcomeInfluenceurState extends State<WelcomeInfluenceur> {
   @override
   Widget build(BuildContext context) {
-    /*if (!_imagesLoaded) {
-      return const Scaffold(
-        body: Center(
-          child: CircularProgressIndicator(
-            color: Color(0XFFFCBC1C),
-          ),
-        ),
-      );
-    }*/
+
     final mediaQuery = MediaQuery.of(context);
     final screenHeight = mediaQuery.size.height;
     final screenWidth = mediaQuery.size.width;
@@ -114,7 +85,7 @@ class _WelcomeState extends State<Welcome> {
                   child: Stack(
                     children: [
                       Image.asset(
-                        'assets/images/3H5A2218-1.png',
+                        'assets/images/welcome.png',
                         height: screenHeight * 0.6,
                       ),
                       Transform.translate(offset: Offset(screenWidth * 0.5, 0),
@@ -129,7 +100,7 @@ class _WelcomeState extends State<Welcome> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const AvantHome(),
+                                  builder: (context) => const BeforeHome(),
                                 ),
                               );
                             },
@@ -200,7 +171,7 @@ class _WelcomeState extends State<Welcome> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const AvantHome(),
+                              builder: (context) => const BeforeHome(),
                             ),
                           );
                         },
@@ -222,7 +193,7 @@ class _WelcomeState extends State<Welcome> {
             ),
           ],
         ),
-      )
+      ),
     );
   }
 }

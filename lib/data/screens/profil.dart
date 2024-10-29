@@ -230,13 +230,13 @@ class _ProfilState extends State<Profil> {
                     );
                   },
                   style: ButtonStyle(
-                    backgroundColor: const WidgetStatePropertyAll(Color(0xfffcbc1c)),
-                    shape: WidgetStatePropertyAll(
+                    backgroundColor: const MaterialStatePropertyAll(Color(0xfffcbc1c)),
+                    shape: MaterialStatePropertyAll(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10), // Bordures arrondies
                       ),
                     ),
-                    elevation: const WidgetStatePropertyAll(3),
+                    elevation: const MaterialStatePropertyAll(3),
                   ),
                   child: Text(
                     'Modifier le profil',
@@ -359,13 +359,13 @@ class _ProfilState extends State<Profil> {
                                   child: ElevatedButton(
                                     onPressed: _submitForm,
                                     style: ButtonStyle(
-                                      backgroundColor: const WidgetStatePropertyAll(Color(0xff072858)),
-                                      shape: WidgetStatePropertyAll(
+                                      backgroundColor: const MaterialStatePropertyAll(Color(0xff072858)),
+                                      shape: MaterialStatePropertyAll(
                                         RoundedRectangleBorder(
                                           borderRadius: BorderRadius.circular(10), // Bordures arrondies
                                         ),
                                       ),
-                                      elevation: const WidgetStatePropertyAll(3),
+                                      elevation: const MaterialStatePropertyAll(3),
                                     ),
                                     child: Text("Envoyer", style: TextStyle(
                                       fontSize: screenWidth * (isPortrait ? 0.04 : 0.03),

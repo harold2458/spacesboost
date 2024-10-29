@@ -14,13 +14,45 @@ class _OnboardingState extends State<Onboarding> {
   late PageController _pageController;
 
   final List<Map<String, String>> imgList = [
-    {'image': 'assets/images/Campagne_P.png', 'titre': 'Campagne Publicitaire', 'description': 'Votre clientèle est ici !\nCréer et gérer des campagnes publicitaires complètes et performantes.'},
-    {'image': 'assets/images/image2.png', 'titre': 'Promotion des Produits', 'description': 'Plus proche de vos clients\nDiffuser vos publicités à une audience très large et spécifique avec nos influenceurs qui collent avec votre marque.'},
-    {'image': 'assets/images/image3.png', 'titre': 'Création de contenus', 'description': 'Contenus attrayants\nObtenez des contenus posts, images, stories, et vidéos mettant en scène votre marque via nos influenceurs.'},
-    {'image': 'assets/images/image4.png', 'titre': 'Taxi Boost', 'description': 'Off Line\nDes taxis mis à votre disposition pour être le support de vos publicités afin d\'avoir une visibilité accrue.'},
-    {'image': 'assets/images/image5.png', 'titre': 'Boutique', 'description': 'À chacun sa boutique !\nCréer votre boutique et vendre vos articles facilement. On s\'occupe de la livraision.'},
-    {'image': 'assets/images/sondage.png', 'titre': 'Sondage', 'description': 'Maximum de réponses\nObtenir rapidement des réponses de vos enquêtes ou sondages près de votre cible.'},
+    {
+      'image': 'assets/images/Campagne_P.png',
+      'titre': 'Campagne Publicitaire',
+      'description':
+          'Votre clientèle est ici !\nCréer et gérer des campagnes publicitaires complètes et performantes.'
+    },
+    {
+      'image': 'assets/images/image2.png',
+      'titre': 'Promotion des Produits',
+      'description':
+          'Plus proche de vos clients\nDiffuser vos publicités à une audience très large et spécifique avec nos influenceurs qui collent avec votre marque.'
+    },
+    {
+      'image': 'assets/images/image3.png',
+      'titre': 'Création de contenus',
+      'description':
+          'Contenus attrayants\nObtenez des contenus posts, images, stories, et vidéos mettant en scène votre marque via nos influenceurs.'
+    },
+    {
+      'image': 'assets/images/image4.png',
+      'titre': 'Taxi Boost',
+      'description':
+          'Off Line\nDes taxis mis à votre disposition pour être le support de vos publicités afin d\'avoir une visibilité accrue.'
+    },
+    {
+      'image': 'assets/images/image5.png',
+      'titre': 'Boutique',
+      'description':
+          'À chacun sa boutique !\nCréer votre boutique et vendre vos articles facilement. On s\'occupe de la livraison.'
+    },
+    {
+      'image': 'assets/images/sondage.png',
+      'titre': 'Sondage',
+      'description':
+          'Maximum de réponses\nObtenir rapidement des réponses de vos enquêtes ou sondages près de votre cible.'
+    },
   ];
+
+  bool _imagesLoaded = false;
 
   @override
   void initState() {
@@ -46,38 +78,11 @@ class _OnboardingState extends State<Onboarding> {
   }
 
   @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
-  }
-
-<<<<<<< HEAD
-  void _onNextPage() {
-    if (_currentPage < imgList.length - 1) {
-      setState(() {
-        _currentPage++;
-      });
-      _pageController.animateToPage(
-        _currentPage,
-        duration: Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-      );
-    } else {
-      // Rediriger vers la page de login
-     /*  Navigator.pushReplacementNamed(context, '/profil'); */
-    }
-=======
-  bool _imagesLoaded = false;
-
-  @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    // Préchargement des images avec un contexte valide
     _preloadImages();
->>>>>>> 2a3ede11d66a49bf2f6ae7f40037befa6f1f7ac7
   }
 
-  // Fonction de préchargement des images
   Future<void> _preloadImages() async {
     await Future.wait([
       precacheImage(const AssetImage('assets/images/Campagne_P.png'), context),
@@ -94,16 +99,23 @@ class _OnboardingState extends State<Onboarding> {
   }
 
   @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
     final screenHeight = mediaQuery.size.height;
     final screenWidth = mediaQuery.size.width;
-    final isPortrait = mediaQuery.orientation == Orientation.portrait; // Vérification de l'orientation
+    final isPortrait = mediaQuery.orientation == Orientation.portrait;
 
     return Scaffold(
       appBar: AppBar(),
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: screenWidth * (isPortrait ? 0.05 : 0.1)),
+        padding: EdgeInsets.symmetric(
+            horizontal: screenWidth * (isPortrait ? 0.05 : 0.1)),
         child: Column(
           children: [
             SizedBox(
@@ -114,33 +126,43 @@ class _OnboardingState extends State<Onboarding> {
                 itemBuilder: (context, index) {
                   return Column(
                     children: [
-                      !_imagesLoaded ?
-                      const CircularProgressIndicator(color: Color(0XFFFCBC1C),) :
-                      Image.asset(
-                        imgList[index]['image'] ?? 'assets/images/default.png',
-                        width: screenWidth * (isPortrait ? 0.5 : 0.3), // Largeur proportionnelle
-                      ),
-                      SizedBox(height: screenHeight * (isPortrait ? 0.08 : 0.2)), // Espacement proportionnel
+                      !_imagesLoaded
+                          ? const CircularProgressIndicator(
+                              color: Color(0XFFFCBC1C),
+                            )
+                          : Image.asset(
+                              imgList[index]['image'] ??
+                                  'assets/images/default.png',
+                              width: screenWidth *
+                                  (isPortrait ? 0.5 : 0.3),
+                            ),
+                      SizedBox(
+                          height: screenHeight *
+                              (isPortrait ? 0.08 : 0.2)),
                       Text(
                         imgList[index]['titre'] ?? 'Titre indisponible',
                         style: TextStyle(
-                          fontSize: screenWidth * (isPortrait ? 0.05 : 0.03), // Texte adaptatif
+                          fontSize:
+                              screenWidth * (isPortrait ? 0.05 : 0.03),
                           fontWeight: FontWeight.bold,
                         ),
                         textAlign: TextAlign.center,
                       ),
-                      SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.06)),
+                      SizedBox(
+                          height: screenHeight * (isPortrait ? 0.03 : 0.06)),
                       Text(
                         imgList[index]['description'] ?? 'Description indisponible',
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: screenWidth * (isPortrait ? 0.04 : 0.02)),
+                        style: TextStyle(
+                            fontSize: screenWidth * (isPortrait ? 0.04 : 0.02)),
                       ),
                     ],
                   );
                 },
               ),
             ),
-            SizedBox(height: isPortrait ? screenHeight * 0.08 : screenHeight * 0.1), // Espacement selon orientation
+            SizedBox(
+                height: isPortrait ? screenHeight * 0.08 : screenHeight * 0.1),
             SizedBox(
               width: double.infinity,
               height: screenHeight * (isPortrait ? 0.07 : 0.2),
@@ -167,7 +189,7 @@ class _OnboardingState extends State<Onboarding> {
                   'Étape Suivante',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: screenWidth * (isPortrait ? 0.05 : 0.03), // Texte adaptatif
+                    fontSize: screenWidth * (isPortrait ? 0.05 : 0.03),
                     color: const Color(0xff072858),
                   ),
                 ),

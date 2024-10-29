@@ -1,6 +1,5 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:projet_mobile/data/screens/avant_home.dart';
 import 'package:projet_mobile/data/screens/login_entreprise.dart';
 import 'package:projet_mobile/data/screens/welcome.dart';
 

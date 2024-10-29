@@ -1,10 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-<<<<<<< HEAD
-        android:label="spacesboost"
-=======
+
         android:label="Spaceboost"
->>>>>>> 2a3ede11d66a49bf2f6ae7f40037befa6f1f7ac7
         android:name="${applicationName}"
         android:icon="@drawable/icon">
 

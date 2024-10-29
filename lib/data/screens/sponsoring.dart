@@ -107,13 +107,13 @@ class _SponsoringState extends State<Sponsoring> {
                 child: ElevatedButton(
                   onPressed: () => copierCode(context),
                   style: ButtonStyle(
-                    backgroundColor: const WidgetStatePropertyAll(Color(0xff072858)),
-                    shape: WidgetStatePropertyAll(
+                    backgroundColor: const MaterialStatePropertyAll(Color(0xff072858)),
+                    shape: MaterialStatePropertyAll(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10), // Bordures arrondies
                       ),
                     ),
-                    elevation: const WidgetStatePropertyAll(3),
+                    elevation: const MaterialStatePropertyAll(3),
                   ),
                   child: Text(
                     "Copier le code",

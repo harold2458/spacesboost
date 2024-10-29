@@ -44,11 +44,11 @@ class _ProfileTypeState extends State<ProfileType> {
                      Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginEntreprise()));
                    },
                    style: ButtonStyle(
-                     backgroundColor: const MaterialStatePropertyAll(Color(0xff072858)),
-                     shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                     backgroundColor: const WidgetStatePropertyAll(Color(0xff072858)),
+                     shape: WidgetStatePropertyAll(RoundedRectangleBorder(
                        borderRadius: BorderRadius.circular(10), // Bordures arrondies
                      ),),
-                     elevation: const MaterialStatePropertyAll(3),
+                     elevation: const WidgetStatePropertyAll(3),
                    ),
                    child: Text('Entreprise', style: TextStyle(fontSize: screenWidth * (isPortrait ? 0.05 : 0.03), fontWeight: FontWeight.bold, color: Colors.white)),
                  ),
@@ -62,11 +62,11 @@ class _ProfileTypeState extends State<ProfileType> {
                      Navigator.push(context, MaterialPageRoute(builder: (context) => const InfluenceurLogin()));
                    },
                    style: ButtonStyle(
-                     backgroundColor: const MaterialStatePropertyAll(Color(0xfffcbc1c)),
-                     shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                     backgroundColor: const WidgetStatePropertyAll(Color(0xfffcbc1c)),
+                     shape: WidgetStatePropertyAll(RoundedRectangleBorder(
                        borderRadius: BorderRadius.circular(10), // Bordures arrondies
                      ),),
-                     elevation: const MaterialStatePropertyAll(3),
+                     elevation: const WidgetStatePropertyAll(3),
                    ),
                    child: Text('Influenceur', style: TextStyle(fontSize: screenWidth * (isPortrait ? 0.05 : 0.03), fontWeight: FontWeight.bold, color: Colors.white)),
                  ),

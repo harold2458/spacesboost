@@ -94,13 +94,13 @@ class _AnnonceState extends State<Annonce> {
                             );
                           },
                           style: ButtonStyle(
-                            backgroundColor: const WidgetStatePropertyAll(Color(0xff072858)),
-                            shape: WidgetStatePropertyAll(
+                            backgroundColor: const MaterialStatePropertyAll(Color(0xff072858)),
+                            shape: MaterialStatePropertyAll(
                               RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10), // Bordures arrondies
                               ),
                             ),
-                            elevation: const WidgetStatePropertyAll(3),
+                            elevation: const MaterialStatePropertyAll(3),
                             //padding: const WidgetStatePropertyAll(EdgeInsets.symmetric(horizontal: 20, vertical: 10))
                           ),
                           child: Text(
@@ -164,13 +164,13 @@ class _AnnonceState extends State<Annonce> {
                                 );
                               },
                               style: ButtonStyle(
-                                backgroundColor: const WidgetStatePropertyAll(Color(0xff072858)),
-                                shape: WidgetStatePropertyAll(
+                                backgroundColor: const MaterialStatePropertyAll(Color(0xff072858)),
+                                shape: MaterialStatePropertyAll(
                                   RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10), // Bordures arrondies
                                   ),
                                 ),
-                                elevation: const WidgetStatePropertyAll(3),
+                                elevation: const MaterialStatePropertyAll(3),
                                 //padding: const WidgetStatePropertyAll(EdgeInsets.symmetric(horizontal: 20, vertical: 10))
                               ),
                               child: Text(
@@ -234,13 +234,13 @@ class _AnnonceState extends State<Annonce> {
                                 );
                               },
                               style: ButtonStyle(
-                                backgroundColor: const WidgetStatePropertyAll(Color(0xff072858)),
-                                shape: WidgetStatePropertyAll(
+                                backgroundColor: const MaterialStatePropertyAll(Color(0xff072858)),
+                                shape: MaterialStatePropertyAll(
                                   RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10), // Bordures arrondies
                                   ),
                                 ),
-                                elevation: const WidgetStatePropertyAll(3),
+                                elevation: const MaterialStatePropertyAll(3),
                                 //padding: const WidgetStatePropertyAll(EdgeInsets.symmetric(horizontal: 20, vertical: 10))
                               ),
                               child: Text(

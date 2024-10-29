@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:projet_mobile/data/screens/avant_home.dart';
-import 'package:projet_mobile/data/screens/home_entrentreprise.dart';
 import 'package:projet_mobile/data/screens/register_entreprise.dart';
 import 'package:projet_mobile/data/screens/welcome.dart';
 
