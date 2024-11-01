@@ -11,27 +11,40 @@ class _NotificationsState extends State<Notifications> {
   @override
   Widget build(BuildContext context) {
 
-    final mediaQuery = MediaQuery.of(context);
+     final mediaQuery = MediaQuery.of(context);
     final screenHeight = mediaQuery.size.height;
     final screenWidth = mediaQuery.size.width;
     final isPortrait = mediaQuery.orientation == Orientation.portrait;
 
-    return Scaffold(
-        appBar: AppBar(
-            title: const Text('Notification', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),),
-            centerTitle: true,
-            backgroundColor: const Color(0XFFFCBC1C),
-            leading: IconButton(onPressed: () {
-              Navigator.of(context).pop();
-            }, icon: const Icon(Icons.arrow_back, color: Colors.white,))),
-        body: SingleChildScrollView(
+    return  Scaffold(
+       appBar: AppBar(
+        title: const Text(
+          'Notifications',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+        backgroundColor: const Color(0xff072858),
+        centerTitle: true,
+        leading:  IconButton(
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+            ),
+            onPressed: () {
+               Navigator.of(context).pop();
+            },
+          ),
+      ),
+      body:SingleChildScrollView(
           padding: EdgeInsets.symmetric(horizontal: screenWidth * (isPortrait ? 0.05 : 0.1), vertical: screenHeight * (isPortrait ? 0.03 : 0.1)),
           child: Column(
             children: [
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Colors.white,
+                  color: Colors.amber,
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(0.3), // Couleur de l'ombre
@@ -58,7 +71,7 @@ class _NotificationsState extends State<Notifications> {
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Colors.white,
+                  color: Colors.amber,
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(0.3), // Couleur de l'ombre
@@ -85,7 +98,7 @@ class _NotificationsState extends State<Notifications> {
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Colors.white,
+                  color: Colors.amber,
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(0.3), // Couleur de l'ombre
@@ -112,7 +125,7 @@ class _NotificationsState extends State<Notifications> {
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Colors.white,
+                  color: Colors.amber,
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(0.3), // Couleur de l'ombre
@@ -139,7 +152,7 @@ class _NotificationsState extends State<Notifications> {
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Colors.white,
+                  color: Colors.amber,
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(0.3), // Couleur de l'ombre
@@ -166,7 +179,7 @@ class _NotificationsState extends State<Notifications> {
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Colors.white,
+                  color: Colors.amber,
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(0.3), // Couleur de l'ombre
@@ -193,7 +206,7 @@ class _NotificationsState extends State<Notifications> {
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Colors.white,
+                  color: Colors.amber,
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(0.3), // Couleur de l'ombre
@@ -220,7 +233,7 @@ class _NotificationsState extends State<Notifications> {
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Colors.white,
+                  color: Colors.amber,
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(0.3), // Couleur de l'ombre
@@ -247,7 +260,7 @@ class _NotificationsState extends State<Notifications> {
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Colors.white,
+                  color: Colors.amber,
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(0.3), // Couleur de l'ombre
@@ -274,7 +287,7 @@ class _NotificationsState extends State<Notifications> {
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Colors.white,
+                  color: Colors.amber,
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(0.3), // Couleur de l'ombre
