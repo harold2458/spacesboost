@@ -1,6 +1,5 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:projet_mobile/data/screens/before_home.dart';
+import 'package:projet_mobile/data/screens/validation.dart';
 
 class WelcomeInfluenceur extends StatefulWidget {
   const WelcomeInfluenceur({super.key});
@@ -29,7 +28,7 @@ class _WelcomeInfluenceurState extends State<WelcomeInfluenceur> {
           ),
         ),
         centerTitle: true,
-        backgroundColor: Color(0xff072858),
+        backgroundColor: const Color(0xff072858),
         leading: IconButton(
           onPressed: () {
             Navigator.of(context).pop();
@@ -100,7 +99,7 @@ class _WelcomeInfluenceurState extends State<WelcomeInfluenceur> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const BeforeHome(),
+                                  builder: (context) => const Validation(),
                                 ),
                               );
                             },
@@ -171,7 +170,7 @@ class _WelcomeInfluenceurState extends State<WelcomeInfluenceur> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const BeforeHome(),
+                              builder: (context) => const Validation(),
                             ),
                           );
                         },
