@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projet_mobile/data/screens/avant_home.dart';
 import 'package:projet_mobile/data/screens/home_entrentreprise.dart';
 import 'package:projet_mobile/data/screens/register_entreprise.dart';
-import 'package:projet_mobile/data/screens/welcome.dart';
+import 'package:projet_mobile/data/screens/welcome_entreprise.dart';
 
 class LoginEntreprise extends StatefulWidget {
   const LoginEntreprise({super.key});
@@ -30,7 +30,7 @@ class _LoginEntrepriseState extends State<LoginEntreprise> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () => Navigator.pop(context,
-              MaterialPageRoute(builder: (context) => const Welcome())),
+              MaterialPageRoute(builder: (context) => const WelcomeEntreprise())),
         ),
       ),
       body: SingleChildScrollView(
@@ -130,7 +130,7 @@ class _LoginEntrepriseState extends State<LoginEntreprise> {
             const SnackBar(content: Text('Connexion réussie !')),
           );
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const Welcome()));
+              MaterialPageRoute(builder: (context) => const WelcomeEntreprise()));
         },
         child: isLoading
             ? const CircularProgressIndicator(color: Colors.white)

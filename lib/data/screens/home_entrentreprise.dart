@@ -1,246 +1,161 @@
 import 'package:flutter/material.dart';
-import 'package:projet_mobile/data/screens/aide_entreprise.dart';
-import 'package:projet_mobile/data/screens/campagne_entreprise.dart';
-import 'package:projet_mobile/data/screens/sondage_entreprise.dart';
-import 'package:projet_mobile/data/screens/statistique_entreprise.dart';
 
 class HomeEntreprise extends StatefulWidget {
-  const HomeEntreprise({super.key});
+  final Function(int) onTabSelected; // Callback pour sélectionner l'onglet
+
+  const HomeEntreprise({Key? key, required this.onTabSelected}) : super(key: key);
 
   @override
   State<HomeEntreprise> createState() => _HomeEntrepriseState();
 }
 
 class _HomeEntrepriseState extends State<HomeEntreprise> {
-
-
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
+    final screenWidth = mediaQuery.size.width;
+    final screenHeight = mediaQuery.size.height;
+    final isPortrait = mediaQuery.orientation == Orientation.portrait;
+
     return Scaffold(
       body: SingleChildScrollView(
-        child: Column(children: [
-        // Fusion AppBar et section du profil
-        Container(
-          width: double.infinity, // Prend toute la largeur de l'écran
-          padding: const EdgeInsets.all(16.0),
-          decoration: BoxDecoration(
-            color: const Color(
-                0xff072858), // Couleur de la section profil et AppBar
-            borderRadius: const BorderRadius.only(
-              bottomLeft: Radius.circular(70),
-              bottomRight: Radius.circular(70),
-            ),
-            border: Border.all(
-              color: Colors.transparent,
-              width: 0,
-            ),
-          ),
-          child: const Column(
-            children: [
-              SizedBox(height: 16),
-
-              // Section du profil avec prénom et nom
-              CircleAvatar(
-                radius: 80,
-                backgroundImage: AssetImage(
-                    'assets/icons/profile2.png'), // Chemin vers l'image du profil
-              ),
-              SizedBox(height: 20),
-              Text(
-                'Harold DIDAVI',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-              Text(
-                'Developpeur',
-                style: TextStyle(fontSize: 16, color: Colors.white),
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 30),
-
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: Column(
           children: [
-            GestureDetector(
-              onTap: () {
-                // Naviguer vers la page cible
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => CampagneEntreprise()),
-                );
-              },
-              child: Container(
-                width: 150,
-                height: 150,
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color:
-                          Colors.black.withOpacity(0.5), // Couleur de l'ombre
-                      spreadRadius: 2, // Rayon de diffusion de l'ombre
-                      blurRadius: 5, // Flou de l'ombre
-                      offset: Offset(0, 3), // Direction de l'ombre (x,y)
-                    ),
-                  ],
-                ),
-                // Centre les éléments du Container
-                child: Column(
-                  mainAxisAlignment:
-                      MainAxisAlignment.center, // Centrer verticalement
-                  crossAxisAlignment:
-                      CrossAxisAlignment.center, // Centrer horizontalement
-                  children: [
-                    Image.asset('assets/icons/campagne.png', height: 50),
-                    const SizedBox(height: 10), // Ajustement de l'espacement
-                    const Text("Campagne"),
-                  ],
+            // Profil et AppBar
+            Container(
+              width: double.infinity,
+              padding: EdgeInsets.all(screenWidth * 0.04),
+              decoration: BoxDecoration(
+                color: const Color(0xff072858),
+                borderRadius: const BorderRadius.only(
+                  bottomLeft: Radius.circular(70),
+                  bottomRight: Radius.circular(70),
                 ),
               ),
-            ),
-            const SizedBox(
-              width: 30,
-            ),
-            GestureDetector(
-              onTap: () {
-                // Naviguer vers la page cible
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SondageEntreprise()),
-                );
-              },
-              child: Container(
-                width: 150,
-                height: 150,
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color:
-                          Colors.black.withOpacity(0.5), // Couleur de l'ombre
-                      spreadRadius: 2, // Rayon de diffusion de l'ombre
-                      blurRadius: 5, // Flou de l'ombre
-                      offset: Offset(0, 3), // Direction de l'ombre (x,y)
+              child: Column(
+                children: [
+                  SizedBox(height: screenHeight * 0.02),
+                  CircleAvatar(
+                    radius: screenWidth * 0.15,
+                    backgroundImage: const AssetImage('assets/icons/profile2.png'),
+                  ),
+                  SizedBox(height: screenHeight * 0.02),
+                  Text(
+                    'Harold DIDAVI',
+                    style: TextStyle(
+                      fontSize: screenWidth * 0.05,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
                     ),
-                  ],
-                ),
-                // Centre les éléments du Container
-                child: Column(
-                  mainAxisAlignment:
-                      MainAxisAlignment.center, // Centrer verticalement
-                  crossAxisAlignment:
-                      CrossAxisAlignment.center, // Centrer horizontalement
-                  children: [
-                    Image.asset('assets/icons/sondage1.png', height: 50),
-                    const SizedBox(height: 10), // Ajustement de l'espacement
-                    const Text("Sondage"),
-                  ],
-                ),
+                  ),
+                  Text(
+                    'Développeur',
+                    style: TextStyle(
+                      fontSize: screenWidth * 0.04,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
               ),
             ),
+            SizedBox(height: screenHeight * 0.03),
+
+            // Boutons de navigation
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    widget.onTabSelected(2); // Onglet Campagne
+                  },
+                  child: buildGestureContainer(
+                    'Campagne',
+                    'assets/icons/campagne.png',
+                    screenWidth,
+                    screenHeight,
+                  ),
+                ),
+                SizedBox(width: screenWidth * 0.05),
+                GestureDetector(
+                  onTap: () {
+                    widget.onTabSelected(1); // Onglet Aide
+                  },
+                  child: buildGestureContainer(
+                    'Sondage',
+                    'assets/icons/sondage1.png',
+                    screenWidth,
+                    screenHeight,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: screenHeight * 0.03),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    widget.onTabSelected(3); // Onglet Statistique
+                  },
+                  child: buildGestureContainer(
+                    'Statistique',
+                    'assets/icons/statistique.png',
+                    screenWidth,
+                    screenHeight,
+                  ),
+                ),
+                SizedBox(width: screenWidth * 0.05),
+                GestureDetector(
+                  onTap: () {
+                    widget.onTabSelected(0); // Onglet Aide
+                  },
+                  child: buildGestureContainer(
+                    'Aide',
+                    'assets/icons/help.png',
+                    screenWidth,
+                    screenHeight,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: screenHeight * 0.03),
           ],
         ),
-        const SizedBox(height: 30),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            GestureDetector(
-              onTap: () {
-                // Naviguer vers la page cible
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => StatistiqueEntreprise()),
-                );
-              },
-              child: Container(
-                width: 150,
-                height: 150,
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color:
-                          Colors.black.withOpacity(0.5), // Couleur de l'ombre
-                      spreadRadius: 2, // Rayon de diffusion de l'ombre
-                      blurRadius: 5, // Flou de l'ombre
-                      offset: Offset(0, 3), // Direction de l'ombre (x,y)
-                    ),
-                  ],
-                ),
-                // Centre les éléments du Container
-                child: Column(
-                  mainAxisAlignment:
-                      MainAxisAlignment.center, // Centrer verticalement
-                  crossAxisAlignment:
-                      CrossAxisAlignment.center, // Centrer horizontalement
-                  children: [
-                    Image.asset('assets/icons/statistique.png', height: 50),
-                    const SizedBox(height: 10), // Ajustement de l'espacement
-                    const Text("Statistique"),
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(
-              width: 30,
-            ),
-            GestureDetector(
-              onTap: () {
-                // Naviguer vers la page cible
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => AideEntreprise()),
-                );
-              },
-              child: Container(
-                width: 150,
-                height: 150,
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color:
-                          Colors.black.withOpacity(0.5), // Couleur de l'ombre
-                      spreadRadius: 2, // Rayon de diffusion de l'ombre
-                      blurRadius: 5, // Flou de l'ombre
-                      offset: Offset(0, 3), // Direction de l'ombre (x,y)
-                    ),
-                  ],
-                ),
-                // Centre les éléments du Container
-                child: Column(
-                  mainAxisAlignment:
-                      MainAxisAlignment.center, // Centrer verticalement
-                  crossAxisAlignment:
-                      CrossAxisAlignment.center, // Centrer horizontalement
-                  children: [
-                    Image.asset('assets/icons/help.png', height: 50),
-                    const SizedBox(height: 10), // Ajustement de l'espacement
-                    const Text("Help"),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(
-          height: 30,
-        )
-      ]),
-      )
+      ),
+    );
+  }
+
+  // Widget pour un élément de navigation
+  Widget buildGestureContainer(String title, String iconPath, double screenWidth, double screenHeight) {
+    final isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
+
+    return Container(
+      width: screenWidth * (isPortrait ? 0.35 : 0.25),
+      height: screenHeight * (isPortrait ? 0.2 : 0.3),
+      padding: EdgeInsets.all(screenWidth * 0.04),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.5),
+            spreadRadius: 2,
+            blurRadius: 5,
+            offset: const Offset(0, 3),
+          ),
+        ],
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(iconPath, height: screenHeight * 0.08),
+          SizedBox(height: screenHeight * 0.01),
+          Text(
+            title,
+            style: TextStyle(fontSize: screenWidth * 0.04),
+          ),
+        ],
+      ),
     );
   }
 }

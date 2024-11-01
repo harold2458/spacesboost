@@ -11,6 +11,9 @@ class CampagneEntreprise extends StatefulWidget {
 }
 
 class _CampagneEntrepriseState extends State<CampagneEntreprise> {
+  // Variable to manage the influencer checkbox state
+  bool isInfluencerChecked = false; // Initialize according to your logic
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -18,95 +21,97 @@ class _CampagneEntrepriseState extends State<CampagneEntreprise> {
       child: Scaffold(
         body: Column(
           children: [
-           Stack(
-             children: [
-               Container(
-                 decoration:BoxDecoration(
-                   color: Color(0xff072858),
-                   borderRadius: const BorderRadius.only(
-                     bottomLeft: Radius.circular(50),
-                     bottomRight: Radius.circular(50),
-                   ),
-                 ),
-                 //width: double.infinity,
-                 height: 100,
-               ),
-               Transform.translate(
-                 offset: Offset(0, 12),
-                 child: Center(
-                   child: Container(
-                     decoration: BoxDecoration(
-                       borderRadius:BorderRadius.circular(10),
-                       color: Color(0x9169799D),
-                     ),
+            Stack(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    color: const Color(0xff072858),
+                    borderRadius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(50),
+                      bottomRight: Radius.circular(50),
+                    ),
+                  ),
+                  height: 100,
+                ),
+                Transform.translate(
+                  offset: const Offset(0, 12),
+                  child: Center(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: const Color(0x9169799D),
+                      ),
                       width: 310,
-                     padding: EdgeInsets.all(5),
-                     // Deuxième container avec largeur définie
-                     child: TabBar(
-                       labelColor: Colors.white, // Couleur du texte actif
-                       unselectedLabelColor: Colors.white, // Couleur du texte inactif
-                       indicator: BoxDecoration(
-                         color: Color(0xff072858), // Couleur de fond de l'onglet sélectionné
-                         borderRadius: BorderRadius.circular(8), // Coins arrondis pour l'onglet actif
-                       ),
-                       tabs: <Widget>[
-                         Tab(
-                           height: 60,
-                           child: SizedBox(
-                             width: 100, // Définir la largeur fixe
-                             child: Column(
-                             mainAxisAlignment: MainAxisAlignment.center,
-                               children: [
-                                 Icon(Icons.announcement),
-                                 Text('Annonce',
-                                   style: TextStyle(fontSize: 11),
-                                 ), // Utiliser le widget Text correctement
-                               ],
-                             ),
-                           ),
-                         ),
-                         Tab(
-                           height: 60,
-                           child: SizedBox(
-                             width: 100, // Définir la largeur fixe
-                             child: Column(
-                               mainAxisAlignment: MainAxisAlignment.center,
-                               children: [
-                                 Icon(Icons.local_offer),
-                                 Text('Promotion',
-                                   style: TextStyle(fontSize: 11),
-                                 ), // Utiliser le widget Text correctement
-                               ],
-                             ),
-                           ),
-                         ),
-                         Tab(
-                           height: 60,
-                           child: SizedBox(
-                             width: 100, // Définir la largeur fixe
-                             child: Column(
-                               mainAxisAlignment: MainAxisAlignment.center,
-                               children: [
-                                 Icon(Icons.create),
-                                 Text('Creation',
-                                   style: TextStyle(fontSize: 11),
-                                 ), // Utiliser le widget Text correctement
-                               ],
-                             ),
-                           ),
-                         ),
-                       ], // Fermeture du tableau des Tabs
-                     ),),
-                 ),
-               )
-             ],
-           ),
+                      padding: const EdgeInsets.all(5),
+                      child: TabBar(
+                        labelColor: Colors.white,
+                        unselectedLabelColor: Colors.white,
+                        indicator: BoxDecoration(
+                          color: const Color(0xff072858),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        tabs: const <Widget>[
+                          Tab(
+                            height: 60,
+                            child: SizedBox(
+                              width: 100,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.announcement),
+                                  Text(
+                                    'Annonce',
+                                    style: TextStyle(fontSize: 11),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Tab(
+                            height: 60,
+                            child: SizedBox(
+                              width: 100,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.local_offer),
+                                  Text(
+                                    'Promotion',
+                                    style: TextStyle(fontSize: 11),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Tab(
+                            height: 60,
+                            child: SizedBox(
+                              width: 100,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.create),
+                                  Text(
+                                    'Creation',
+                                    style: TextStyle(fontSize: 11),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
             Expanded(
               child: TabBarView(
                 children: <Widget>[
-                  AnnonceEntreprise(), // Remplace par le widget que tu souhaites afficher
-                  PromotionEntreprise(), // Remplace par le widget que tu souhaites afficher
-                  CreationEntreprise(), // Remplace par le widget que tu souhaites afficher
+                  AnnonceEntreprise(),
+                  PromotionEntreprise(isInfluencerChecked: isInfluencerChecked), // Correctly pass the checkbox state
+                  CreationEntreprise(),
                 ],
               ),
             ),

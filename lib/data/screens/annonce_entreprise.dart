@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projet_mobile/data/screens/publicite.dart';
+import 'package:projet_mobile/data/screens/publicite_entreprise.dart';
 
 // Assurez-vous d'importer la page Publicite
 // import 'chemin/vers/votre/page/publicite.dart';
@@ -43,7 +43,7 @@ class _AnnonceEntrepriseState extends State<AnnonceEntreprise> {
                   // Action à exécuter lors du clic sur la ligne complète
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Publicite()),
+                    MaterialPageRoute(builder: (context) => const PubliciteEntreprise()),
                   );
                 },
                 child: Row(
@@ -57,7 +57,7 @@ class _AnnonceEntrepriseState extends State<AnnonceEntreprise> {
                           if (isCheckedwhatsapp) {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => const Publicite()),
+                              MaterialPageRoute(builder: (context) => const PubliciteEntreprise()),
                             );
                           }
                         });
@@ -129,7 +129,7 @@ class _AnnonceEntrepriseState extends State<AnnonceEntreprise> {
                   // Action à exécuter lors du clic sur la ligne complète
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Publicite()),
+                    MaterialPageRoute(builder: (context) => const PubliciteEntreprise()),
                   );
                 },
                 child: Row(
@@ -143,7 +143,7 @@ class _AnnonceEntrepriseState extends State<AnnonceEntreprise> {
                           if (isCheckedwhatsapp) {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => const Publicite()),
+                              MaterialPageRoute(builder: (context) => const PubliciteEntreprise()),
                             );
                           }
                         });
@@ -214,7 +214,7 @@ class _AnnonceEntrepriseState extends State<AnnonceEntreprise> {
                   // Action à exécuter lors du clic sur la ligne complète
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Publicite()),
+                    MaterialPageRoute(builder: (context) => const PubliciteEntreprise()),
                   );
                 },
                 child: Row(
@@ -228,7 +228,7 @@ class _AnnonceEntrepriseState extends State<AnnonceEntreprise> {
                           if (isCheckedwhatsapp) {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => const Publicite()),
+                              MaterialPageRoute(builder: (context) => const PubliciteEntreprise()),
                             );
                           }
                         });
@@ -300,7 +300,7 @@ class _AnnonceEntrepriseState extends State<AnnonceEntreprise> {
                   // Action à exécuter lors du clic sur la ligne complète
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Publicite()),
+                    MaterialPageRoute(builder: (context) => const PubliciteEntreprise()),
                   );
                 },
                 child: Row(
@@ -314,7 +314,7 @@ class _AnnonceEntrepriseState extends State<AnnonceEntreprise> {
                           if (isCheckedwhatsapp) {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => const Publicite()),
+                              MaterialPageRoute(builder: (context) => const PubliciteEntreprise()),
                             );
                           }
                         });
@@ -386,7 +386,7 @@ class _AnnonceEntrepriseState extends State<AnnonceEntreprise> {
                   // Action à exécuter lors du clic sur la ligne complète
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Publicite()),
+                    MaterialPageRoute(builder: (context) => const PubliciteEntreprise()),
                   );
                 },
                 child: Row(
@@ -400,7 +400,7 @@ class _AnnonceEntrepriseState extends State<AnnonceEntreprise> {
                           if (isCheckedwhatsapp) {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => const Publicite()),
+                              MaterialPageRoute(builder: (context) => const PubliciteEntreprise()),
                             );
                           }
                         });
@@ -472,7 +472,7 @@ class _AnnonceEntrepriseState extends State<AnnonceEntreprise> {
                   // Action à exécuter lors du clic sur la ligne complète
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Publicite()),
+                    MaterialPageRoute(builder: (context) => const PubliciteEntreprise()),
                   );
                 },
                 child: Row(
@@ -486,7 +486,7 @@ class _AnnonceEntrepriseState extends State<AnnonceEntreprise> {
                           if (isCheckedwhatsapp) {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => const Publicite()),
+                              MaterialPageRoute(builder: (context) => const PubliciteEntreprise()),
                             );
                           }
                         });

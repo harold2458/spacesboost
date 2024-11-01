@@ -2,7 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:projet_mobile/data/screens/avant_home.dart';
 import 'package:projet_mobile/data/screens/login_entreprise.dart';
-import 'package:projet_mobile/data/screens/welcome.dart';
+import 'package:projet_mobile/data/screens/welcome_entreprise.dart';
 
 class RegisterEntreprise extends StatefulWidget {
   const RegisterEntreprise({super.key});
@@ -40,7 +40,7 @@ class _RegisterEntrepriseState extends State<RegisterEntreprise> {
     // Logique d'inscription à implémenter
     print("Inscription réussie");
     // Redirection après inscription
-    Navigator.push(context, MaterialPageRoute(builder: (context) => const Welcome()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const WelcomeEntreprise()));
   }
 
   @override

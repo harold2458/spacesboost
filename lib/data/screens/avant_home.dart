@@ -1,12 +1,11 @@
-
 import 'package:flutter/material.dart';
-import 'package:projet_mobile/data/screens/Notifications.dart';
 import 'package:projet_mobile/data/screens/aide_entreprise.dart';
 import 'package:projet_mobile/data/screens/campagne_entreprise.dart';
 import 'package:projet_mobile/data/screens/home_entrentreprise.dart';
 import 'package:projet_mobile/data/screens/login_entreprise.dart';
-import 'package:projet_mobile/data/screens/profile.dart';
-import 'package:projet_mobile/data/screens/settings.dart';
+import 'package:projet_mobile/data/screens/notification_entreprise.dart';
+import 'package:projet_mobile/data/screens/profile_entreprise.dart';
+import 'package:projet_mobile/data/screens/settings_entreprise.dart';
 import 'package:projet_mobile/data/screens/statistique_entreprise.dart';
 
 class AvantHome extends StatefulWidget {
@@ -25,11 +24,13 @@ class _AvantHomeState extends State<AvantHome> {
     "Campagne",
     "Statistique"
   ];
+
+  // Pages à afficher dans les onglets
   static final List<Widget> _pages = [
-    const HomeEntreprise(),
-    const AideEntreprise(),
-    const CampagneEntreprise(),
-    const StatistiqueEntreprise(),
+    HomeEntreprise(onTabSelected: (index) {}),
+    AideEntreprise(),
+    CampagneEntreprise(),
+    StatistiqueEntreprise(),
   ];
 
   void _onItemTapped(int index) {
@@ -49,8 +50,11 @@ class _AvantHomeState extends State<AvantHome> {
       appBar: AppBar(
         title: Text(
           _title[_selectedIndex],
-          style:
-              const TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+            fontSize: screenWidth * 0.05, // Responsive font size
+          ),
         ),
         backgroundColor: const Color(0xFF072858),
         centerTitle: true,
@@ -58,30 +62,41 @@ class _AvantHomeState extends State<AvantHome> {
           padding: EdgeInsets.only(left: screenWidth * 0.01),
           child: Image.asset(
             'assets/logos/icon.jpg',
-            height: 300,
+            height: screenHeight * 0.04,
           ),
         ),
         actions: [
           Builder(
             builder: (BuildContext context) {
               return IconButton(
-                icon:  Icon(Icons.menu, size: screenWidth * (isPortrait ? 0.1 : 0.05), color: Colors.white), // Icône de menu
+                icon: Icon(
+                  Icons.menu,
+                  size: screenWidth * (isPortrait ? 0.08 : 0.05),
+                  color: Colors.white,
+                ),
                 onPressed: () {
-                  // Ouvre le drawer
                   Scaffold.of(context).openDrawer();
                 },
               );
             },
-          )
+          ),
         ],
       ),
-      body: _pages[_selectedIndex],
+      body: IndexedStack(
+        index: _selectedIndex,
+        children: [
+          HomeEntreprise(onTabSelected: _onItemTapped),
+          const AideEntreprise(),
+          const CampagneEntreprise(),
+          const StatistiqueEntreprise(),
+        ],
+      ),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
             SizedBox(
-              height: screenHeight * (isPortrait ? 0.35 : 0.5),
+              height: screenHeight * (isPortrait ? 0.3 : 0.5),
               child: DrawerHeader(
                 decoration: const BoxDecoration(
                   color: Color(0Xff072858),
@@ -90,130 +105,100 @@ class _AvantHomeState extends State<AvantHome> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     CircleAvatar(
-                      radius: screenWidth * (isPortrait ? 0.15 : 0.04),
+                      radius: screenWidth * (isPortrait ? 0.15 : 0.08),
                       backgroundImage: const AssetImage('assets/images/profil.jpg'),
                     ),
-                    SizedBox(height: screenHeight * (isPortrait ? 0.04 : 0.03)),
-                    Text('Harold DIDAVI', style: TextStyle(color: Colors.white, fontSize: screenWidth * (isPortrait ? 0.04 : 0.02), fontWeight: FontWeight.bold)),
-                    Text('harolddidavi@gmail.com', style: TextStyle(color: Colors.white, fontSize: screenWidth * (isPortrait ? 0.03 : 0.01))),
+                    SizedBox(height: screenHeight * 0.02),
+                    Text(
+                      'Harold DIDAVI',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: screenWidth * 0.05,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      'harolddidavi@gmail.com',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: screenWidth * 0.04,
+                      ),
+                    ),
                   ],
                 ),
               ),
             ),
             Padding(
-                padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05, vertical: screenHeight * 0.03),
+              padding: EdgeInsets.symmetric(
+                horizontal: screenWidth * 0.05,
+                vertical: screenHeight * 0.02,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const Profile()));
+                  _buildDrawerItem(
+                    context,
+                    icon: Icons.person,
+                    text: 'Profile',
+                    iconColor: Colors.amber,
+                    onTap: () {
+                       Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const ProfileEntreprise()),
+                        );
                     },
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min, // Empêche le Row de prendre toute la largeur
-                      children: [
-                        const Icon(Icons.person, color: Colors.amber),
-                        SizedBox(width: screenWidth * (isPortrait ? 0.1 : 0.05)), // Espacement entre l'icône et le texte
-                        Text(
-                          'Profil',
-                          style: TextStyle(fontSize: screenWidth * (isPortrait ? 0.04 : 0.02), fontWeight: FontWeight.bold, color: const Color(0xfffcbc1c)),
-                        ),
-                      ],
-                    ),
                   ),
-                  SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.05)),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const Notifications()));
+                  SizedBox(height: screenHeight * 0.02),
+                  _buildDrawerItem(
+                    context,
+                    icon: Icons.notifications,
+                    text: 'Notifications',
+                    iconColor: Colors.amber,
+                    onTap: () {
+                       Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const NotificationEntreprise ()),
+                        );
                     },
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min, // Empêche le Row de prendre toute la largeur
-                      children: [
-                        const Icon(Icons.notifications, color: Colors.amber),
-                        SizedBox(width: screenWidth * (isPortrait ? 0.1 : 0.05)), // Espacement entre l'icône et le texte
-                        Text(
-                          'Notifications',
-                          style: TextStyle(fontSize: screenWidth * (isPortrait ? 0.04 : 0.02), fontWeight: FontWeight.bold, color: const Color(0xfffcbc1c)),
-                        ),
-                      ],
-                    ),
                   ),
-                  SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.05)),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const Settings()));
+                  SizedBox(height: screenHeight * 0.02),
+                  _buildDrawerItem(
+                    context,
+                    icon: Icons.settings,
+                    text: 'Paramètres',
+                    iconColor: Colors.amber,
+                    onTap: () {
+                       Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const SettingsEntreprise ()),
+                        );
                     },
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min, // Empêche le Row de prendre toute la largeur
-                      children: [
-                        const Icon(Icons.settings, color: Colors.amber),
-                        SizedBox(width: screenWidth * (isPortrait ? 0.1 : 0.05)), // Espacement entre l'icône et le texte
-                        Text(
-                          'Paramètres',
-                          style: TextStyle(fontSize: screenWidth * (isPortrait ? 0.04 : 0.02), fontWeight: FontWeight.bold, color: const Color(0xfffcbc1c)),
-                        ),
-                      ],
-                    ),
                   ),
-                  SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.05)),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const AideEntreprise()));
+                  SizedBox(height: screenHeight * 0.02),
+                  _buildDrawerItem(
+                    context,
+                    icon: Icons.card_giftcard,
+                    text: 'Parrainnage',
+                    iconColor: Colors.amber,
+                    onTap: () {
+                       Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const AideEntreprise ()),
+                        );
                     },
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min, // Empêche le Row de prendre toute la largeur
-                      children: [
-                        const Icon(Icons.help, color: Colors.amber),
-                        SizedBox(width: screenWidth * (isPortrait ? 0.1 : 0.05)), // Espacement entre l'icône et le texte
-                        Text(
-                          'Parrainage',
-                          style: TextStyle(fontSize: screenWidth * (isPortrait ? 0.04 : 0.02), fontWeight: FontWeight.bold, color: const Color(0xfffcbc1c)),
-                        ),
-                      ],
-                    ),
                   ),
-                  SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.05)),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginEntreprise()));
+                  SizedBox(height: screenHeight * 0.02),
+                  _buildDrawerItem(
+                    context,
+                    icon: Icons.logout,
+                    text: 'Déconnexion',
+                    iconColor: Colors.red,
+                    onTap: () {
+                       Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const LoginEntreprise ()),
+                        );
                     },
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min, // Empêche le Row de prendre toute la largeur
-                      children: [
-                        const Icon(Icons.logout, color: Colors.red),
-                        SizedBox(width: screenWidth * (isPortrait ? 0.1 : 0.05)), // Espacement entre l'icône et le texte
-                        Text(
-                          'Déconnexion',
-                          style: TextStyle(fontSize: screenWidth * (isPortrait ? 0.04 : 0.02), fontWeight: FontWeight.bold, color: Colors.red),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: screenHeight * (isPortrait ? 0.08 : 0.1)),
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Icon(Icons.library_books, color: Color(0xff072858),),
-                      SizedBox(width: screenWidth * 0.05),
-                      RichText(
-                        text: const TextSpan(
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                          ),
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: 'Version : ',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Color(0xff072858)),
-                            ),
-                            TextSpan(
-                              text: '1.0.0',
-                              style: TextStyle(color: Colors.black),
-                            ),
-                          ],
-                        ), textAlign: TextAlign.justify,),
-                    ],
                   ),
                 ],
               ),
@@ -222,16 +207,15 @@ class _AvantHomeState extends State<AvantHome> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor:
-            Color(0xff072858), // Couleur de fond du BottomNavigationBar
-        items: const <BottomNavigationBarItem>[
+        backgroundColor: const Color(0xff072858),
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.help),
-            label: 'Help',
+            label: 'Aide',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.campaign),
@@ -245,10 +229,34 @@ class _AvantHomeState extends State<AvantHome> {
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.amber,
         unselectedItemColor: Colors.white,
-        selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
-        unselectedLabelStyle: const TextStyle(color: Colors.black),
+        selectedLabelStyle: TextStyle(fontSize: screenWidth * 0.035),
+        unselectedLabelStyle: TextStyle(fontSize: screenWidth * 0.03),
         type: BottomNavigationBarType.fixed,
         onTap: _onItemTapped,
+      ),
+    );
+  }
+
+  // Widget pour un élément du drawer
+  Widget _buildDrawerItem(BuildContext context, {required IconData icon, required String text, required Color iconColor, required VoidCallback onTap}) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
+
+    return TextButton(
+      onPressed: onTap,
+      child: Row(
+        children: [
+          Icon(icon, color: iconColor),
+          SizedBox(width: screenWidth * 0.05),
+          Text(
+            text,
+            style: TextStyle(
+              fontSize: screenWidth * (isPortrait ? 0.04 : 0.03),
+              fontWeight: FontWeight.bold,
+              color: const Color(0xfffcbc1c),
+            ),
+          ),
+        ],
       ),
     );
   }
