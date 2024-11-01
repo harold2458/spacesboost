@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projet_mobile/data/screens/welcome.dart';
+import 'package:projet_mobile/data/screens/renseignement.dart';
 
 import 'influenceur_login.dart';
 
@@ -163,7 +163,7 @@ class _InfluenceurSignUpTwoState extends State<InfluenceurSignUpTwo> {
                             onPressed: () {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => const Welcome()),
+                                MaterialPageRoute(builder: (context) => const Renseignement()),
                               );
                             },
                             style: ButtonStyle(

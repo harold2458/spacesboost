@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'renseignement.dart';
+import 'package:projet_mobile/data/screens/validation.dart';
 
 class Welcome extends StatefulWidget {
   const Welcome({super.key});
@@ -32,15 +32,6 @@ class _WelcomeState extends State<Welcome> {
 
   @override
   Widget build(BuildContext context) {
-    /*if (!_imagesLoaded) {
-      return const Scaffold(
-        body: Center(
-          child: CircularProgressIndicator(
-            color: Color(0XFFFCBC1C),
-          ),
-        ),
-      );
-    }*/
 
     final mediaQuery = MediaQuery.of(context);
     final screenHeight = mediaQuery.size.height;
@@ -137,7 +128,7 @@ class _WelcomeState extends State<Welcome> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) =>
-                                const Renseignement(),
+                                const Validation(),
                               ),
                             );
                           },
@@ -209,7 +200,7 @@ class _WelcomeState extends State<Welcome> {
                             context,
                             MaterialPageRoute(
                               builder: (context) =>
-                              const Renseignement(),
+                              const Validation(),
                             ),
                           );
                         },

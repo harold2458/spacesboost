@@ -1,48 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:projet_mobile/data/screens/campaign.dart';
-import 'package:projet_mobile/data/screens/help.dart';
-import 'package:projet_mobile/data/screens/influenceur_login.dart';
-import 'package:projet_mobile/data/screens/notifications.dart';
-import 'package:projet_mobile/data/screens/profil.dart';
-import 'package:projet_mobile/data/screens/proof.dart';
-import 'package:projet_mobile/data/screens/settings.dart';
-import 'package:projet_mobile/data/screens/sponsoring.dart';
-import 'package:projet_mobile/data/screens/withdraw.dart';
-import 'home.dart';
+import 'admin_dashboard.dart';
+import 'admin_distribution.dart';
+import 'admin_gestion.dart';
+import 'admin_login.dart';
+import 'admin_notifications.dart';
+import 'admin_profil.dart';
+import 'admin_settings.dart';
+import 'admin_statistiques.dart';
+import 'admin_validation.dart';
 
-class BeforeHome extends StatefulWidget {
+class AdminBeforeDashboard extends StatefulWidget {
   final int initialIndex;
-  const BeforeHome({super.key, this.initialIndex = 2});
+  final int? tabIndex;
+  const AdminBeforeDashboard({super.key, this.initialIndex = 2, this.tabIndex = 0});
 
   @override
-  State<BeforeHome> createState() => _BeforeHomeState();
+  State<AdminBeforeDashboard> createState() => _AdminBeforeDashboardState();
 }
 
-class _BeforeHomeState extends State<BeforeHome> {
+class _AdminBeforeDashboardState extends State<AdminBeforeDashboard> {
 
   late int _selectIndex;
-
-  static final List<String> _title = [
-    'Campagne',
-    'Parrainage',
-    'Accueil',
-    'Retrait',
-    'Preuve'
-  ];
-
-  static final List<Widget> _pages = [
-    const Campaign(),
-    const Sponsoring(),
-    const Home(),
-    const Withdraw(),
-    const Proof()
-  ];
 
   @override
   void initState() {
     super.initState();
     _selectIndex = widget.initialIndex;
   }
+
+  static final List<String> _title = [
+    'Gestion',
+    'Validation',
+    'Dashboard',
+    'Statistiques',
+    'Distribution'
+  ];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -58,14 +50,22 @@ class _BeforeHomeState extends State<BeforeHome> {
     final screenHeight = mediaQuery.size.height;
     final isPortrait = mediaQuery.orientation == Orientation.portrait;
 
+    final List<Widget> pages = [
+      AdminGestion(initialIndex: widget.tabIndex ?? 0,),
+      const AdminValidation(),
+      const AdminDashboard(),
+      const AdminStatistiques(),
+      const AdminDistribution()
+    ];
+
     return Scaffold(
       appBar: AppBar(
         title: Text(_title[_selectIndex], style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white),),
         centerTitle: true,
-        backgroundColor: const Color(0XFFFCBC1C),
+        backgroundColor: const Color(0xff072858),
         leading: Padding(
           padding: EdgeInsets.only(left: screenWidth * 0.01),
-          child: Image.asset('assets/logos/icon.png'),
+          child: Image.asset('assets/logos/icon_admin.png'),
         ),
         actions: [
           Builder(
@@ -75,13 +75,13 @@ class _BeforeHomeState extends State<BeforeHome> {
                   // Ouvre le drawer
                   Scaffold.of(context).openDrawer();
                 },
-                icon: Icon(Icons.menu, size: screenWidth * (isPortrait ? 0.1 : 0.05), color: const Color(0xff072858)),
+                icon: Icon(Icons.menu, size: screenWidth * (isPortrait ? 0.1 : 0.05), color: const Color(0xfffcbc1c)),
               );
             },
           ),
         ],
       ),
-      body: _pages[_selectIndex],
+      body: pages[_selectIndex],
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
@@ -90,7 +90,7 @@ class _BeforeHomeState extends State<BeforeHome> {
               height: screenHeight * (isPortrait ? 0.35 : 0.5),
               child: DrawerHeader(
                 decoration: const BoxDecoration(
-                  color: Color(0XFFFCBC1C),
+                  color: Color(0xff072858),
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -100,20 +100,20 @@ class _BeforeHomeState extends State<BeforeHome> {
                       backgroundImage: const AssetImage('assets/images/profil.jpg'),
                     ),
                     SizedBox(height: screenHeight * (isPortrait ? 0.04 : 0.03)),
-                    Text('Gafour YEKINI', style: TextStyle(color: Colors.white, fontSize: screenWidth * (isPortrait ? 0.04 : 0.02), fontWeight: FontWeight.bold)),
-                    Text('yekiniabdougafour@gmail.com', style: TextStyle(color: Colors.white, fontSize: screenWidth * (isPortrait ? 0.03 : 0.01))),
+                    Text('Admin SUPER', style: TextStyle(color: const Color(0xfffcbc1c), fontSize: screenWidth * (isPortrait ? 0.04 : 0.02), fontWeight: FontWeight.bold)),
+                    Text('adminsuper@gmail.com', style: TextStyle(color: const Color(0xfffcbc1c), fontSize: screenWidth * (isPortrait ? 0.03 : 0.01))),
                   ],
                 ),
               ),
             ),
             Padding(
-                padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05, vertical: screenHeight * 0.03),
+              padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05, vertical: screenHeight * 0.03),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   TextButton(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const Profil()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const AdminProfil()));
                     },
                     child: Row(
                       mainAxisSize: MainAxisSize.min, // Empêche le Row de prendre toute la largeur
@@ -130,7 +130,7 @@ class _BeforeHomeState extends State<BeforeHome> {
                   SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.05)),
                   TextButton(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const Notifications()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const AdminNotifications()));
                     },
                     child: Row(
                       mainAxisSize: MainAxisSize.min, // Empêche le Row de prendre toute la largeur
@@ -147,7 +147,7 @@ class _BeforeHomeState extends State<BeforeHome> {
                   SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.05)),
                   TextButton(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const Settings()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const AdminSettings()));
                     },
                     child: Row(
                       mainAxisSize: MainAxisSize.min, // Empêche le Row de prendre toute la largeur
@@ -164,24 +164,7 @@ class _BeforeHomeState extends State<BeforeHome> {
                   SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.05)),
                   TextButton(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const Help()));
-                    },
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min, // Empêche le Row de prendre toute la largeur
-                      children: [
-                        const Icon(Icons.help, color: Color(0xff072858)),
-                        SizedBox(width: screenWidth * (isPortrait ? 0.1 : 0.05)), // Espacement entre l'icône et le texte
-                        Text(
-                          'Aide',
-                          style: TextStyle(fontSize: screenWidth * (isPortrait ? 0.04 : 0.02), fontWeight: FontWeight.bold, color: const Color(0xff072858)),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.05)),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const InfluenceurLogin()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const AdminLogin()));
                     },
                     child: Row(
                       mainAxisSize: MainAxisSize.min, // Empêche le Row de prendre toute la largeur
@@ -229,19 +212,20 @@ class _BeforeHomeState extends State<BeforeHome> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.campaign), label: 'Campagne'),
-          BottomNavigationBarItem(icon: Icon(Icons.person_add_alt_1), label: 'Parrainage'),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Accueil'),
-          BottomNavigationBarItem(icon: Icon(Icons.account_balance_wallet), label: 'Retrait'),
-          BottomNavigationBarItem(icon: Icon(Icons.fact_check), label: 'Preuve'),
+          BottomNavigationBarItem(icon: Icon(Icons.admin_panel_settings), label: 'Gestion'),
+          BottomNavigationBarItem(icon: Icon(Icons.verified), label: 'Validation'),
+          BottomNavigationBarItem(icon: Icon(Icons.dashboard), label: 'Dashboard'),
+          BottomNavigationBarItem(icon: Icon(Icons.show_chart), label: 'Statistiques'),
+          BottomNavigationBarItem(icon: Icon(Icons.account_balance_wallet), label: 'Distribution'),
         ],
         currentIndex: _selectIndex,
         elevation: 3.0,
-        unselectedItemColor: Colors.black,
-        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.white,
+        //selectedItemColor: const Color(0xff072858),
+        selectedItemColor: const Color(0xfffcbc1c),
         unselectedLabelStyle: TextStyle(fontSize: screenWidth * (isPortrait ? 0.025 : 0.02),),
         selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: screenWidth * (isPortrait ? 0.025 : 0.02),),
-        backgroundColor: const Color(0XFFFCBC1C),
+        backgroundColor: const Color(0xff072858),
         type: BottomNavigationBarType.fixed,
         onTap: _onItemTapped,
       ),

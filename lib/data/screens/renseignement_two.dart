@@ -1,6 +1,7 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:marquee/marquee.dart';
-import 'package:projet_mobile/data/screens/before_home.dart';
+import 'package:projet_mobile/data/screens/welcome.dart';
 
 class RenseignementTwo extends StatefulWidget {
   const RenseignementTwo({super.key});
@@ -119,7 +120,6 @@ class _RenseignementTwoState extends State<RenseignementTwo> {
                             ),
                           ),
                           SizedBox(height: screenHeight * (isPortrait ? 0.02 : 0.1),),
-                          // Dropdown pour la ville (dépendant du pays sélectionné)
                           SizedBox(
                             width: screenWidth * (isPortrait ? 0.9 : 0.8),
                             child: DropdownButtonFormField<String>(
@@ -336,7 +336,89 @@ class _RenseignementTwoState extends State<RenseignementTwo> {
                           SizedBox(
                             height: screenHeight * (isPortrait ? 0.05 : 0.1),
                             child: CheckboxListTile(
-                              title: Row(
+                              title: RichText(
+                                text: TextSpan(
+                                  text: 'J\'accepte les ', // Texte simple
+                                  style: TextStyle(
+                                    fontSize: screenWidth * (isPortrait ? 0.04 : 0.02),
+                                    fontStyle: FontStyle.italic,
+                                    color: Colors.black, // Nécessaire pour que le texte soit visible
+                                  ),
+                                  children: [
+                                    TextSpan(
+                                      text: 'conditions d\'utilisation', // Texte cliquable
+                                      style: TextStyle(
+                                        fontSize: screenWidth * (isPortrait ? 0.04 : 0.02),
+                                        fontWeight: FontWeight.bold,
+                                        fontStyle: FontStyle.italic,
+                                        color: const Color(0xfffcbc1c),
+                                      ),
+                                      recognizer: TapGestureRecognizer()
+                                        ..onTap = () {
+                                          showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return AlertDialog(
+                                                title: Text(
+                                                  'Conditions d\'utilisation',
+                                                  style: TextStyle(
+                                                    fontSize: screenWidth * 0.04,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: const Color(0xfffcbc1c),
+                                                  ),
+                                                ),
+                                                content: SingleChildScrollView(
+                                                  child: Text(
+                                                    '''
+Conditions d'Utilisation de SPACEBOOST
+
+Bienvenue dans notre application dédiée aux influenceurs souhaitant promouvoir leurs talents en réalisant des prestations pour les entreprises. En utilisant cette application, vous acceptez les conditions suivantes :
+
+1. Inscription : Vous devez créer un compte en fournissant des informations exactes et complètes. Vous êtes responsable de la confidentialité de votre mot de passe.
+
+2. Utilisation de l'Application : Vous vous engagez à utiliser l'application uniquement à des fins légales et à respecter toutes les lois applicables.
+
+3. Contenu : En publiant du contenu sur l'application, vous accordez à notre entreprise une licence mondiale, non exclusive et gratuite pour utiliser, reproduire et distribuer ce contenu.
+
+4. Comportement : Vous devez vous comporter de manière respectueuse envers les autres utilisateurs et ne pas publier de contenu offensant, diffamatoire ou illégal.
+
+5. Modification des Conditions : Nous nous réservons le droit de modifier ces conditions d'utilisation à tout moment. Les modifications seront publiées sur l'application et entreront en vigueur immédiatement.
+
+6. Résiliation : Nous nous réservons le droit de suspendre ou de résilier votre compte en cas de violation de ces conditions.
+
+En utilisant cette application, vous reconnaissez avoir lu, compris et accepté ces conditions d'utilisation.
+
+Merci de votre compréhension et bonne utilisation de notre application !
+                          ''',
+                                                    style: TextStyle(fontSize: screenWidth * 0.03),
+                                                    textAlign: TextAlign.justify,
+                                                  ),
+                                                ),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () {
+                                                      Navigator.of(context).pop();
+                                                    },
+                                                    child: const Text(
+                                                      'Fermer',
+                                                      style: TextStyle(
+                                                        fontWeight: FontWeight.bold,
+                                                        color: Color(0xff072858),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                          );
+                                        },
+                                    ),
+                                  ],
+                                ),
+                              ),
+
+
+                              /*Row(
                                 children: [
                                   Text('J\'accepte les ', style: TextStyle(
                                       fontSize: screenWidth * (isPortrait ? 0.03 : 0.02),
@@ -395,7 +477,7 @@ Merci de votre compréhension et bonne utilisation de notre application !
                                     ),
                                   ),
                                 ],
-                              ),
+                              ),*/
                               value: acceptTerms,
                               onChanged: (bool? value) {
                                 setState(() {
@@ -411,12 +493,7 @@ Merci de votre compréhension et bonne utilisation de notre application !
                             width: screenWidth * (isPortrait ? 0.9 : 0.8),
                             child: ElevatedButton(
                               onPressed: () {
-                                if (_formKey.currentState!.validate()) {
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => const BeforeHome()));
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(content: Text('Formulaire soumis avec succès!')),
-                                  );
-                                }
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => const Welcome()));
                               },
                               style: ButtonStyle(
                                 backgroundColor: const WidgetStatePropertyAll(Color(0xff072858)),

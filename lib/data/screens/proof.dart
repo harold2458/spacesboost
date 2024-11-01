@@ -29,21 +29,6 @@ class _ProofState extends State<Proof> {
   }
 
   void _submitForm() {
-    /*String title = _titleController.text;
-    String content = _contentController.text;
-    String link = _linkController.text;
-    String? file = _selectedFile;
-
-    if (title.isNotEmpty && content.isNotEmpty && link.isNotEmpty && file != null) {
-      // Logique pour soumettre le formulaire
-      print("Titre: $title");
-      print("Contenu: $content");
-      print("Lien: $link");
-      print("Fichier sélectionné: $file");
-    } else {
-      // Gérer les erreurs
-      print("Veuillez remplir tous les champs.");
-    }*/
   }
 
   bool _imagesLoaded = false;
