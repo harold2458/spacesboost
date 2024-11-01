@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'avant_home.dart';
+import 'package:projet_mobile/data/screens/validation.dart';
 
 class Welcome extends StatefulWidget {
   const Welcome({super.key});
@@ -33,15 +34,6 @@ class _WelcomeState extends State<Welcome> {
 
   @override
   Widget build(BuildContext context) {
-    /*if (!_imagesLoaded) {
-      return const Scaffold(
-        body: Center(
-          child: CircularProgressIndicator(
-            color: Color(0XFFFCBC1C),
-          ),
-        ),
-      );
-    }*/
     final mediaQuery = MediaQuery.of(context);
     final screenHeight = mediaQuery.size.height;
     final screenWidth = mediaQuery.size.width;
@@ -58,7 +50,7 @@ class _WelcomeState extends State<Welcome> {
           ),
         ),
         centerTitle: true,
-        backgroundColor: Color(0xff072858),
+        backgroundColor: const Color(0xff072858),
         leading: IconButton(
           onPressed: () {
             Navigator.of(context).pop();

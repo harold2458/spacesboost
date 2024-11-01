@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:projet_mobile/data/screens/edit_profil.dart';
 
 class Profil extends StatefulWidget {
@@ -16,6 +19,20 @@ class _ProfilState extends State<Profil> {
   final TextEditingController _confirmPasswordController = TextEditingController();
 
   void _submitForm() {
+  }
+
+  File? _imageFile;
+
+  // Méthode pour choisir une image depuis la galerie ou l'appareil photo
+  Future<void> _pickImage(ImageSource source) async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: source);
+
+    if (pickedFile != null) {
+      setState(() {
+        _imageFile = File(pickedFile.path);
+      });
+    }
   }
 
   @override
@@ -38,9 +55,42 @@ class _ProfilState extends State<Profil> {
           padding: EdgeInsets.symmetric(horizontal: screenWidth * (isPortrait ? 0.05 : 0.1), vertical: screenHeight * (isPortrait ? 0.03 : 0.1)),
           child: Column(
             children: [
-              CircleAvatar(
-                radius: screenWidth * (isPortrait ? 0.2 : 0.1),
-                backgroundImage: const AssetImage('assets/images/profil.jpg'),
+              Center(
+                child: Stack(
+                  children: [
+                    // Affichage de la photo de profil
+                    CircleAvatar(
+                      radius: 60,
+                      backgroundImage: _imageFile != null
+                          ? FileImage(_imageFile!)
+                          : const AssetImage('assets/images/default_profile.jpg') as ImageProvider,
+                    ),
+
+                    // Bouton d'icône pour changer l'image
+                    Positioned(
+                      bottom: 0,
+                      right: 0,
+                      child: InkWell(
+                        onTap: () {
+                          // Ouvre le sélecteur de fichiers pour choisir une image
+                          showModalBottomSheet(
+                            context: context,
+                            builder: (context) => _buildImagePickerSheet(),
+                          );
+                        },
+                        child: const CircleAvatar(
+                          radius: 20,
+                          backgroundColor: Color(0xfffcbc1c),
+                          child: Icon(
+                            Icons.camera_alt,
+                            color: Colors.white,
+                            size: 20,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
               SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.1),),
               Center(
@@ -385,6 +435,32 @@ class _ProfilState extends State<Profil> {
             ],
           ),
         )
+    );
+  }
+
+  // Feuille modale pour sélectionner la source de l'image
+  Widget _buildImagePickerSheet() {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          ListTile(
+            leading: const Icon(Icons.photo),
+            title: const Text('Galerie'),
+            onTap: () {
+              Navigator.pop(context);
+              _pickImage(ImageSource.gallery);
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.camera_alt),
+            title: const Text('Appareil photo'),
+            onTap: () {
+              Navigator.pop(context);
+              _pickImage(ImageSource.camera);
+            },
+          ),
+        ],
+      ),
     );
   }
 }

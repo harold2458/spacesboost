@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projet_mobile/data/screens/login_entreprise.dart';
+import 'package:projet_mobile/data/screens/admin_login.dart';
 import 'package:projet_mobile/data/screens/influenceur_login.dart';
 
 class ProfileType extends StatefulWidget {
@@ -69,6 +70,26 @@ class _ProfileTypeState extends State<ProfileType> {
                      elevation: const WidgetStatePropertyAll(3),
                    ),
                    child: Text('Influenceur', style: TextStyle(fontSize: screenWidth * (isPortrait ? 0.05 : 0.03), fontWeight: FontWeight.bold, color: Colors.white)),
+                 ),
+               ),
+               SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.6)),
+               SizedBox(
+                 width: double.infinity, // Largeur du bouton ajustée
+                 height: screenHeight * (isPortrait ? 0.07 : 0.2),
+                 child: ElevatedButton(
+                   onPressed: () {
+                     Navigator.push(context, MaterialPageRoute(builder: (context) => const AdminLogin()));
+                   },
+                   style: ButtonStyle(
+                     backgroundColor: const WidgetStatePropertyAll(Colors.white),
+                     side: const WidgetStatePropertyAll(BorderSide(color: Color(0xff072858))),
+                     shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+                       borderRadius: BorderRadius.circular(10),
+                     ),
+                     ),
+                     elevation: const WidgetStatePropertyAll(3),
+                   ),
+                   child: Text('Admin', style: TextStyle(fontSize: screenWidth * (isPortrait ? 0.05 : 0.03), fontWeight: FontWeight.bold, color: const Color(0xff072858))),
                  ),
                ),
                SizedBox(height: isPortrait ? screenHeight * 0 : screenHeight * 0.1)

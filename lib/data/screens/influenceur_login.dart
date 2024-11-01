@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projet_mobile/data/screens/forgot_password.dart';
-import 'package:projet_mobile/data/screens/welcome.dart';
 import 'package:projet_mobile/data/screens/welcome_influenceur.dart';
+import 'before_home.dart';
 import 'influenceur_sign_up.dart';
 
 class InfluenceurLogin extends StatefulWidget {
@@ -149,7 +149,7 @@ class _InfluenceurLoginState extends State<InfluenceurLogin> {
                           onPressed: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => const WelcomeInfluenceur()),
+                              MaterialPageRoute(builder: (context) => const BeforeHome()),
                             );
                           },
                           style: ButtonStyle(
