@@ -59,13 +59,11 @@ class _NotificationsState extends State<Notifications> {
                   children: [
                     const Icon(Icons.notifications, color: Colors.red,),
                     SizedBox(width: screenWidth * (isPortrait ? 0.03 : 0.1),),
-                    const Expanded(
-                        child: Text(
-                          'Votre candidature à été envoyée avec succès, veuillez à chaque fois consulter votre mail pour l\'avancement. Merci .. !',
-                          style: TextStyle(fontStyle: FontStyle.italic),
-                          textAlign: TextAlign.justify,
-                        ),
-                    )
+                    const Text(
+                      'Votre candidature a ete envoyee\navec succes, veuillez a chaque fois\nconsulter votre mail pour\nl\'avancement. Merci .. !',
+                      style: TextStyle(fontStyle: FontStyle.italic),
+                      textAlign: TextAlign.justify,
+                    ),
                   ],
                 ),
               ),
@@ -88,13 +86,11 @@ class _NotificationsState extends State<Notifications> {
                   children: [
                     const Icon(Icons.notifications, color: Colors.red,),
                     SizedBox(width: screenWidth * (isPortrait ? 0.03 : 0.1),),
-                    const Expanded(
-                      child: Text(
-                        'Votre candidature à été envoyée avec succès, veuillez à chaque fois consulter votre mail pour l\'avancement. Merci .. !',
-                        style: TextStyle(fontStyle: FontStyle.italic),
-                        textAlign: TextAlign.justify,
-                      ),
-                    )
+                    const Text(
+                      'Votre candidature a ete envoyee\navec succes, veuillez a chaque fois\nconsulter votre mail pour\nl\'avancement. Merci .. !',
+                      style: TextStyle(fontStyle: FontStyle.italic),
+                      textAlign: TextAlign.justify,
+                    ),
                   ],
                 ),
               ),
@@ -117,13 +113,11 @@ class _NotificationsState extends State<Notifications> {
                   children: [
                     const Icon(Icons.notifications, color: Colors.red,),
                     SizedBox(width: screenWidth * (isPortrait ? 0.03 : 0.1),),
-                    const Expanded(
-                      child: Text(
-                        'Votre candidature à été envoyée avec succès, veuillez à chaque fois consulter votre mail pour l\'avancement. Merci .. !',
-                        style: TextStyle(fontStyle: FontStyle.italic),
-                        textAlign: TextAlign.justify,
-                      ),
-                    )
+                    const Text(
+                      'Votre candidature a ete envoyee\navec succes, veuillez a chaque fois\nconsulter votre mail pour\nl\'avancement. Merci .. !',
+                      style: TextStyle(fontStyle: FontStyle.italic),
+                      textAlign: TextAlign.justify,
+                    ),
                   ],
                 ),
               ),
@@ -146,13 +140,11 @@ class _NotificationsState extends State<Notifications> {
                   children: [
                     const Icon(Icons.notifications, color: Colors.red,),
                     SizedBox(width: screenWidth * (isPortrait ? 0.03 : 0.1),),
-                    const Expanded(
-                      child: Text(
-                        'Votre candidature à été envoyée avec succès, veuillez à chaque fois consulter votre mail pour l\'avancement. Merci .. !',
-                        style: TextStyle(fontStyle: FontStyle.italic),
-                        textAlign: TextAlign.justify,
-                      ),
-                    )
+                    const Text(
+                      'Votre candidature a ete envoyee\navec succes, veuillez a chaque fois\nconsulter votre mail pour\nl\'avancement. Merci .. !',
+                      style: TextStyle(fontStyle: FontStyle.italic),
+                      textAlign: TextAlign.justify,
+                    ),
                   ],
                 ),
               ),
@@ -175,13 +167,11 @@ class _NotificationsState extends State<Notifications> {
                   children: [
                     const Icon(Icons.notifications, color: Colors.red,),
                     SizedBox(width: screenWidth * (isPortrait ? 0.03 : 0.1),),
-                    const Expanded(
-                      child: Text(
-                        'Votre candidature à été envoyée avec succès, veuillez à chaque fois consulter votre mail pour l\'avancement. Merci .. !',
-                        style: TextStyle(fontStyle: FontStyle.italic),
-                        textAlign: TextAlign.justify,
-                      ),
-                    )
+                    const Text(
+                      'Votre candidature a ete envoyee\navec succes, veuillez a chaque fois\nconsulter votre mail pour\nl\'avancement. Merci .. !',
+                      style: TextStyle(fontStyle: FontStyle.italic),
+                      textAlign: TextAlign.justify,
+                    ),
                   ],
                 ),
               ),
@@ -204,13 +194,11 @@ class _NotificationsState extends State<Notifications> {
                   children: [
                     const Icon(Icons.notifications, color: Colors.red,),
                     SizedBox(width: screenWidth * (isPortrait ? 0.03 : 0.1),),
-                    const Expanded(
-                      child: Text(
-                        'Votre candidature à été envoyée avec succès, veuillez à chaque fois consulter votre mail pour l\'avancement. Merci .. !',
-                        style: TextStyle(fontStyle: FontStyle.italic),
-                        textAlign: TextAlign.justify,
-                      ),
-                    )
+                    const Text(
+                      'Votre candidature a ete envoyee\navec succes, veuillez a chaque fois\nconsulter votre mail pour\nl\'avancement. Merci .. !',
+                      style: TextStyle(fontStyle: FontStyle.italic),
+                      textAlign: TextAlign.justify,
+                    ),
                   ],
                 ),
               ),
@@ -233,13 +221,11 @@ class _NotificationsState extends State<Notifications> {
                   children: [
                     const Icon(Icons.notifications, color: Colors.red,),
                     SizedBox(width: screenWidth * (isPortrait ? 0.03 : 0.1),),
-                    const Expanded(
-                      child: Text(
-                        'Votre candidature à été envoyée avec succès, veuillez à chaque fois consulter votre mail pour l\'avancement. Merci .. !',
-                        style: TextStyle(fontStyle: FontStyle.italic),
-                        textAlign: TextAlign.justify,
-                      ),
-                    )
+                    const Text(
+                      'Votre candidature a ete envoyee\navec succes, veuillez a chaque fois\nconsulter votre mail pour\nl\'avancement. Merci .. !',
+                      style: TextStyle(fontStyle: FontStyle.italic),
+                      textAlign: TextAlign.justify,
+                    ),
                   ],
                 ),
               ),
@@ -262,13 +248,11 @@ class _NotificationsState extends State<Notifications> {
                   children: [
                     const Icon(Icons.notifications, color: Colors.red,),
                     SizedBox(width: screenWidth * (isPortrait ? 0.03 : 0.1),),
-                    const Expanded(
-                      child: Text(
-                        'Votre candidature à été envoyée avec succès, veuillez à chaque fois consulter votre mail pour l\'avancement. Merci .. !',
-                        style: TextStyle(fontStyle: FontStyle.italic),
-                        textAlign: TextAlign.justify,
-                      ),
-                    )
+                    const Text(
+                      'Votre candidature a ete envoyee\navec succes, veuillez a chaque fois\nconsulter votre mail pour\nl\'avancement. Merci .. !',
+                      style: TextStyle(fontStyle: FontStyle.italic),
+                      textAlign: TextAlign.justify,
+                    ),
                   ],
                 ),
               ),
@@ -291,13 +275,11 @@ class _NotificationsState extends State<Notifications> {
                   children: [
                     const Icon(Icons.notifications, color: Colors.red,),
                     SizedBox(width: screenWidth * (isPortrait ? 0.03 : 0.1),),
-                    const Expanded(
-                      child: Text(
-                        'Votre candidature à été envoyée avec succès, veuillez à chaque fois consulter votre mail pour l\'avancement. Merci .. !',
-                        style: TextStyle(fontStyle: FontStyle.italic),
-                        textAlign: TextAlign.justify,
-                      ),
-                    )
+                    const Text(
+                      'Votre candidature a ete envoyee\navec succes, veuillez a chaque fois\nconsulter votre mail pour\nl\'avancement. Merci .. !',
+                      style: TextStyle(fontStyle: FontStyle.italic),
+                      textAlign: TextAlign.justify,
+                    ),
                   ],
                 ),
               ),
@@ -320,13 +302,11 @@ class _NotificationsState extends State<Notifications> {
                   children: [
                     const Icon(Icons.notifications, color: Colors.red,),
                     SizedBox(width: screenWidth * (isPortrait ? 0.03 : 0.1),),
-                    const Expanded(
-                      child: Text(
-                        'Votre candidature à été envoyée avec succès, veuillez à chaque fois consulter votre mail pour l\'avancement. Merci .. !',
-                        style: TextStyle(fontStyle: FontStyle.italic),
-                        textAlign: TextAlign.justify,
-                      ),
-                    )
+                    const Text(
+                      'Votre candidature a ete envoyee\navec succes, veuillez a chaque fois\nconsulter votre mail pour\nl\'avancement. Merci .. !',
+                      style: TextStyle(fontStyle: FontStyle.italic),
+                      textAlign: TextAlign.justify,
+                    ),
                   ],
                 ),
               ),
