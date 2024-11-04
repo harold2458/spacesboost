@@ -20,6 +20,13 @@ class _AideEntrepriseState extends State<AideEntreprise> {
     final isPortrait = mediaQuery.orientation == Orientation.portrait;
     
     return Scaffold(
+       appBar: AppBar(
+          title: const Text('Aide', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),),
+          centerTitle: true,
+          backgroundColor: const Color(0XFF072858),
+          leading: IconButton(onPressed: () {
+            Navigator.of(context).pop();
+          }, icon: const Icon(Icons.arrow_back, color: Colors.white,))),
       body: Center(
         child: Text("Hello"),
       ),

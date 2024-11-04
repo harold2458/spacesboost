@@ -81,7 +81,7 @@ class _HomeEntrepriseState extends State<HomeEntreprise> {
                     widget.onTabSelected(1); // Onglet Aide
                   },
                   child: buildGestureContainer(
-                    'Sondage',
+                    'Preuve',
                     'assets/icons/sondage1.png',
                     screenWidth,
                     screenHeight,
@@ -110,7 +110,7 @@ class _HomeEntrepriseState extends State<HomeEntreprise> {
                     widget.onTabSelected(0); // Onglet Aide
                   },
                   child: buildGestureContainer(
-                    'Aide',
+                    'Parrainage',
                     'assets/icons/help.png',
                     screenWidth,
                     screenHeight,

@@ -4,6 +4,7 @@ import 'package:projet_mobile/data/screens/campagne_entreprise.dart';
 import 'package:projet_mobile/data/screens/home_entrentreprise.dart';
 import 'package:projet_mobile/data/screens/login_entreprise.dart';
 import 'package:projet_mobile/data/screens/notification_entreprise.dart';
+import 'package:projet_mobile/data/screens/preuve_entreprise.dart';
 import 'package:projet_mobile/data/screens/profile_entreprise.dart';
 import 'package:projet_mobile/data/screens/settings_entreprise.dart';
 import 'package:projet_mobile/data/screens/statistique_entreprise.dart';
@@ -20,7 +21,7 @@ class _AvantHomeState extends State<AvantHome> {
 
   static final List<String> _title = [
     "Accueil",
-    "Aide",
+    "Preuve",
     "Campagne",
     "Statistique"
   ];
@@ -28,7 +29,7 @@ class _AvantHomeState extends State<AvantHome> {
   // Pages à afficher dans les onglets
   static final List<Widget> _pages = [
     HomeEntreprise(onTabSelected: (index) {}),
-    AideEntreprise(),
+    PreuveEntreprise(),
     CampagneEntreprise(),
     StatistiqueEntreprise(),
   ];
@@ -86,7 +87,7 @@ class _AvantHomeState extends State<AvantHome> {
         index: _selectedIndex,
         children: [
           HomeEntreprise(onTabSelected: _onItemTapped),
-          const AideEntreprise(),
+          const PreuveEntreprise(),
           const CampagneEntreprise(),
           const StatistiqueEntreprise(),
         ],
@@ -140,7 +141,7 @@ class _AvantHomeState extends State<AvantHome> {
                     context,
                     icon: Icons.person,
                     text: 'Profile',
-                    iconColor: Colors.amber,
+                    iconColor: Color(0xfffcbc1c),
                     onTap: () {
                        Navigator.push(
                           context,
@@ -153,7 +154,7 @@ class _AvantHomeState extends State<AvantHome> {
                     context,
                     icon: Icons.notifications,
                     text: 'Notifications',
-                    iconColor: Colors.amber,
+                    iconColor:Color(0xfffcbc1c),
                     onTap: () {
                        Navigator.push(
                           context,
@@ -166,7 +167,7 @@ class _AvantHomeState extends State<AvantHome> {
                     context,
                     icon: Icons.settings,
                     text: 'Paramètres',
-                    iconColor: Colors.amber,
+                    iconColor:Color(0xfffcbc1c),
                     onTap: () {
                        Navigator.push(
                           context,
@@ -178,8 +179,8 @@ class _AvantHomeState extends State<AvantHome> {
                   _buildDrawerItem(
                     context,
                     icon: Icons.card_giftcard,
-                    text: 'Parrainnage',
-                    iconColor: Colors.amber,
+                    text: 'Aide',
+                    iconColor: Color(0xfffcbc1c),
                     onTap: () {
                        Navigator.push(
                           context,
@@ -214,8 +215,8 @@ class _AvantHomeState extends State<AvantHome> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.help),
-            label: 'Aide',
+            icon: Icon(Icons.fact_check),
+            label: 'Preuve',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.campaign),
@@ -253,7 +254,7 @@ class _AvantHomeState extends State<AvantHome> {
             style: TextStyle(
               fontSize: screenWidth * (isPortrait ? 0.04 : 0.03),
               fontWeight: FontWeight.bold,
-              color: const Color(0xfffcbc1c),
+              color: const Color(0xff072858),
             ),
           ),
         ],

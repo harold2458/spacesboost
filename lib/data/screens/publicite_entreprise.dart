@@ -182,7 +182,7 @@ class _PubliciteState extends State<PubliciteEntreprise> {
                 ),
               ),
             ),
-            const SizedBox(height: 70),
+            const SizedBox(height: 200),
 
             // Conteneur avec les boutons Annuler et Continuer en bas
             Container(

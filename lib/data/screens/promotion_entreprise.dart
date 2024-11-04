@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:projet_mobile/data/screens/profileScreen.dart';
+import 'package:projet_mobile/data/screens/redaction_mission.dart';
 
 class PromotionEntreprise extends StatefulWidget {
-  final bool isInfluencerChecked; // Déclare la variable pour stocker la valeur initiale de la case à cocher
+  final bool isInfluencerChecked;
 
-  // Constructeur avec uniquement la déclaration nommée isInfluencerChecked
   const PromotionEntreprise({
     Key? key,
     this.isInfluencerChecked = false,
@@ -15,17 +15,14 @@ class PromotionEntreprise extends StatefulWidget {
 }
 
 class _PromotionEntrepriseState extends State<PromotionEntreprise> {
-  // États des cases à cocher pour chaque influenceur
   late bool isCheckedmarko;
   bool isCheckedmarkos = false;
   bool isCheckedmarkoz = false;
   bool isCheckedmark = false;
 
-  // Contrôleur pour la barre de recherche et sélection de catégorie
   final TextEditingController searchController = TextEditingController();
   String selectedCategory = 'Nom';
 
-  // Méthode pour naviguer vers le profil et gérer le retour avec la case cochée
   Future<void> navigateToProfile(bool isChecked, Function(bool) onChecked) async {
     final result = await Navigator.push(
       context,
@@ -41,7 +38,6 @@ class _PromotionEntrepriseState extends State<PromotionEntreprise> {
   @override
   void initState() {
     super.initState();
-    // Initialiser la case à cocher pour "ToTo Marc" avec la valeur de isInfluencerChecked
     isCheckedmarko = widget.isInfluencerChecked;
   }
 
@@ -73,7 +69,6 @@ class _PromotionEntrepriseState extends State<PromotionEntreprise> {
               ),
               const SizedBox(height: 10),
 
-              // Barre de recherche et champ de sélection
               Row(
                 children: [
                   Expanded(
@@ -108,7 +103,6 @@ class _PromotionEntrepriseState extends State<PromotionEntreprise> {
               ),
               const SizedBox(height: 20),
 
-              // Lignes d'influenceurs
               buildInfluencerRow(
                 isCheckedmarko,
                 'ToTo Marc',
@@ -140,6 +134,26 @@ class _PromotionEntrepriseState extends State<PromotionEntreprise> {
                 'assets/icons/profile2.png',
                 (value) => setState(() => isCheckedmark = value),
               ),
+
+              const SizedBox(height: 30),
+              Center(
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0XFFFCBC1C),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const RedactionMission()),
+                    );
+                  },
+                  child: const Text('Valider',style: TextStyle(color: Colors.white),),
+                ),
+              ),
             ],
           ),
         ),
@@ -147,7 +161,6 @@ class _PromotionEntrepriseState extends State<PromotionEntreprise> {
     );
   }
 
-  // Widget pour afficher une ligne d'influenceur avec la logique de navigation
   Widget buildInfluencerRow(
     bool isChecked,
     String name,

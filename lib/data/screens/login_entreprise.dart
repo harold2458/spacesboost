@@ -39,7 +39,7 @@ class _LoginEntrepriseState extends State<LoginEntreprise> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.asset('assets/images/sign In.png', height: 200),
-            Image.asset('assets/logos/logo.png', height: 100),
+
             const SizedBox(height: 10),
             const Center(
               child: Text(
@@ -49,7 +49,16 @@ class _LoginEntrepriseState extends State<LoginEntreprise> {
               ),
             ),
             const SizedBox(height: 30), // Augmenter l'espacement ici
-            _buildTextField(emailController, "Email", TextInputType.emailAddress),
+            TextField(
+      controller: emailController,
+      decoration: InputDecoration(
+        labelText: 'Email',
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20), // Bord arrondi
+        ),
+      ),
+      keyboardType: keyboardType ?? TextInputType.text,
+    );
             const SizedBox(height: 10),
             _buildPasswordField(passwordController, "Mot de passe"),
             const SizedBox(height: 20),
@@ -66,16 +75,7 @@ class _LoginEntrepriseState extends State<LoginEntreprise> {
   // Fonction pour créer un champ de texte standard
   Widget _buildTextField(TextEditingController controller, String label,
       [TextInputType? keyboardType]) {
-    return TextField(
-      controller: controller,
-      decoration: InputDecoration(
-        labelText: label,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20), // Bord arrondi
-        ),
-      ),
-      keyboardType: keyboardType ?? TextInputType.text,
-    );
+    return 
   }
 
   // Fonction pour créer un champ de mot de passe
