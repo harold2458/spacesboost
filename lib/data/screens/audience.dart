@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'calendrier_entreprise.dart';
+import 'package:projet_mobile/data/screens/calendrier_entreprise.dart';
 
 class Audience extends StatefulWidget {
   const Audience({Key? key}) : super(key: key);
@@ -12,15 +12,17 @@ class Audience extends StatefulWidget {
 class _AudienceState extends State<Audience> {
   String _selectedGender = 'Tout';
   double _currentAgeValue = 18;
-  String _selectedLocationType = 'Région'; // Variable pour suivre la sélection Région ou Adresse
-  String _selectedRegion = 'Sélectionner une région'; // Pour la région sélectionnée
-  LatLng _selectedAddressLocation = const LatLng(6.4503024, 2.3468195); // Position initiale sur la carte
-
-  // Domaine d'intervention sélectionné par défaut
+  String _selectedLocationType = 'Région';
+  String _selectedRegion = 'Sélectionner une région';
+  LatLng _selectedAddressLocation = const LatLng(6.4503024, 2.3468195);
   String? _selectedDomaineIntervention;
+  int _audienceReach = 1000; // Nombre de personnes touchées
 
-  // Liste des domaines d'intervention
   final List<String> _domainesIntervention = ['Cuisine', 'Technologie', 'Santé', 'Art', 'Education'];
+  final List<String> _regions = ['Sélectionner une région', 'Région 1', 'Région 2', 'Région 3', 'Région 4'];
+
+  String audienceType = 'Audience générale';
+  double audienceProgress = 0.5;
 
   @override
   Widget build(BuildContext context) {
@@ -35,21 +37,13 @@ class _AudienceState extends State<Audience> {
         ),
         backgroundColor: const Color(0xff072858),
         centerTitle: true,
-        leading: Padding(
-          padding: const EdgeInsets.all(5.0),
-          child: Image.asset(
-            'assets/logos/icon.jpg',
-            height: 300,
-          ),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.menu, color: Colors.white),
-            onPressed: () {
-              print("Menu icon clicked");
-            },
-          ),
-        ],
+        elevation: 0,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -57,40 +51,9 @@ class _AudienceState extends State<Audience> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'Nom de l\'audience',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 10),
-              TextField(
-                decoration: InputDecoration(
-                  hintText: 'Entrez le nom de l\'audience',
-                  contentPadding:
-                  const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                    borderSide: const BorderSide(
-                      color: Colors.grey,
-                      width: 1.0,
-                    ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                    borderSide: const BorderSide(
-                      color: Color(0xff072858),
-                      width: 2.0,
-                    ),
-                  ),
-                ),
-              ),
               const SizedBox(height: 20),
-              const Text(
-                'Atteindre des personnes',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 10),
-
-              // Boutons pour Région et Adresse
+              const Text('Atteindre des personnes', style: TextStyle(fontWeight: FontWeight.bold)),
+              const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -99,47 +62,25 @@ class _AudienceState extends State<Audience> {
                   _buildToggleButton("Adresse", _selectedLocationType == 'Adresse'),
                 ],
               ),
-              const SizedBox(height: 20),
-
-              // Affichage conditionnel selon le choix : Région ou Adresse
+              const SizedBox(height: 40),
               if (_selectedLocationType == 'Région') ...[
-                // Section pour sélectionner la région
-                const Text(
-                  'Localisation par Région',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                ),
-                const SizedBox(height: 10),
+                const Text('Localisation par Région', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                const SizedBox(height: 20),
                 _buildRegionDropdown(),
               ] else ...[
-                // Section pour sélectionner l'adresse via une carte
-                const Text(
-                  'Localisation par Adresse',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                ),
-                const SizedBox(height: 10),
+                const Text('Localisation par Adresse', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                const SizedBox(height: 20),
                 _buildAddressMap(),
               ],
-
-              const SizedBox(height: 20),
-
-              // Domaine d'intervention avec Dropdown
-              const Text(
-                'Domaine d\'intervention',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-              ),
+              const SizedBox(height: 30),
+              const Text('Domaine d\'intervention', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
               const SizedBox(height: 10),
               _buildDomaineInterventionDropdown(),
-
               const SizedBox(height: 20),
-
-              // Âge Slider
-              const Text(
-                'Âge',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-              ),
+              const Text('Âge', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
               Row(
                 children: [
-                   Text('${_currentAgeValue.round()}'),
+                  Text('${_currentAgeValue.round()}'),
                   Expanded(
                     child: Slider(
                       value: _currentAgeValue,
@@ -150,6 +91,7 @@ class _AudienceState extends State<Audience> {
                       onChanged: (double value) {
                         setState(() {
                           _currentAgeValue = value;
+                          _updateAudienceProgress();
                         });
                       },
                     ),
@@ -157,7 +99,6 @@ class _AudienceState extends State<Audience> {
                   const Text('65+'),
                 ],
               ),
-
               Container(
                 margin: const EdgeInsets.only(top: 20),
                 padding: const EdgeInsets.all(10),
@@ -175,169 +116,193 @@ class _AudienceState extends State<Audience> {
                 onTap: () {
                   // Action pour 'En savoir plus'
                 },
-                child: const Text(
-                  'En savoir plus',
-                  style: TextStyle(color: Colors.blue, fontSize: 14),
-                ),
+                child: const Text('En savoir plus', style: TextStyle(color: Color(0xff072858), fontSize: 14)),
               ),
-              const SizedBox(height: 20),
-
-              const Text(
-                'Genre',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              const SizedBox(height: 30),
+              const Text('Genre', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white)),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  _buildGenderButton('Tout', textColor: Colors.white),
+                  _buildGenderButton('Tout'),
                   const SizedBox(width: 10),
-                  _buildGenderButton('Homme', textColor: Colors.white),
+                  _buildGenderButton('Homme'),
                   const SizedBox(width: 10),
-                  _buildGenderButton('Femme', textColor: Colors.white),
+                  _buildGenderButton('Femme'),
                 ],
               ),
               const SizedBox(height: 30),
-
-              const Text(
-                'Definition de l\'audience',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
+              const Text('Combien de personnes souhaitez-vous toucher ?', style: TextStyle( fontSize: 18)),
               const SizedBox(height: 10),
-              const Text(
-                'L\'audience selectionnee est assez vaste.',
-                style: TextStyle(color: Colors.grey, fontSize: 14),
+              TextField(
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Nombre de personnes',
+                ),
+                onChanged: (value) {
+                  setState(() {
+                    _audienceReach = int.tryParse(value) ?? 0;
+                  });
+                },
               ),
+              const SizedBox(height: 30),
+              const Text('Définition de l\'audience', style: TextStyle(fontWeight: FontWeight.bold)),
+              const SizedBox(height: 10),
+              Text('L\'audience sélectionnée est $audienceType.', style: const TextStyle(color: Colors.grey, fontSize: 14)),
+              const SizedBox(height: 10),
               Row(
                 children: [
-                  const Text('Restreinte'),
+                const Text('Restreinte'),
                   const SizedBox(width: 10),
                   Expanded(
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: LinearProgressIndicator(
-                        value: 0.5,
+                        value: audienceProgress,
                         backgroundColor: Colors.grey,
-                        valueColor:
-                        const AlwaysStoppedAnimation<Color>(Color(0xff072858)),
+                        valueColor: const AlwaysStoppedAnimation<Color>(Color(0xfffcbc1c)),
                         minHeight: 8,
                       ),
                     ),
                   ),
                   const SizedBox(width: 10),
-                  const Text('vaste'),
+                  const Text('Vaste'),
                 ],
               ),
               const SizedBox(height: 80),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xff072858),
-                      elevation: 5,
-                      shadowColor: Colors.grey,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 40, vertical: 15),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                    ),
-                    child: const Text(
-                      'Annuler',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const Calendrier()),
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xff072858),
-                      elevation: 5,
-                      shadowColor: Colors.grey,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 40, vertical: 15),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                    ),
-                    child: const Text(
-                      'Suivant',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
             ],
           ),
         ),
       ),
+      bottomNavigationBar: Container(
+        margin: const EdgeInsets.only(top: 24),
+        padding: const EdgeInsets.symmetric(vertical: 20),
+        decoration: const BoxDecoration(
+          color: Color(0xff072858),
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(50),
+            topRight: Radius.circular(50),
+          ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+           ElevatedButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text('Annuler', style: TextStyle(color: Colors.white)),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0xfffcbc1c),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15.0),
+                            ),
+                            padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                          ),
+                        ),
+            ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => const Calendrier()),
+                              );
+                          },
+                          child: const Text(
+                            'Suivant',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0xfffcbc1c),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15.0),
+                            ),
+                            padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15), // élargit horizontalement
+                          ),
+                        ),
+          ],
+        ),
+      ),
     );
   }
 
-  Widget _buildToggleButton(String text, bool isSelected) {
-    return ElevatedButton(
-      onPressed: () {
+  void _updateAudienceProgress() {
+    if (_currentAgeValue < 24) {
+      audienceProgress = 0.2;
+      audienceType = 'Restreinte';
+    } else if (_currentAgeValue <= 40) {
+      audienceProgress = 0.5;
+      audienceType = 'Moyenne';
+    } else {
+      audienceProgress = 0.8;
+      audienceType = 'Vaste';
+    }
+  }
+
+  Widget _buildToggleButton(String label, bool isSelected) {
+    return GestureDetector(
+      onTap: () {
         setState(() {
-          _selectedLocationType = text;
+          _selectedLocationType = label;
         });
       },
-      style: ElevatedButton.styleFrom(
-        backgroundColor: isSelected ? Color(0xff072858) : Colors.grey,
-        elevation: 5,
-        shadowColor: Colors.grey,
-        padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8.0),
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+        decoration: BoxDecoration(
+          color: isSelected ?  Color(0xff072858) : Colors.grey,
+          borderRadius: BorderRadius.circular(10),
         ),
-      ),
-      child: Text(
-        text,
-        style: const TextStyle(
-          fontWeight: FontWeight.bold,
-          color: Colors.white,
-        ),
+        child: Text(label, style: const TextStyle(color: Colors.white)),
       ),
     );
   }
 
-  // Dropdown pour la sélection de la région
+  Widget _buildGenderButton(String gender) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _selectedGender = gender;
+          _updateAudienceProgress();
+        });
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+        decoration: BoxDecoration(
+          color: _selectedGender == gender ?  Color(0xff072858) : Colors.grey,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Text(gender, style: const TextStyle(color: Colors.white)),
+      ),
+    );
+  }
+
   Widget _buildRegionDropdown() {
     return DropdownButton<String>(
       value: _selectedRegion,
-      icon: const Icon(Icons.arrow_downward),
-      elevation: 16,
-      style: const TextStyle(color: Colors.black),
-      underline: Container(
-        height: 2,
-        color: Colors.blueAccent,
-      ),
+      items: _regions.map((String value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: Text(value),
+        );
+      }).toList(),
       onChanged: (String? newValue) {
         setState(() {
           _selectedRegion = newValue!;
+          _updateAudienceProgress();
         });
       },
-      items: <String>[
-        'Sélectionner une région',
-        'Abomey-Calavi',
-        'Tankpe',
-        'Zopah',
-      ].map<DropdownMenuItem<String>>((String value) {
+    );
+  }
+
+  Widget _buildDomaineInterventionDropdown() {
+    return DropdownButton<String>(
+      hint: const Text('Sélectionner un domaine'),
+      value: _selectedDomaineIntervention,
+      onChanged: (String? newValue) {
+        setState(() {
+          _selectedDomaineIntervention = newValue;
+        });
+      },
+      items: _domainesIntervention.map<DropdownMenuItem<String>>((String value) {
         return DropdownMenuItem<String>(
           value: value,
           child: Text(value),
@@ -346,73 +311,26 @@ class _AudienceState extends State<Audience> {
     );
   }
 
-  // Carte pour la localisation par adresse
   Widget _buildAddressMap() {
-    return SizedBox(
-      height: 300,
+    return Container(
+      height: 200,
+      decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
       child: GoogleMap(
         initialCameraPosition: CameraPosition(
           target: _selectedAddressLocation,
-          zoom: 14.0,
+          zoom: 15,
         ),
-        onMapCreated: (GoogleMapController controller) {
-          // Stocke le contrôleur de la carte si nécessaire
-        },
         onTap: (LatLng location) {
           setState(() {
             _selectedAddressLocation = location;
           });
         },
-        markers: <Marker>{
+        markers: {
           Marker(
-            markerId: const MarkerId('selected_location'),
+            markerId: const MarkerId("selected-location"),
             position: _selectedAddressLocation,
           ),
         },
-      ),
-    );
-  }
-
-  // Dropdown pour le domaine d'intervention
-  Widget _buildDomaineInterventionDropdown() {
-    return DropdownButton<String>(
-      value: _selectedDomaineIntervention,
-      hint: const Text('Sélectionner un domaine'),
-      isExpanded: true, // Pour occuper toute la largeur
-      items: _domainesIntervention.map((String domaine) {
-        return DropdownMenuItem<String>(
-          value: domaine,
-          child: Text(domaine),
-        );
-      }).toList(),
-      onChanged: (String? newValue) {
-        setState(() {
-          _selectedDomaineIntervention = newValue;
-        });
-      },
-    );
-  }
-
-  Widget _buildGenderButton(String text, {required Color textColor}) {
-    return Expanded(
-      child: ElevatedButton(
-        onPressed: () {
-          setState(() {
-            _selectedGender = text;
-          });
-        },
-        style: ElevatedButton.styleFrom(
-          backgroundColor:
-          _selectedGender == text ? const Color(0xfffcbc1c) : Colors.grey,
-          padding: const EdgeInsets.symmetric(vertical: 15),
-        ),
-        child: Text(
-          text,
-          style: TextStyle(
-            color: textColor,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
       ),
     );
   }

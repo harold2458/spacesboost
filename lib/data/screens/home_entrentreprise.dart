@@ -64,9 +64,9 @@ class _HomeEntrepriseState extends State<HomeEntreprise> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                GestureDetector(
+                 GestureDetector(
                   onTap: () {
-                    widget.onTabSelected(2); // Onglet Campagne
+                    widget.onTabSelected(0);  // Onglet Campagne
                   },
                   child: buildGestureContainer(
                     'Campagne',
@@ -76,9 +76,10 @@ class _HomeEntrepriseState extends State<HomeEntreprise> {
                   ),
                 ),
                 SizedBox(width: screenWidth * 0.05),
+
                 GestureDetector(
                   onTap: () {
-                    widget.onTabSelected(1); // Onglet Aide
+                    widget.onTabSelected(1);// Onglet Preuve
                   },
                   child: buildGestureContainer(
                     'Preuve',
@@ -87,6 +88,8 @@ class _HomeEntrepriseState extends State<HomeEntreprise> {
                     screenHeight,
                   ),
                 ),
+                
+               SizedBox(width: screenWidth * 0.05),
               ],
             ),
             SizedBox(height: screenHeight * 0.03),
@@ -95,7 +98,7 @@ class _HomeEntrepriseState extends State<HomeEntreprise> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    widget.onTabSelected(3); // Onglet Statistique
+                    widget.onTabSelected(4); // Onglet Statistique
                   },
                   child: buildGestureContainer(
                     'Statistique',
@@ -107,10 +110,10 @@ class _HomeEntrepriseState extends State<HomeEntreprise> {
                 SizedBox(width: screenWidth * 0.05),
                 GestureDetector(
                   onTap: () {
-                    widget.onTabSelected(0); // Onglet Aide
+                    widget.onTabSelected(3); // Onglet Aide
                   },
                   child: buildGestureContainer(
-                    'Parrainage',
+                    'Taxi Boost',
                     'assets/icons/help.png',
                     screenWidth,
                     screenHeight,

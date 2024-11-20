@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projet_mobile/data/screens/avant_home.dart';
-import 'package:projet_mobile/data/screens/home_entrentreprise.dart';
-import 'package:projet_mobile/data/screens/register_entreprise.dart';
 import 'package:projet_mobile/data/screens/welcome_entreprise.dart';
+import 'package:projet_mobile/data/screens/register_entreprise.dart';
 
 class LoginEntreprise extends StatefulWidget {
   const LoginEntreprise({super.key});
@@ -12,25 +11,34 @@ class LoginEntreprise extends StatefulWidget {
 }
 
 class _LoginEntrepriseState extends State<LoginEntreprise> {
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
   bool isLoading = false;
+  bool _isObscure = true;
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
+    final screenWidth = mediaQuery.size.width;
+    final screenHeight = mediaQuery.size.height;
+    final isPortrait = mediaQuery.orientation == Orientation.portrait;
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: const Color(0xff072858),
-        title: Text(
+        title: const Text(
           "Connexion",
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () => Navigator.pop(context,
-              MaterialPageRoute(builder: (context) => const WelcomeEntreprise())),
+          onPressed: () => Navigator.pop(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const AvantHome())),
         ),
       ),
       body: SingleChildScrollView(
@@ -39,7 +47,6 @@ class _LoginEntrepriseState extends State<LoginEntreprise> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.asset('assets/images/sign In.png', height: 200),
-
             const SizedBox(height: 10),
             const Center(
               child: Text(
@@ -48,127 +55,178 @@ class _LoginEntrepriseState extends State<LoginEntreprise> {
                 textAlign: TextAlign.center,
               ),
             ),
-            const SizedBox(height: 30), // Augmenter l'espacement ici
-            TextField(
-      controller: emailController,
-      decoration: InputDecoration(
-        labelText: 'Email',
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20), // Bord arrondi
-        ),
-      ),
-      keyboardType: keyboardType ?? TextInputType.text,
-    );
-            const SizedBox(height: 10),
-            _buildPasswordField(passwordController, "Mot de passe"),
-            const SizedBox(height: 20),
-            _buildSubmitButton(), // Bouton personnalisé
-            const SizedBox(height: 10),
-            _buildSignupText(context), // Texte d'inscription centré
-            const SizedBox(height: 10),
-          ],
-        ),
-      ),
-    );
-  }
-
-  // Fonction pour créer un champ de texte standard
-  Widget _buildTextField(TextEditingController controller, String label,
-      [TextInputType? keyboardType]) {
-    return 
-  }
-
-  // Fonction pour créer un champ de mot de passe
-  Widget _buildPasswordField(TextEditingController controller, String label) {
-    return TextField(
-      controller: controller,
-      obscureText: true,
-      decoration: InputDecoration(
-        labelText: label,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20), // Bord arrondi
-        ),
-      ),
-    );
-  }
-
-  // Fonction pour créer le bouton de soumission avec dégradé et même taille que le TextField
-  Widget _buildSubmitButton() {
-    return Container(
-      width: double.infinity, // Même largeur que les champs de texte
-      height: 60, // Hauteur pour correspondre à la taille du TextField
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        gradient: const LinearGradient(
-          colors: [Colors.yellow, Colors.orange], // Dégradé jaune
-        ),
-      ),
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-          textStyle: const TextStyle(fontSize: 18, color: Colors.white),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
-          backgroundColor: Colors.transparent,
-          shadowColor: Colors.transparent, // Pour éviter de couvrir le dégradé
-        ),
-        onPressed: () async {
-          setState(() {
-            isLoading = true; // Activer l'indicateur de chargement
-          });
-
-          // Simule une action de connexion, ici un délai de 2 secondes
-          await Future.delayed(const Duration(seconds: 2));
-
-          setState(() {
-            isLoading = false; // Désactiver l'indicateur de chargement
-          });
-
-          // Affiche une notification ou un dialogue après la tentative de connexion
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Connexion réussie !')),
-          );
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const WelcomeEntreprise()));
-        },
-        child: isLoading
-            ? const CircularProgressIndicator(color: Colors.white)
-            : const Text("Se connecter", style: TextStyle(color: Colors.white)),
-      ),
-    );
-  }
-
-  // Fonction pour créer le texte d'inscription
-  Widget _buildSignupText(BuildContext context) {
-    return Center( // Ajout d'un Center ici
-      child: TextButton(
-        onPressed: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const RegisterEntreprise()));
-        },
-        child: RichText(
-          textAlign: TextAlign.center,
-          text: const TextSpan(
-            text: "Vous n'avez pas de compte ? ",
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
+            const SizedBox(height: 30),
+            Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  SizedBox(
+                    width: screenWidth * (isPortrait ? 0.9 : 0.8),
+                    child: TextFormField(
+                      keyboardType: TextInputType.text,
+                      controller: _emailController,
+                      decoration: InputDecoration(
+                        labelText: 'Email utilisateur',
+                        hintText: '*example@gmail.com',
+                        labelStyle: const TextStyle(color: Colors.grey),
+                        hintStyle: const TextStyle(color: Colors.grey),
+                        prefixIcon: const Icon(
+                          Icons.email,
+                          color: Color(0xfffcbc1c),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(color: Color(0xfffcbc1c)),
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(color: Color(0xfffcbc1c)),
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                      ),
+                      validator: (String? value) {
+                        return (value == null || value.isEmpty)
+                            ? 'Ce champ est obligatoire'
+                            : null;
+                      },
+                    ),
+                  ),
+                  SizedBox(
+                    height: screenHeight * (isPortrait ? 0.03 : 0.1),
+                  ),
+                  SizedBox(
+                    width: screenWidth * (isPortrait ? 0.9 : 0.8),
+                    child: TextFormField(
+                      keyboardType: TextInputType.text,
+                      controller: _passwordController,
+                      obscureText: _isObscure,
+                      decoration: InputDecoration(
+                        labelText: 'Mot de passe',
+                        hintText: '*******',
+                        labelStyle: const TextStyle(color: Colors.grey),
+                        hintStyle: const TextStyle(color: Colors.grey),
+                        prefixIcon: const Icon(
+                          Icons.lock,
+                          color: Color(0xfffcbc1c),
+                        ),
+                        suffixIcon: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                _isObscure = !_isObscure;
+                              });
+                            },
+                            icon: Icon(_isObscure
+                                ? Icons.visibility_off
+                                : Icons.visibility)),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(color: Color(0xfffcbc1c)),
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(color: Color(0xfffcbc1c)),
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                      ),
+                      validator: (String? value) {
+                        return (value == null || value.isEmpty)
+                            ? 'Ce champ est obligatoire'
+                            : null;
+                      },
+                    ),
+                  ),
+                  SizedBox(
+                    height: screenHeight * (isPortrait ? 0.03 : 0.05), // Espacement réduit
+                  ),
+                  TextButton(
+                      onPressed: () {
+                        // Action pour mot de passe oublié
+                      },
+                      child: Text(
+                        'Mot de passe oublié ?',
+                        style: TextStyle(
+                          fontSize: screenWidth * (isPortrait ? 0.04 : 0.03),
+                          fontWeight: FontWeight.bold,
+                          color: const Color(0xff072858),
+                        ),
+                      )),
+                  SizedBox(
+                    height: screenHeight * (isPortrait ? 0.05 : 0.05), // Espacement ajusté
+                  ),
+                  SizedBox(
+                    width: screenWidth * (isPortrait ? 0.9 : 0.8),
+                    height: screenHeight * (isPortrait ? 0.07 : 0.2),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const AvantHome()),
+                        );
+                      },
+                      style: ButtonStyle(
+                        backgroundColor: WidgetStatePropertyAll(
+                          const Color(0xff072858),
+                        ),
+                        shape: WidgetStatePropertyAll(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        elevation: WidgetStatePropertyAll(3),
+                      ),
+                      child: Text(
+                        'Se connecter',
+                        style: TextStyle(
+                          fontSize: screenWidth * (isPortrait ? 0.04 : 0.03),
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: screenHeight * (isPortrait ? 0.03 : 0.08), // Espacement ajouté ici
+                  ),
+                ],
+              ),
             ),
-            children: [
-              TextSpan(
-                text: "Créez un compte",
-                style: TextStyle(
-                  color: Color(0xFF072858),
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
+            const SizedBox(height: 10),
+            Center(
+              child: TextButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const RegisterEntreprise()));
+                },
+                child: RichText(
+                  textAlign: TextAlign.center,
+                  text: const TextSpan(
+                    text: "Vous n'avez pas de compte ? ",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    children: [
+                      TextSpan(
+                        text: "Créez un compte",
+                        style: TextStyle(
+                          color: Color(0xFF072858),
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ],
-          ),
+            ),
+            const SizedBox(height: 20),
+          ],
         ),
       ),
     );

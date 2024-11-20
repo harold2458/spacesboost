@@ -8,6 +8,7 @@ import 'package:projet_mobile/data/screens/preuve_entreprise.dart';
 import 'package:projet_mobile/data/screens/profile_entreprise.dart';
 import 'package:projet_mobile/data/screens/settings_entreprise.dart';
 import 'package:projet_mobile/data/screens/statistique_entreprise.dart';
+import 'package:projet_mobile/data/screens/taxi_boost.dart';
 
 class AvantHome extends StatefulWidget {
   const AvantHome({super.key});
@@ -17,20 +18,22 @@ class AvantHome extends StatefulWidget {
 }
 
 class _AvantHomeState extends State<AvantHome> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 2;
 
   static final List<String> _title = [
-    "Accueil",
-    "Preuve",
     "Campagne",
+    "Preuve",
+    "Accueil",
+    "Taxi Boost ",
     "Statistique"
   ];
 
   // Pages à afficher dans les onglets
   static final List<Widget> _pages = [
+     CampagneEntreprise(),
+     PreuveEntreprise(),
     HomeEntreprise(onTabSelected: (index) {}),
-    PreuveEntreprise(),
-    CampagneEntreprise(),
+    TaxiBoost(),
     StatistiqueEntreprise(),
   ];
 
@@ -62,7 +65,7 @@ class _AvantHomeState extends State<AvantHome> {
         leading: Padding(
           padding: EdgeInsets.only(left: screenWidth * 0.01),
           child: Image.asset(
-            'assets/logos/icon.jpg',
+            'assets/logos/icon3.png',
             height: screenHeight * 0.04,
           ),
         ),
@@ -86,9 +89,10 @@ class _AvantHomeState extends State<AvantHome> {
       body: IndexedStack(
         index: _selectedIndex,
         children: [
-          HomeEntreprise(onTabSelected: _onItemTapped),
+           const CampagneEntreprise(),
           const PreuveEntreprise(),
-          const CampagneEntreprise(),
+          HomeEntreprise(onTabSelected: _onItemTapped),
+          const TaxiBoost(),
           const StatistiqueEntreprise(),
         ],
       ),
@@ -97,37 +101,38 @@ class _AvantHomeState extends State<AvantHome> {
           padding: EdgeInsets.zero,
           children: [
             SizedBox(
-              height: screenHeight * (isPortrait ? 0.3 : 0.5),
+              height: screenHeight * (isPortrait ? 0.4 : 0.5),
               child: DrawerHeader(
-                decoration: const BoxDecoration(
-                  color: Color(0Xff072858),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CircleAvatar(
-                      radius: screenWidth * (isPortrait ? 0.15 : 0.08),
-                      backgroundImage: const AssetImage('assets/images/profil.jpg'),
-                    ),
-                    SizedBox(height: screenHeight * 0.02),
-                    Text(
-                      'Harold DIDAVI',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: screenWidth * 0.05,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text(
-                      'harolddidavi@gmail.com',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: screenWidth * 0.04,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+  decoration: const BoxDecoration(
+    color: Color(0Xff072858),
+  ),
+  child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        CircleAvatar(
+          radius: screenWidth * (isPortrait ? 0.15 : 0.08),
+          backgroundImage: const AssetImage('assets/images/profil.jpg'),
+        ),
+        SizedBox(height: screenHeight * 0.02),
+        Text(
+          'Harold DIDAVI',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: screenWidth * 0.05,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        Text(
+          'harolddidavi@gmail.com',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: screenWidth * 0.04,
+          ),
+        ),
+      ],
+    ),
+),
+
             ),
             Padding(
               padding: EdgeInsets.symmetric(
@@ -178,7 +183,7 @@ class _AvantHomeState extends State<AvantHome> {
                   SizedBox(height: screenHeight * 0.02),
                   _buildDrawerItem(
                     context,
-                    icon: Icons.card_giftcard,
+                    icon: Icons.help,
                     text: 'Aide',
                     iconColor: Color(0xfffcbc1c),
                     onTap: () {
@@ -211,16 +216,20 @@ class _AvantHomeState extends State<AvantHome> {
         backgroundColor: const Color(0xff072858),
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+            icon: Icon(Icons.campaign),
+            label: 'Campagne',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.fact_check),
             label: 'Preuve',
           ),
+           BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Acceuil',
+          ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.campaign),
-            label: 'Campagne',
+            icon: Icon(Icons.car_rental),
+            label: 'Taxi Boost',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.equalizer),

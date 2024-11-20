@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projet_mobile/data/screens/annonce_entreprise.dart';
 import 'package:projet_mobile/data/screens/creation_entreprise.dart';
 import 'package:projet_mobile/data/screens/promotion_entreprise.dart';
+import 'package:projet_mobile/data/screens/publicite_entreprise.dart';
 
 class CampagneEntreprise extends StatefulWidget {
   const CampagneEntreprise({super.key});
@@ -27,8 +28,8 @@ class _CampagneEntrepriseState extends State<CampagneEntreprise> {
                   decoration: BoxDecoration(
                     color: const Color(0xff072858),
                     borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(50),
-                      bottomRight: Radius.circular(50),
+                      bottomLeft: Radius.circular(40),
+                      bottomRight: Radius.circular(40),
                     ),
                   ),
                   height: 100,

@@ -23,7 +23,8 @@ class _PromotionEntrepriseState extends State<PromotionEntreprise> {
   final TextEditingController searchController = TextEditingController();
   String selectedCategory = 'Nom';
 
-  Future<void> navigateToProfile(bool isChecked, Function(bool) onChecked) async {
+  Future<void> navigateToProfile(
+      bool isChecked, Function(bool) onChecked) async {
     final result = await Navigator.push(
       context,
       MaterialPageRoute(
@@ -44,121 +45,831 @@ class _PromotionEntrepriseState extends State<PromotionEntreprise> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+        body: Column(
+      children: [
+        Expanded(
+            child: SingleChildScrollView(
+                child: Column(children: [
+                  const SizedBox(height: 30),
+          const Text(
+            'Plus proche de vos clients! Diffusez vos publicités à une audience très large et spécifique avec nos influenceurs qui collent avec votre marque.',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 15,
+              color: Colors.black,
+            ),
+          ),
+          const SizedBox(height: 20),
+          const Text(
+            'Choix de l\'influenceur',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+          ),
+          const SizedBox(height: 10),
+          Row(
             children: [
-              const Text(
-                'Plus proche de vos clients! Diffusez vos publicités à une audience très large et spécifique avec nos influenceurs qui collent avec votre marque.',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 15,
-                  color: Colors.black,
-                ),
-              ),
-              const SizedBox(height: 20),
-              const Text(
-                'Choix de l\'influenceur',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
-              ),
-              const SizedBox(height: 10),
-
-              Row(
-                children: [
-                  Expanded(
-                    child: TextField(
-                      controller: searchController,
-                      decoration: InputDecoration(
-                        hintText: 'Rechercher...',
-                        prefixIcon: const Icon(Icons.search),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                      ),
+              Expanded(
+                child: TextField(
+                  controller: searchController,
+                  decoration: InputDecoration(
+                    hintText: 'Rechercher...',
+                    prefixIcon: const Icon(Icons.search),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
                     ),
                   ),
-                  const SizedBox(width: 10),
-                  DropdownButton<String>(
-                    value: selectedCategory,
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        selectedCategory = newValue!;
-                      });
-                    },
-                    items: <String>['Nom', 'Type d\'influenceur', 'Domaine', 'Pays', 'Ville']
-                        .map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
+                ),
+              ),
+              const SizedBox(width: 10),
+            ],
+          ),
+          const SizedBox(height: 20),
+          // Profile card with checkbox
+          Center(
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ProfileScreen(),
+                  ),
+                );
+              },
+              child: Container(
+                padding: const EdgeInsets.all(16.0),
+                margin: const EdgeInsets.all(16.0),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(15.0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      spreadRadius: 4,
+                      blurRadius: 8,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CircleAvatar(
+                          radius: 40,
+                          backgroundImage: AssetImage(
+                              'assets/images/profil.jpg'), // Remplacez par le chemin de votre image
+                        ),
+                        const SizedBox(width: 16.0),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'ToTo Marc',
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xff072858),
+                                ),
+                              ),
+                              const SizedBox(height: 8.0),
+                              Text(
+                                'santé / calavi',
+                                style: TextStyle(
+                                  fontSize: 16.0,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.grey[600],
+                                ),
+                              ),
+                              const SizedBox(height: 8.0),
+                              Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      Image.asset(
+                                        'assets/icons/whatsapp2.png',
+                                        width: 30,
+                                        height: 30,
+                                      ),
+                                      const SizedBox(width: 8.0),
+                                      Text(
+                                        '5k Followers',
+                                        style: TextStyle(
+                                          fontSize: 14.0,
+                                          color: Colors.grey[700],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 8.0),
+                                  Row(
+                                    children: [
+                                      Image.asset(
+                                        'assets/icons/tiktok2.png',
+                                        width: 30,
+                                        height: 30,
+                                      ),
+                                      const SizedBox(width: 8.0),
+                                      Text(
+                                        '12k Followers',
+                                        style: TextStyle(
+                                          fontSize: 14.0,
+                                          color: Colors.grey[700],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 16.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Checkbox(
+                          value: isCheckedmarko,
+                          onChanged: (value) {
+                            setState(() {
+                              isCheckedmarko = value ?? false;
+                            });
+                          },
+                        ),
+                        const Text(
+                          'Cocher pour sélectionner',
+                          style: TextStyle(fontSize: 14.0, color: Colors.grey),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+
+          const SizedBox(height: 20),
+          Center(
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ProfileScreen(),
+                  ),
+                );
+              },
+              child: Container(
+                padding: const EdgeInsets.all(16.0),
+                margin: const EdgeInsets.all(16.0),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(15.0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      spreadRadius: 4,
+                      blurRadius: 8,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CircleAvatar(
+                          radius: 40,
+                          backgroundImage: AssetImage(
+                              'assets/images/profil.jpg'), // Remplacez par le chemin de votre image
+                        ),
+                        const SizedBox(width: 16.0),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'ToTo Marc',
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xff072858),
+                                ),
+                              ),
+                              const SizedBox(height: 8.0),
+                              Text(
+                                'santé / calavi',
+                                style: TextStyle(
+                                  fontSize: 16.0,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.grey[600],
+                                ),
+                              ),
+                              const SizedBox(height: 8.0),
+                              Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      Image.asset(
+                                        'assets/icons/whatsapp2.png',
+                                        width: 30,
+                                        height: 30,
+                                      ),
+                                      const SizedBox(width: 8.0),
+                                      Text(
+                                        '5k Followers',
+                                        style: TextStyle(
+                                          fontSize: 14.0,
+                                          color: Colors.grey[700],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 8.0),
+                                  Row(
+                                    children: [
+                                      Image.asset(
+                                        'assets/icons/tiktok2.png',
+                                        width: 30,
+                                        height: 30,
+                                      ),
+                                      const SizedBox(width: 8.0),
+                                      Text(
+                                        '12k Followers',
+                                        style: TextStyle(
+                                          fontSize: 14.0,
+                                          color: Colors.grey[700],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 16.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Checkbox(
+                          value: isCheckedmarko,
+                          onChanged: (value) {
+                            setState(() {
+                              isCheckedmarko = value ?? false;
+                            });
+                          },
+                        ),
+                        const Text(
+                          'Cocher pour sélectionner',
+                          style: TextStyle(fontSize: 14.0, color: Colors.grey),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+
+          const SizedBox(height: 20),
+          Center(
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ProfileScreen(),
+                  ),
+                );
+              },
+              child: Container(
+                padding: const EdgeInsets.all(16.0),
+                margin: const EdgeInsets.all(16.0),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(15.0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      spreadRadius: 4,
+                      blurRadius: 8,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CircleAvatar(
+                          radius: 40,
+                          backgroundImage: AssetImage(
+                              'assets/images/profil.jpg'), // Remplacez par le chemin de votre image
+                        ),
+                        const SizedBox(width: 16.0),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'ToTo Marc',
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xff072858),
+                                ),
+                              ),
+                              const SizedBox(height: 8.0),
+                              Text(
+                                'santé / calavi',
+                                style: TextStyle(
+                                  fontSize: 16.0,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.grey[600],
+                                ),
+                              ),
+                              const SizedBox(height: 8.0),
+                              Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      Image.asset(
+                                        'assets/icons/whatsapp2.png',
+                                        width: 30,
+                                        height: 30,
+                                      ),
+                                      const SizedBox(width: 8.0),
+                                      Text(
+                                        '5k Followers',
+                                        style: TextStyle(
+                                          fontSize: 14.0,
+                                          color: Colors.grey[700],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 8.0),
+                                  Row(
+                                    children: [
+                                      Image.asset(
+                                        'assets/icons/tiktok2.png',
+                                        width: 30,
+                                        height: 30,
+                                      ),
+                                      const SizedBox(width: 8.0),
+                                      Text(
+                                        '12k Followers',
+                                        style: TextStyle(
+                                          fontSize: 14.0,
+                                          color: Colors.grey[700],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 16.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Checkbox(
+                          value: isCheckedmarko,
+                          onChanged: (value) {
+                            setState(() {
+                              isCheckedmarko = value ?? false;
+                            });
+                          },
+                        ),
+                        const Text(
+                          'Cocher pour sélectionner',
+                          style: TextStyle(fontSize: 14.0, color: Colors.grey),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+
+          const SizedBox(height: 20),
+          Center(
+            child: Container(
+              padding: const EdgeInsets.all(16.0),
+              margin: const EdgeInsets.all(16.0),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(15.0),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    spreadRadius: 4,
+                    blurRadius: 8,
+                    offset: const Offset(0, 4),
                   ),
                 ],
               ),
-              const SizedBox(height: 20),
-
-              buildInfluencerRow(
-                isCheckedmarko,
-                'ToTo Marc',
-                'santé / calavi',
-                'assets/icons/profile2.png',
-                (value) => setState(() => isCheckedmarko = value),
-              ),
-              const SizedBox(height: 20),
-              buildInfluencerRow(
-                isCheckedmarkos,
-                'Mange Peu',
-                'cuisine / Togoudo',
-                'assets/icons/profile2.png',
-                (value) => setState(() => isCheckedmarkos = value),
-              ),
-              const SizedBox(height: 20),
-              buildInfluencerRow(
-                isCheckedmarkoz,
-                'AGBO Richard',
-                'comédie / Arconville',
-                'assets/icons/profile2.png',
-                (value) => setState(() => isCheckedmarkoz = value),
-              ),
-              const SizedBox(height: 20),
-              buildInfluencerRow(
-                isCheckedmark,
-                'AKRI Sebastien',
-                'commerce / Kpota',
-                'assets/icons/profile2.png',
-                (value) => setState(() => isCheckedmark = value),
-              ),
-
-              const SizedBox(height: 30),
-              Center(
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0XFFFCBC1C),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CircleAvatar(
+                        radius: 40,
+                        backgroundImage: AssetImage(
+                            'assets/images/profil.jpg'), // Remplacez par le chemin de votre image
+                      ),
+                      const SizedBox(width: 16.0),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'ToTo Marc',
+                              style: TextStyle(
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xff072858),
+                              ),
+                            ),
+                            const SizedBox(height: 8.0),
+                            Text(
+                              'santé / calavi',
+                              style: TextStyle(
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.grey[600],
+                              ),
+                            ),
+                            const SizedBox(height: 8.0),
+                            Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Image.asset(
+                                      'assets/icons/whatsapp2.png',
+                                      width: 30,
+                                      height: 30,
+                                    ),
+                                    const SizedBox(width: 8.0),
+                                    Text(
+                                      '5k Followers',
+                                      style: TextStyle(
+                                        fontSize: 14.0,
+                                        color: Colors.grey[700],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 8.0),
+                                Row(
+                                  children: [
+                                    Image.asset(
+                                      'assets/icons/tiktok2.png',
+                                      width: 30,
+                                      height: 30,
+                                    ),
+                                    const SizedBox(width: 8.0),
+                                    Text(
+                                      '12k Followers',
+                                      style: TextStyle(
+                                        fontSize: 14.0,
+                                        color: Colors.grey[700],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const RedactionMission()),
-                    );
-                  },
-                  child: const Text('Valider',style: TextStyle(color: Colors.white),),
+                  const SizedBox(height: 16.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Checkbox(
+                        value: isCheckedmarko,
+                        onChanged: (value) {
+                          setState(() {
+                            isCheckedmarko = value ?? false;
+                          });
+                        },
+                      ),
+                      const Text(
+                        'Cocher pour sélectionner',
+                        style: TextStyle(fontSize: 14.0, color: Colors.grey),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Center(
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ProfileScreen(),
+                  ),
+                );
+              },
+              child: Container(
+                padding: const EdgeInsets.all(16.0),
+                margin: const EdgeInsets.all(16.0),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(15.0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      spreadRadius: 4,
+                      blurRadius: 8,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CircleAvatar(
+                          radius: 40,
+                          backgroundImage: AssetImage(
+                              'assets/images/profil.jpg'), // Remplacez par le chemin de votre image
+                        ),
+                        const SizedBox(width: 16.0),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'ToTo Marc',
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xff072858),
+                                ),
+                              ),
+                              const SizedBox(height: 8.0),
+                              Text(
+                                'santé / calavi',
+                                style: TextStyle(
+                                  fontSize: 16.0,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.grey[600],
+                                ),
+                              ),
+                              const SizedBox(height: 8.0),
+                              Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      Image.asset(
+                                        'assets/icons/whatsapp2.png',
+                                        width: 30,
+                                        height: 30,
+                                      ),
+                                      const SizedBox(width: 8.0),
+                                      Text(
+                                        '5k Followers',
+                                        style: TextStyle(
+                                          fontSize: 14.0,
+                                          color: Colors.grey[700],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 8.0),
+                                  Row(
+                                    children: [
+                                      Image.asset(
+                                        'assets/icons/tiktok2.png',
+                                        width: 30,
+                                        height: 30,
+                                      ),
+                                      const SizedBox(width: 8.0),
+                                      Text(
+                                        '12k Followers',
+                                        style: TextStyle(
+                                          fontSize: 14.0,
+                                          color: Colors.grey[700],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 16.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Checkbox(
+                          value: isCheckedmarko,
+                          onChanged: (value) {
+                            setState(() {
+                              isCheckedmarko = value ?? false;
+                            });
+                          },
+                        ),
+                        const Text(
+                          'Cocher pour sélectionner',
+                          style: TextStyle(fontSize: 14.0, color: Colors.grey),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
-            ],
+            ),
           ),
-        ),
-      ),
-    );
+
+          const SizedBox(height: 20),
+          Center(
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ProfileScreen(),
+                  ),
+                );
+              },
+              child: Container(
+                padding: const EdgeInsets.all(16.0),
+                margin: const EdgeInsets.all(16.0),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(15.0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      spreadRadius: 4,
+                      blurRadius: 8,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CircleAvatar(
+                          radius: 40,
+                          backgroundImage: AssetImage(
+                              'assets/images/profil.jpg'), // Remplacez par le chemin de votre image
+                        ),
+                        const SizedBox(width: 16.0),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'ToTo Marc',
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xff072858),
+                                ),
+                              ),
+                              const SizedBox(height: 8.0),
+                              Text(
+                                'santé / calavi',
+                                style: TextStyle(
+                                  fontSize: 16.0,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.grey[600],
+                                ),
+                              ),
+                              const SizedBox(height: 8.0),
+                              Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      Image.asset(
+                                        'assets/icons/whatsapp2.png',
+                                        width: 30,
+                                        height: 30,
+                                      ),
+                                      const SizedBox(width: 8.0),
+                                      Text(
+                                        '5k Followers',
+                                        style: TextStyle(
+                                          fontSize: 14.0,
+                                          color: Colors.grey[700],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 8.0),
+                                  Row(
+                                    children: [
+                                      Image.asset(
+                                        'assets/icons/tiktok2.png',
+                                        width: 30,
+                                        height: 30,
+                                      ),
+                                      const SizedBox(width: 8.0),
+                                      Text(
+                                        '12k Followers',
+                                        style: TextStyle(
+                                          fontSize: 14.0,
+                                          color: Colors.grey[700],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 16.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Checkbox(
+                          value: isCheckedmarko,
+                          onChanged: (value) {
+                            setState(() {
+                              isCheckedmarko = value ?? false;
+                            });
+                          },
+                        ),
+                        const Text(
+                          'Cocher pour sélectionner',
+                          style: TextStyle(fontSize: 14.0, color: Colors.grey),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ]))),
+        const SizedBox(height: 30),
+        SizedBox(
+          width:
+              double.infinity, // Le bouton occupe toute la largeur disponible
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Color(0XFFFCBC1C),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15),
+              ),
+              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const RedactionMission()),
+              );
+            },
+            child: const Text(
+              'Valider',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        )
+      ],
+    ));
   }
 
   Widget buildInfluencerRow(
@@ -193,48 +904,14 @@ class _PromotionEntrepriseState extends State<PromotionEntreprise> {
               children: [
                 Text(
                   name,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                      color: Color(0xff072858)),
                 ),
-                const SizedBox(height: 4),
                 Text(
                   domain,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    color: Colors.grey,
-                  ),
-                ),
-                const SizedBox(height: 10),
-                Row(
-                  children: [
-                    Image.asset(
-                      'assets/icons/whatsapp2.png',
-                      width: 30,
-                      height: 30,
-                    ),
-                    const SizedBox(width: 3),
-                    const Text(
-                      '5k Followers',
-                      style: TextStyle(fontSize: 12),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                Row(
-                  children: [
-                    Image.asset(
-                      'assets/icons/tiktok2.png',
-                      width: 30,
-                      height: 30,
-                    ),
-                    const SizedBox(width: 3),
-                    const Text(
-                      '12k Followers',
-                      style: TextStyle(fontSize: 12),
-                    ),
-                  ],
+                  style: TextStyle(fontSize: 13, color: Colors.grey[600]),
                 ),
               ],
             ),

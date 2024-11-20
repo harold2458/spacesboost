@@ -43,14 +43,6 @@ class _WelcomeState extends State<WelcomeEntreprise> {
       body: isPortrait ?
         Stack(
           children: [
-            Container(
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/images/bg_welcome.jpg'),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
             Column(
               children: [
                 SizedBox(height: screenHeight * 0.06),
@@ -73,7 +65,6 @@ class _WelcomeState extends State<WelcomeEntreprise> {
                         'd\'une expérience simplifiée pour collaborer\n'
                         'avec les chefs d\'entreprise.',
                     style: TextStyle(
-                      color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
                     textAlign: TextAlign.center,

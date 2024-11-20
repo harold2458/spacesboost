@@ -99,7 +99,7 @@ class _SettingsState extends State<SettingsEntreprise> {
                       const Icon(Icons.notifications, color: Color(0xfffcbc1c)),
                       SizedBox(width: screenWidth * (isPortrait ? 0.1 : 0.05),),
                       Text(
-                        'Notifications',
+                        '',
                         style: TextStyle(
                             fontSize: screenWidth * (isPortrait ? 0.04 : 0.03),
                             fontWeight: FontWeight.bold,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
-import 'package:projet_mobile/data/screens/audience.dart'; // Vérifiez si ce fichier existe
+import 'package:projet_mobile/data/screens/audience.dart';
 
 class PubliciteEntreprise extends StatefulWidget {
   const PubliciteEntreprise({super.key});
@@ -14,7 +14,7 @@ class PubliciteEntreprise extends StatefulWidget {
 class _PubliciteState extends State<PubliciteEntreprise> {
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
-  XFile? _mediaFile; // Utilisation de XFile pour stocker l'image/vidéo sélectionnée
+  XFile? _mediaFile;
   final ImagePicker _picker = ImagePicker();
 
   // Liste des canaux avec leurs icônes respectives
@@ -22,22 +22,20 @@ class _PubliciteState extends State<PubliciteEntreprise> {
     {'name': 'Facebook', 'icon': 'assets/icons/facebook2.png'},
     {'name': 'WhatsApp', 'icon': 'assets/icons/whatsapp3.png'},
     {'name': 'Instagram', 'icon': 'assets/icons/instagram2.png'},
-    {'name': 'LinkedIn', 'icon': 'assets/icons/youtube2.png'},
+    {'name': 'TikTok', 'icon': 'assets/icons/tiktok2.png'},
   ];
 
-  String? selectedChannel;
+  // Liste pour garder une trace des icônes sélectionnées
+  List<String> selectedChannels = [];
 
-  // Méthode pour choisir un fichier image ou vidéo depuis la galerie
-  void _pickMedia() async {
+  Future<void> _pickMedia() async {
     try {
       final XFile? pickedFile = await _picker.pickImage(source: ImageSource.gallery);
-      // Vérification si un fichier a été sélectionné
       if (pickedFile != null) {
         setState(() {
           _mediaFile = pickedFile;
         });
       } else {
-        // L'utilisateur n'a sélectionné aucun fichier
         print('Aucun fichier sélectionné.');
       }
     } catch (e) {
@@ -45,74 +43,91 @@ class _PubliciteState extends State<PubliciteEntreprise> {
     }
   }
 
+  void _toggleChannelSelection(String channelName) {
+    setState(() {
+      if (selectedChannels.contains(channelName)) {
+        selectedChannels.remove(channelName);
+      } else {
+        selectedChannels.add(channelName);
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Créer une publicité',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
+          'Creer une publicite',
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
-        backgroundColor: const Color(0xff072858),
         centerTitle: true,
-        leading: Padding(
-          padding: const EdgeInsets.all(5.0),
-          child: Image.asset(
-            'assets/logos/icon.jpg',
-            height: 300,
-          ),
+        backgroundColor: const Color(0XFF072858),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.menu, color: Colors.white),
-            onPressed: () {
-              print("Menu icon clicked");
-            },
-          ),
-        ],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const SizedBox(height: 20),
+            const Text(
+              'Choisissez là où vos publicités apparaîtront. Plus de plateformes vous aident à atteindre vos résultats.',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 15,
+                color: Colors.black,
+              ),
+            ),
+            const SizedBox(height: 20),
             const Text(
               'Vos canaux',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xfffcbc1c)),
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 20),
 
-            // Sélection des canaux avec des icônes
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: channels.map((channel) {
+            // Affichage des canaux avec leurs icônes en ligne
+            Wrap(
+              spacing: 20, // Espacement entre les icônes
+              runSpacing: 20, // Espacement entre les lignes
+              children: List.generate(channels.length, (index) {
+                final channelName = channels[index]['name']!;
+                final isSelected = selectedChannels.contains(channelName);
+
                 return GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      selectedChannel = channel['name'];
-                    });
-                  },
-                  child: CircleAvatar(
-                    radius: 30,
-                    backgroundColor: selectedChannel == channel['name'] ? const Color(0xff072858) : Colors.grey[300],
-                    child: channel.containsKey('icon') && channel['icon'] != null
-                        ? Image.asset(
-                            channel['icon']!,
-                            width: 30,
-                            height: 30,
-                          )
-                        : const Icon(Icons.error, color: Colors.red), // Icône d'erreur si aucune icône n'est trouvée
+                  onTap: () => _toggleChannelSelection(channelName),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          border: isSelected
+                              ? Border.all(color: Colors.blue, width: 2)
+                              : null,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Image.asset(
+                          channels[index]['icon']!,
+                          height: 40, // Ajustez la taille de l'icône
+                          width: 40,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Text(channels[index]['name']!),
+                    ],
                   ),
                 );
-              }).toList(),
+              }),
             ),
-            const SizedBox(height: 30),
 
-            // Champ titre
-            TextField(
+            const SizedBox(height: 40),
+
+            TextFormField(
               controller: _titleController,
               decoration: InputDecoration(
                 labelText: 'Titre',
@@ -124,18 +139,13 @@ class _PubliciteState extends State<PubliciteEntreprise> {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.blue),
+                  borderSide: const BorderSide(color: Color(0xff072858)),
                   borderRadius: BorderRadius.circular(10),
                 ),
-                contentPadding: const EdgeInsets.all(10),
               ),
-              style: const TextStyle(fontSize: 16),
-              textAlign: TextAlign.center,
             ),
             const SizedBox(height: 20),
-
-            // Champ description
-            TextField(
+            TextFormField(
               controller: _descriptionController,
               maxLines: 3,
               decoration: InputDecoration(
@@ -148,103 +158,67 @@ class _PubliciteState extends State<PubliciteEntreprise> {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.blue),
+                  borderSide: const BorderSide(color: Color(0xff072858)),
                   borderRadius: BorderRadius.circular(10),
                 ),
-                contentPadding: const EdgeInsets.all(10),
               ),
-              style: const TextStyle(fontSize: 16),
-              textAlign: TextAlign.center,
             ),
             const SizedBox(height: 20),
-
-            // Sélecteur de médias (image ou vidéo) avec une icône et un texte
             GestureDetector(
               onTap: _pickMedia,
               child: Container(
-                width: double.infinity,
-                height: 80,
-                alignment: Alignment.center,
+                padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey),
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(10),
                 ),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Icon(Icons.attach_file, color: Colors.grey, size: 30),
+                    const Icon(Icons.attach_file, color: Colors.grey),
                     const SizedBox(width: 10),
-                    Text(
-                      _mediaFile != null ? _mediaFile!.name : 'Aucun fichier sélectionné',
-                      style: const TextStyle(color: Colors.grey),
+                    Expanded(
+                      child: Text(
+                        _mediaFile != null ? _mediaFile!.name : 'Aucun fichier sélectionné',
+                        style: const TextStyle(color: Colors.grey),
+                      ),
                     ),
+                    if (_mediaFile != null)
+                      IconButton(
+                        icon: const Icon(Icons.clear, color: Colors.red),
+                        onPressed: () {
+                          setState(() {
+                            _mediaFile = null;
+                          });
+                        },
+                      ),
                   ],
                 ),
               ),
             ),
-            const SizedBox(height: 200),
-
-            // Conteneur avec les boutons Annuler et Continuer en bas
-            Container(
-              decoration: BoxDecoration(
-                color: const Color(0xff072858),
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(50),
-                  topRight: Radius.circular(50),
+            const SizedBox(height: 40),
+            SizedBox(
+              width: double.infinity, // Le bouton occupe toute la largeur disponible
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0XFFFCBC1C),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Audience()),
+                  );
+                },
+                child: const Text(
+                  'Suivant',
+                  style: TextStyle(color: Colors.white),
                 ),
               ),
-              height: 100,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  // Bouton Annuler
-                  Container(
-                    width: 140,
-                    decoration: BoxDecoration(
-                      gradient: const LinearGradient(
-                        colors: [Colors.yellow, Colors.orange],
-                        begin: Alignment.centerLeft,
-                        end: Alignment.centerRight,
-                      ),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: const Text(
-                        'Annuler',
-                        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
-                      ),
-                    ),
-                  ),
-                  // Bouton Continuer
-                  Container(
-                    width: 140,
-                    decoration: BoxDecoration(
-                      gradient: const LinearGradient(
-                        colors: [Colors.yellow, Colors.orange],
-                        begin: Alignment.centerLeft,
-                        end: Alignment.centerRight,
-                      ),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => const Audience()),
-                        );
-                      },
-                      child: const Text(
-                        'Continuer',
-                        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
             ),
+            const SizedBox(height: 20),
           ],
         ),
       ),
