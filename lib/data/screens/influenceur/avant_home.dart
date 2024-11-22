@@ -1,6 +1,5 @@
-
 import 'package:flutter/material.dart';
-import 'package:projet_mobile/data/screens/Notifications.dart';
+import 'package:projet_mobile/data/screens/influenceur/Notifications.dart';
 import 'package:projet_mobile/data/screens/influenceur/aide_entreprise.dart';
 import 'package:projet_mobile/data/screens/influenceur/campagne_entreprise.dart';
 import 'package:projet_mobile/data/screens/influenceur/home_entrentreprise.dart';
@@ -65,7 +64,9 @@ class _AvantHomeState extends State<AvantHome> {
           Builder(
             builder: (BuildContext context) {
               return IconButton(
-                icon:  Icon(Icons.menu, size: screenWidth * (isPortrait ? 0.1 : 0.05), color: Colors.white), // Icône de menu
+                icon: Icon(Icons.menu,
+                    size: screenWidth * (isPortrait ? 0.1 : 0.05),
+                    color: Colors.white), // Icône de menu
                 onPressed: () {
                   // Ouvre le drawer
                   Scaffold.of(context).openDrawer();
@@ -91,32 +92,53 @@ class _AvantHomeState extends State<AvantHome> {
                   children: [
                     CircleAvatar(
                       radius: screenWidth * (isPortrait ? 0.15 : 0.04),
-                      backgroundImage: const AssetImage('assets/images/profil.jpg'),
+                      backgroundImage:
+                          const AssetImage('assets/images/profil.jpg'),
                     ),
                     SizedBox(height: screenHeight * (isPortrait ? 0.04 : 0.03)),
-                    Text('Harold DIDAVI', style: TextStyle(color: Colors.white, fontSize: screenWidth * (isPortrait ? 0.04 : 0.02), fontWeight: FontWeight.bold)),
-                    Text('harolddidavi@gmail.com', style: TextStyle(color: Colors.white, fontSize: screenWidth * (isPortrait ? 0.03 : 0.01))),
+                    Text('Harold DIDAVI',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: screenWidth * (isPortrait ? 0.04 : 0.02),
+                            fontWeight: FontWeight.bold)),
+                    Text('harolddidavi@gmail.com',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize:
+                                screenWidth * (isPortrait ? 0.03 : 0.01))),
                   ],
                 ),
               ),
             ),
             Padding(
-                padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05, vertical: screenHeight * 0.03),
+              padding: EdgeInsets.symmetric(
+                  horizontal: screenWidth * 0.05,
+                  vertical: screenHeight * 0.03),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   TextButton(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const Profile()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Profile()));
                     },
                     child: Row(
-                      mainAxisSize: MainAxisSize.min, // Empêche le Row de prendre toute la largeur
+                      mainAxisSize: MainAxisSize.min,
+                      // Empêche le Row de prendre toute la largeur
                       children: [
                         const Icon(Icons.person, color: Colors.amber),
-                        SizedBox(width: screenWidth * (isPortrait ? 0.1 : 0.05)), // Espacement entre l'icône et le texte
+                        SizedBox(
+                            width: screenWidth * (isPortrait ? 0.1 : 0.05)),
+                        // Espacement entre l'icône et le texte
                         Text(
                           'Profil',
-                          style: TextStyle(fontSize: screenWidth * (isPortrait ? 0.04 : 0.02), fontWeight: FontWeight.bold, color: const Color(0xfffcbc1c)),
+                          style: TextStyle(
+                              fontSize:
+                                  screenWidth * (isPortrait ? 0.04 : 0.02),
+                              fontWeight: FontWeight.bold,
+                              color: const Color(0xfffcbc1c)),
                         ),
                       ],
                     ),
@@ -124,16 +146,26 @@ class _AvantHomeState extends State<AvantHome> {
                   SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.05)),
                   TextButton(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const Notifications()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Notifications()));
                     },
                     child: Row(
-                      mainAxisSize: MainAxisSize.min, // Empêche le Row de prendre toute la largeur
+                      mainAxisSize: MainAxisSize.min,
+                      // Empêche le Row de prendre toute la largeur
                       children: [
                         const Icon(Icons.notifications, color: Colors.amber),
-                        SizedBox(width: screenWidth * (isPortrait ? 0.1 : 0.05)), // Espacement entre l'icône et le texte
+                        SizedBox(
+                            width: screenWidth * (isPortrait ? 0.1 : 0.05)),
+                        // Espacement entre l'icône et le texte
                         Text(
                           'Notifications',
-                          style: TextStyle(fontSize: screenWidth * (isPortrait ? 0.04 : 0.02), fontWeight: FontWeight.bold, color: const Color(0xfffcbc1c)),
+                          style: TextStyle(
+                              fontSize:
+                                  screenWidth * (isPortrait ? 0.04 : 0.02),
+                              fontWeight: FontWeight.bold,
+                              color: const Color(0xfffcbc1c)),
                         ),
                       ],
                     ),
@@ -141,16 +173,26 @@ class _AvantHomeState extends State<AvantHome> {
                   SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.05)),
                   TextButton(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const Settings()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Settings()));
                     },
                     child: Row(
-                      mainAxisSize: MainAxisSize.min, // Empêche le Row de prendre toute la largeur
+                      mainAxisSize: MainAxisSize.min,
+                      // Empêche le Row de prendre toute la largeur
                       children: [
                         const Icon(Icons.settings, color: Colors.amber),
-                        SizedBox(width: screenWidth * (isPortrait ? 0.1 : 0.05)), // Espacement entre l'icône et le texte
+                        SizedBox(
+                            width: screenWidth * (isPortrait ? 0.1 : 0.05)),
+                        // Espacement entre l'icône et le texte
                         Text(
                           'Paramètres',
-                          style: TextStyle(fontSize: screenWidth * (isPortrait ? 0.04 : 0.02), fontWeight: FontWeight.bold, color: const Color(0xfffcbc1c)),
+                          style: TextStyle(
+                              fontSize:
+                                  screenWidth * (isPortrait ? 0.04 : 0.02),
+                              fontWeight: FontWeight.bold,
+                              color: const Color(0xfffcbc1c)),
                         ),
                       ],
                     ),
@@ -158,16 +200,26 @@ class _AvantHomeState extends State<AvantHome> {
                   SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.05)),
                   TextButton(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const AideEntreprise()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const AideEntreprise()));
                     },
                     child: Row(
-                      mainAxisSize: MainAxisSize.min, // Empêche le Row de prendre toute la largeur
+                      mainAxisSize: MainAxisSize.min,
+                      // Empêche le Row de prendre toute la largeur
                       children: [
                         const Icon(Icons.help, color: Colors.amber),
-                        SizedBox(width: screenWidth * (isPortrait ? 0.1 : 0.05)), // Espacement entre l'icône et le texte
+                        SizedBox(
+                            width: screenWidth * (isPortrait ? 0.1 : 0.05)),
+                        // Espacement entre l'icône et le texte
                         Text(
                           'Parrainage',
-                          style: TextStyle(fontSize: screenWidth * (isPortrait ? 0.04 : 0.02), fontWeight: FontWeight.bold, color: const Color(0xfffcbc1c)),
+                          style: TextStyle(
+                              fontSize:
+                                  screenWidth * (isPortrait ? 0.04 : 0.02),
+                              fontWeight: FontWeight.bold,
+                              color: const Color(0xfffcbc1c)),
                         ),
                       ],
                     ),
@@ -175,16 +227,26 @@ class _AvantHomeState extends State<AvantHome> {
                   SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.05)),
                   TextButton(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginEntreprise()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const LoginEntreprise()));
                     },
                     child: Row(
-                      mainAxisSize: MainAxisSize.min, // Empêche le Row de prendre toute la largeur
+                      mainAxisSize: MainAxisSize.min,
+                      // Empêche le Row de prendre toute la largeur
                       children: [
                         const Icon(Icons.logout, color: Colors.red),
-                        SizedBox(width: screenWidth * (isPortrait ? 0.1 : 0.05)), // Espacement entre l'icône et le texte
+                        SizedBox(
+                            width: screenWidth * (isPortrait ? 0.1 : 0.05)),
+                        // Espacement entre l'icône et le texte
                         Text(
                           'Déconnexion',
-                          style: TextStyle(fontSize: screenWidth * (isPortrait ? 0.04 : 0.02), fontWeight: FontWeight.bold, color: Colors.red),
+                          style: TextStyle(
+                              fontSize:
+                                  screenWidth * (isPortrait ? 0.04 : 0.02),
+                              fontWeight: FontWeight.bold,
+                              color: Colors.red),
                         ),
                       ],
                     ),
@@ -193,7 +255,10 @@ class _AvantHomeState extends State<AvantHome> {
                   Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Icon(Icons.library_books, color: Color(0xff072858),),
+                      const Icon(
+                        Icons.library_books,
+                        color: Color(0xff072858),
+                      ),
                       SizedBox(width: screenWidth * 0.05),
                       RichText(
                         text: const TextSpan(
@@ -212,7 +277,9 @@ class _AvantHomeState extends State<AvantHome> {
                               style: TextStyle(color: Colors.black),
                             ),
                           ],
-                        ), textAlign: TextAlign.justify,),
+                        ),
+                        textAlign: TextAlign.justify,
+                      ),
                     ],
                   ),
                 ],
@@ -222,8 +289,8 @@ class _AvantHomeState extends State<AvantHome> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor:
-            Color(0xff072858), // Couleur de fond du BottomNavigationBar
+        backgroundColor: Color(0xff072858),
+        // Couleur de fond du BottomNavigationBar
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
