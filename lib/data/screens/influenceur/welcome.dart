@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'avant_home.dart';
 
-class Welcome extends StatefulWidget {
-  const Welcome({super.key});
+class WelcomeEntreprise extends StatefulWidget {
+  const WelcomeEntreprise({super.key});
 
   @override
-  State<Welcome> createState() => _WelcomeState();
+  State<WelcomeEntreprise> createState() => _WelcomeState();
 }
 
+<<<<<<<< HEAD:lib/data/screens/influenceur/welcome.dart
 class _WelcomeState extends State<Welcome> {
 
+========
+class _WelcomeState extends State<WelcomeEntreprise> {
+>>>>>>>> origin/harold:lib/data/screens/Entreprise/welcome_entreprise.dart
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
@@ -42,14 +46,6 @@ class _WelcomeState extends State<Welcome> {
       body: isPortrait ?
         Stack(
           children: [
-            Container(
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/images/bg_welcome.jpg'),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
             Column(
               children: [
                 SizedBox(height: screenHeight * 0.06),
@@ -72,7 +68,6 @@ class _WelcomeState extends State<Welcome> {
                         'd\'une expérience simplifiée pour collaborer\n'
                         'avec les chefs d\'entreprise.',
                     style: TextStyle(
-                      color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
                     textAlign: TextAlign.center,

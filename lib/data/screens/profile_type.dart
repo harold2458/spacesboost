@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:projet_mobile/data/screens/administrateur/admin_login.dart';
 import 'package:projet_mobile/data/screens/influenceur/login_entreprise.dart';
 import 'package:projet_mobile/data/screens/influenceur/influenceur_login.dart';
+=======
+import 'package:projet_mobile/data/screens/Entreprise/login_entreprise.dart';
+>>>>>>> origin/harold
 
 class ProfileType extends StatefulWidget {
   const ProfileType({super.key});
