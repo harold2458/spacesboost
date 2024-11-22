@@ -5,15 +5,17 @@ import 'package:projet_mobile/data/screens/animated.dart';
 
 void main() {
   runApp(
-      /*DevicePreview(
+      DevicePreview(
         enabled: !kReleaseMode,
         builder: (context) => const MyApp(), // Wrap your app
-      ),);*/
-      const MyApp());
+      ),);
+      const MyApp();
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
         locale: DevicePreview.locale(context),
