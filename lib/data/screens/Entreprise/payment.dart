@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projet_mobile/data/screens/avant_home.dart';
-import 'package:projet_mobile/data/screens/campagne_entreprise.dart';
+import 'package:projet_mobile/data/screens/Entreprise/avant_home.dart';
 
 class Payment extends StatefulWidget {
   const Payment({super.key});

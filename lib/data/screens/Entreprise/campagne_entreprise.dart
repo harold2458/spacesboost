@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:projet_mobile/data/screens/annonce_entreprise.dart';
-import 'package:projet_mobile/data/screens/creation_entreprise.dart';
-import 'package:projet_mobile/data/screens/promotion_entreprise.dart';
-import 'package:projet_mobile/data/screens/publicite_entreprise.dart';
+import 'package:projet_mobile/data/screens/Entreprise/annonce_entreprise.dart';
+import 'package:projet_mobile/data/screens/Entreprise/creation_entreprise.dart';
+import 'package:projet_mobile/data/screens/Entreprise/promotion_entreprise.dart';
 
 class CampagneEntreprise extends StatefulWidget {
   const CampagneEntreprise({super.key});

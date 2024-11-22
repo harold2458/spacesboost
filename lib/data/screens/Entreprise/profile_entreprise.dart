@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projet_mobile/data/screens/EditProfile.dart';
+import 'package:projet_mobile/data/screens/Entreprise/EditProfile.dart';
 
 class ProfileEntreprise extends StatefulWidget {
   const ProfileEntreprise({super.key});

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:projet_mobile/data/screens/condtionUtilisations_entreprise.dart';
-import 'package:projet_mobile/data/screens/langues_entreprise.dart';
-import 'package:projet_mobile/data/screens/notification_entreprise.dart';
-import 'package:projet_mobile/data/screens/parrainage_entreprise.dart';
-import 'package:projet_mobile/data/screens/sondage_entreprise.dart';
+import 'package:projet_mobile/data/screens/Entreprise/condtionUtilisations_entreprise.dart';
+import 'package:projet_mobile/data/screens/Entreprise/langues_entreprise.dart';
+import 'package:projet_mobile/data/screens/Entreprise/notification_entreprise.dart';
+import 'package:projet_mobile/data/screens/Entreprise/parrainage_entreprise.dart';
+import 'package:projet_mobile/data/screens/Entreprise/sondage_entreprise.dart';
 
 class SettingsEntreprise extends StatefulWidget {
 
@@ -99,7 +99,7 @@ class _SettingsState extends State<SettingsEntreprise> {
                       const Icon(Icons.notifications, color: Color(0xfffcbc1c)),
                       SizedBox(width: screenWidth * (isPortrait ? 0.1 : 0.05),),
                       Text(
-                        '',
+                        'Historiques des retraits',
                         style: TextStyle(
                             fontSize: screenWidth * (isPortrait ? 0.04 : 0.03),
                             fontWeight: FontWeight.bold,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projet_mobile/data/screens/contact_entreprise.dart';
+import 'package:projet_mobile/data/screens/Entreprise/contact_entreprise.dart';
 
 class AideEntreprise extends StatefulWidget {
   const AideEntreprise({super.key});

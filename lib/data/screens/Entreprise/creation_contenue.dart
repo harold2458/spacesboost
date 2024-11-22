@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projet_mobile/data/screens/validator2.dart';
+import 'package:projet_mobile/data/screens/Entreprise/validator2.dart';
 
 class CreationContenue extends StatefulWidget {
   const CreationContenue({super.key});

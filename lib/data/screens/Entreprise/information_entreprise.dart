@@ -1,35 +1,41 @@
 import 'package:flutter/material.dart';
-import 'package:projet_mobile/data/screens/payment.dart';
+import 'package:projet_mobile/data/screens/Entreprise/payment.dart';
 
-class ValidationCommande extends StatefulWidget {
-  const ValidationCommande({super.key});
+class Information extends StatefulWidget {
+  const Information({super.key});
 
   @override
-  State<ValidationCommande> createState() => _ValidationCommandeState();
+  State<Information> createState() => _InformationState();
 }
 
-class _ValidationCommandeState extends State<ValidationCommande> {
+class _InformationState extends State<Information> {
   @override
   Widget build(BuildContext context) {
-    // Obtenir les dimensions de l'écran dans la méthode build
+    // Getting the screen size for dynamic sizing
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
+
+    // Checking whether the device is in portrait or landscape mode
     bool isPortrait = screenHeight > screenWidth;
 
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Validation',
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+          'Information',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
         ),
+        backgroundColor: const Color(0xff072858),
         centerTitle: true,
-        backgroundColor: const Color(0XFF072858),
         leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
           icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
+        elevation: 0,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -53,8 +59,8 @@ class _ValidationCommandeState extends State<ValidationCommande> {
             children: [
               // Reusable function to create a rich text entry
               buildInformationText(
-                title: 'Nom de l\'entreprise : ',
-                content: 'ISMAT',
+                title: 'Titre : ',
+                content: 'Kimo',
                 screenWidth: screenWidth,
                 isPortrait: isPortrait,
               ),
@@ -72,32 +78,62 @@ class _ValidationCommandeState extends State<ValidationCommande> {
                 imagePath: 'assets/images/couverture.jpg',
               ),
               buildInformationText(
-                title: 'Nom du produit : ',
-                content: 'Spring',
+                title: 'Localisation par Région : ',
+                content: 'KPOTA',
                 screenWidth: screenWidth,
                 isPortrait: isPortrait,
               ),
               buildInformationText(
-                title: 'Avantage du Produit  : ',
-                content: '',
+                title: 'Localisation par Adresse : ',
+                content: 'Abomey-calavi',
                 screenWidth: screenWidth,
                 isPortrait: isPortrait,
               ),
               buildInformationText(
-                title: 'Nombre de publication : ',
-                content: '20',
+                title: 'Domaine d\'intervention : ',
+                content: 'Cuisine',
                 screenWidth: screenWidth,
                 isPortrait: isPortrait,
               ),
               buildInformationText(
-                title: 'Duree du contrat  : ',
-                content: '2 semaine',
+                title: 'Age : ',
+                content: '18 - 44',
                 screenWidth: screenWidth,
                 isPortrait: isPortrait,
               ),
               buildInformationText(
-                title: 'TVA  : ',
-                content: '18%',
+                title: 'Genre : ',
+                content: 'Tout',
+                screenWidth: screenWidth,
+                isPortrait: isPortrait,
+              ),
+              buildInformationText(
+                title: 'Définition de l\'audience : ',
+                content: 'Moyenne',
+                screenWidth: screenWidth,
+                isPortrait: isPortrait,
+              ),
+              buildInformationText(
+                title: 'Date de début : ',
+                content: '11/11/2024',
+                screenWidth: screenWidth,
+                isPortrait: isPortrait,
+              ),
+              buildInformationText(
+                title: 'Heure de début : ',
+                content: '08:00',
+                screenWidth: screenWidth,
+                isPortrait: isPortrait,
+              ),
+              buildInformationText(
+                title: 'Durée : ',
+                content: '1 semaine',
+                screenWidth: screenWidth,
+                isPortrait: isPortrait,
+              ),
+              buildInformationText(
+                title: 'Date de fin : ',
+                content: '17/11/2024',
                 screenWidth: screenWidth,
                 isPortrait: isPortrait,
               ),

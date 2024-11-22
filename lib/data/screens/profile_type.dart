@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projet_mobile/data/screens/login_entreprise.dart';
+import 'package:projet_mobile/data/screens/Entreprise/login_entreprise.dart';
 
 class ProfileType extends StatefulWidget {
   const ProfileType({super.key});

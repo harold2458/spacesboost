@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:projet_mobile/data/screens/aide_entreprise.dart';
-import 'package:projet_mobile/data/screens/campagne_entreprise.dart';
-import 'package:projet_mobile/data/screens/home_entrentreprise.dart';
-import 'package:projet_mobile/data/screens/login_entreprise.dart';
-import 'package:projet_mobile/data/screens/notification_entreprise.dart';
-import 'package:projet_mobile/data/screens/preuve_entreprise.dart';
-import 'package:projet_mobile/data/screens/profile_entreprise.dart';
-import 'package:projet_mobile/data/screens/settings_entreprise.dart';
-import 'package:projet_mobile/data/screens/statistique_entreprise.dart';
-import 'package:projet_mobile/data/screens/taxi_boost.dart';
+import 'package:projet_mobile/data/screens/Entreprise/aide_entreprise.dart';
+import 'package:projet_mobile/data/screens/Entreprise/campagne_entreprise.dart';
+import 'package:projet_mobile/data/screens/Entreprise/home_entrentreprise.dart';
+import 'package:projet_mobile/data/screens/Entreprise/login_entreprise.dart';
+import 'package:projet_mobile/data/screens/Entreprise/notification_entreprise.dart';
+import 'package:projet_mobile/data/screens/Entreprise/preuve_entreprise.dart';
+import 'package:projet_mobile/data/screens/Entreprise/profile_entreprise.dart';
+import 'package:projet_mobile/data/screens/Entreprise/settings_entreprise.dart';
+import 'package:projet_mobile/data/screens/Entreprise/statistique_entreprise.dart';
+import 'package:projet_mobile/data/screens/Entreprise/taxi_boost.dart';
 
 class AvantHome extends StatefulWidget {
   const AvantHome({super.key});

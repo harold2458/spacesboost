@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projet_mobile/data/screens/payment.dart';
+import 'package:projet_mobile/data/screens/Entreprise/payment.dart';
 
 class Validator2 extends StatefulWidget {
   const Validator2({super.key});

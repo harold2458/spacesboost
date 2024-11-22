@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:projet_mobile/data/screens/login_entreprise.dart';
-import 'package:projet_mobile/data/screens/welcome_entreprise.dart';
+import 'package:projet_mobile/data/screens/Entreprise/login_entreprise.dart';
+import 'package:projet_mobile/data/screens/Entreprise/welcome_entreprise.dart';
 
 class RegisterEntreprise extends StatefulWidget {
   const RegisterEntreprise({super.key});

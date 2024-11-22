@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
-import 'package:projet_mobile/data/screens/audience.dart';
+import 'package:projet_mobile/data/screens/Entreprise/audience.dart';
+
 
 class PubliciteEntreprise extends StatefulWidget {
   const PubliciteEntreprise({super.key});

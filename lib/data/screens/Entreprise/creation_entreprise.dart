@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:projet_mobile/data/screens/creation_contenue.dart';
-import 'package:projet_mobile/data/screens/profileScreen.dart';
+import 'package:projet_mobile/data/screens/Entreprise/creation_contenue.dart';
+import 'package:projet_mobile/data/screens/Entreprise/profileScreen.dart';
 
 class CreationEntreprise extends StatefulWidget {
    final bool isInfluencerChecked;

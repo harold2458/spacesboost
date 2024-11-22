@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:projet_mobile/data/screens/avant_home.dart';
-import 'package:projet_mobile/data/screens/welcome_entreprise.dart';
-import 'package:projet_mobile/data/screens/register_entreprise.dart';
+import 'package:projet_mobile/data/screens/Entreprise/avant_home.dart';
+import 'package:projet_mobile/data/screens/Entreprise/register_entreprise.dart';
 
 class LoginEntreprise extends StatefulWidget {
   const LoginEntreprise({super.key});

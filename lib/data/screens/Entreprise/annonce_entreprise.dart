@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:projet_mobile/data/screens/Entreprise/publicite_entreprise.dart';
 
-import 'package:projet_mobile/data/screens/publicite_entreprise.dart';
 
 class AnnonceEntreprise extends StatefulWidget {
   const AnnonceEntreprise({super.key});

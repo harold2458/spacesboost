@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:projet_mobile/data/screens/profileScreen.dart';
-import 'package:projet_mobile/data/screens/redaction_mission.dart';
+import 'package:projet_mobile/data/screens/Entreprise/profileScreen.dart';
+import 'package:projet_mobile/data/screens/Entreprise/redaction_mission.dart';
 
 class PromotionEntreprise extends StatefulWidget {
   final bool isInfluencerChecked;

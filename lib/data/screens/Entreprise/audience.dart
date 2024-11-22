@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:projet_mobile/data/screens/calendrier_entreprise.dart';
+import 'package:projet_mobile/data/screens/Entreprise/calendrier_entreprise.dart';
 
 class Audience extends StatefulWidget {
   const Audience({Key? key}) : super(key: key);
