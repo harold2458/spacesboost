@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projet_mobile/data/screens/Entreprise/details.dart';
+import 'package:projet_mobile/data/screens/Entreprise/liste_notification.dart';
 
 class PreuveEnCours extends StatefulWidget {
   const PreuveEnCours({super.key});
@@ -13,22 +14,16 @@ class _PreuveEnCoursState extends State<PreuveEnCours> {
     {
       'titre': 'Ordinateur',
       'description': 'Un ordinateur performant pour vos besoins quotidiens.',
-      'lien': 'https://example.com/ordinateur',
-      'fichier': 'document_ordinateur.pdf',
       'statut': 'En cours',
     },
     {
       'titre': 'Tablette',
       'description': 'Une tablette légère et performante pour le travail.',
-      'lien': 'https://example.com/tablette',
-      'fichier': 'document_tablette.pdf',
       'statut': 'En cours',
     },
     {
       'titre': 'Iphone 18',
       'description': 'Un iPhone performant pour le travail.',
-      'lien': 'https://example.com/iphone',
-      'fichier': 'document_iphone18.pdf',
       'statut': 'En cours',
     },
   ];
@@ -45,14 +40,12 @@ class _PreuveEnCoursState extends State<PreuveEnCours> {
             child: AnnonceCard(
               titre: annonces[index]['titre'],
               description: annonces[index]['description'],
-              lien: annonces[index]['lien'],
-              fichier: annonces[index]['fichier'],
               statut: annonces[index]['statut'],
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => Details(annonce: annonces[index]),
+                    builder: (context) => ListeNotification(annonce: annonces[index]),
                   ),
                 );
               },
@@ -67,8 +60,6 @@ class _PreuveEnCoursState extends State<PreuveEnCours> {
 class AnnonceCard extends StatelessWidget {
   final String titre;
   final String description;
-  final String lien;
-  final String fichier;
   final String statut;
   final VoidCallback onTap;
 
@@ -76,8 +67,6 @@ class AnnonceCard extends StatelessWidget {
     Key? key,
     required this.titre,
     required this.description,
-    required this.lien,
-    required this.fichier,
     required this.statut,
     required this.onTap,
   }) : super(key: key);
@@ -87,6 +76,7 @@ class AnnonceCard extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Card(
+        color: Colors.white,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
         ),
@@ -134,34 +124,6 @@ class AnnonceCard extends StatelessWidget {
                 style: const TextStyle(fontSize: 14, color: Colors.black),
               ),
               const SizedBox(height: 8),
-              TextButton(
-                onPressed: () {
-                  // Ouvrir le lien
-                },
-                child: Text(
-                  lien,
-                  style: const TextStyle(
-                    color: Color(0xff072858),
-                    decoration: TextDecoration.underline,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 8),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      const Icon(Icons.file_present, color: Colors.grey),
-                      const SizedBox(width: 8),
-                      Text(
-                        fichier,
-                        style: const TextStyle(fontSize: 14),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
             ],
           ),
         ),

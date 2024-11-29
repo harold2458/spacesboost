@@ -14,7 +14,6 @@ class _ParrainageState extends State<ParrainageEntreprise> {
 
   void copierCode(BuildContext context) {
     Clipboard.setData(ClipboardData(text: parrainageCode)).then((_) {
-      // Afficher un toast pour confirmer la copie
       Fluttertoast.showToast(
         msg: "Code copié : $parrainageCode",
         toastLength: Toast.LENGTH_SHORT,
@@ -31,11 +30,9 @@ class _ParrainageState extends State<ParrainageEntreprise> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    // Préchargement des images avec un contexte valide
     _preloadImages();
   }
 
-  // Fonction de préchargement des images
   Future<void> _preloadImages() async {
     await Future.wait([
       precacheImage(const AssetImage('assets/images/parrainage.png'), context),
@@ -134,14 +131,13 @@ class _ParrainageState extends State<ParrainageEntreprise> {
               child: ElevatedButton(
                 onPressed: () => copierCode(context),
                 style: ButtonStyle(
-                  backgroundColor:
-                      const WidgetStatePropertyAll(Color(0XFFFCBC1C)),
+                  backgroundColor: WidgetStatePropertyAll(const Color(0XFFFCBC1C)),
                   shape: WidgetStatePropertyAll(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-                  elevation: const WidgetStatePropertyAll(3),
+                  elevation: WidgetStatePropertyAll(3),
                 ),
                 child: Text(
                   "Copier le code",

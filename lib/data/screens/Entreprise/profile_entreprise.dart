@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projet_mobile/data/screens/Entreprise/EditProfile.dart';
+import 'package:projet_mobile/data/screens/Entreprise/performance_entreprise.dart';
 
 class ProfileEntreprise extends StatefulWidget {
   const ProfileEntreprise({super.key});
@@ -382,6 +383,37 @@ class _ProfilState extends State<ProfileEntreprise> {
                 ],
               ),
               SizedBox(height: screenHeight * (isPortrait ? 0 : 0.1),),
+               SizedBox(
+                width: screenWidth * (isPortrait ? 0.9 : 0.8),
+                height: screenHeight * (isPortrait ? 0.07 : 0.2),
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const PerformanceEntreprise()),
+                    );
+                  },
+                  style: ButtonStyle(
+                    backgroundColor: const WidgetStatePropertyAll(Color(0xff072858)),
+                    shape: WidgetStatePropertyAll(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10), // Bordures arrondies
+                      ),
+                    ),
+                    elevation: const WidgetStatePropertyAll(3),
+                  ),
+                  child: Text(
+                    'Voir les performances',
+                    style: TextStyle(
+                      fontSize: screenWidth * (isPortrait ? 0.04 : 0.03),
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+
+               SizedBox(height: screenHeight * (isPortrait ? 0 : 0.1),),
             ],
           ),
         )

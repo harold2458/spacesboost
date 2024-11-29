@@ -1,9 +1,12 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
-    <application
-        android:label="spacesboost"
-        android:name="${applicationName}"
-        android:icon="@drawable/icon">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.spacesboost"> <!-- Remplacez 'com.example.spacesboost' par votre vrai package -->
 
+    <application
+        android:label="SpacesBoost"
+        android:icon="@drawable/icon"
+        android:theme="@style/LaunchTheme">
+
+        <!-- Définition de l'activité principale -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -12,20 +15,23 @@
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:hardwareAccelerated="true"
             android:windowSoftInputMode="adjustResize">
+
+            <!-- Thème Flutter pour l'activité -->
             <meta-data
                 android:name="io.flutter.embedding.android.NormalTheme"
-                android:resource="@style/NormalTheme"
-                />
+                android:resource="@style/NormalTheme" />
+
+            <!-- Intent-filter pour définir le point d'entrée -->
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <!-- Clé API Google Maps ajoutée ici -->
+        <!-- Clé API Google Maps -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value= "AIzaSyBbTebj7DVC2yJu0hDJPfqP63x9uz9GQ-8" />
+            android:value="AIzaSyBbTebj7DVC2yJu0hDJPfqP63x9uz9GQ-8" />
 
         <!-- Flutter auto-generated plugin -->
         <meta-data
@@ -33,10 +39,12 @@
             android:value="2" />
     </application>
 
+    <!-- Permissions ou intents utilisés par l'application -->
     <queries>
         <intent>
-            <action android:name="android.intent.action.PROCESS_TEXT"/>
-            <data android:mimeType="text/plain"/>
+            <action android:name="android.intent.action.PROCESS_TEXT" />
+            <data android:mimeType="text/plain" />
         </intent>
     </queries>
+
 </manifest>

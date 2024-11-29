@@ -189,14 +189,20 @@ class _EditprofileState extends State<Editprofile> {
                     ),
                   ),
                   SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.1)),
-                  SizedBox(
+                   SizedBox(
                     width: screenWidth * (isPortrait ? 0.9 : 0.8),
-                    child: DropdownButtonFormField<String>(
+                    child: TextFormField(
+                      keyboardType: TextInputType.text,
+                      controller: _lastNameController,
                       decoration: InputDecoration(
-                        labelText: 'Type d\'influenceur',
-                        hintText: '*Sélectionner le type',
+                        labelText: 'Nom de l\'entreprise',
+                        hintText: '*Entrer le nom de l\'entreprise',
                         labelStyle: const TextStyle(color: Colors.grey),
                         hintStyle: const TextStyle(color: Colors.grey),
+                        prefixIcon: const Icon(
+                          Icons.person,
+                          color: Color(0xff072858),
+                        ),
                         enabledBorder: OutlineInputBorder(
                           borderSide:
                           const BorderSide(color: Color(0xff072858)),
@@ -208,31 +214,28 @@ class _EditprofileState extends State<Editprofile> {
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                       ),
-                      value: selectedType,
-                      items: influencerTypes.map((type) {
-                        return DropdownMenuItem(
-                          value: type,
-                          child: Text(type),
-                        );
-                      }).toList(),
-                      onChanged: (value) {
-                        setState(() {
-                          selectedType = value;
-                        });
+                      validator: (String? value) {
+                        return (value == null || value.isEmpty)
+                            ? 'Ce champ est obligatoire'
+                            : null;
                       },
-                      validator: (value) => value == null ? 'Veuillez sélectionner un type' : null,
                     ),
                   ),
                   SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.1)),
-                  SizedBox(
+                   SizedBox(
                     width: screenWidth * (isPortrait ? 0.9 : 0.8),
-                    //height: screenHeight * (isPortrait ? 0.05 : 0.1),
-                    child: DropdownButtonFormField<String>(
+                    child: TextFormField(
+                      keyboardType: TextInputType.text,
+                      controller: _lastNameController,
                       decoration: InputDecoration(
-                        labelText: 'Domaine d\'influence',
-                        hintText: '*Sélectionner le domaine',
+                        labelText: 'Votre rôle',
+                        hintText: '*Entrez votre rôle',
                         labelStyle: const TextStyle(color: Colors.grey),
                         hintStyle: const TextStyle(color: Colors.grey),
+                        prefixIcon: const Icon(
+                          Icons.person,
+                          color: Color(0xff072858),
+                        ),
                         enabledBorder: OutlineInputBorder(
                           borderSide:
                           const BorderSide(color: Color(0xff072858)),
@@ -244,19 +247,11 @@ class _EditprofileState extends State<Editprofile> {
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                       ),
-                      value: selectedDomain,
-                      items: influencerDomains.map((domain) {
-                        return DropdownMenuItem(
-                          value: domain,
-                          child: Text(domain),
-                        );
-                      }).toList(),
-                      onChanged: (value) {
-                        setState(() {
-                          selectedDomain = value;
-                        });
+                      validator: (String? value) {
+                        return (value == null || value.isEmpty)
+                            ? 'Ce champ est obligatoire'
+                            : null;
                       },
-                      validator: (value) => value == null ? 'Veuillez sélectionner un domaine' : null,
                     ),
                   ),
                   SizedBox(height: screenHeight * (isPortrait ? 0.03 : 0.1)),
@@ -350,7 +345,7 @@ class _EditprofileState extends State<Editprofile> {
                     }
                   },
                 style: ButtonStyle(
-                  backgroundColor: const WidgetStatePropertyAll(Color(0xfffcbc1c)),
+                  backgroundColor: const WidgetStatePropertyAll(Color(0XFF072858)),
                   shape: WidgetStatePropertyAll(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10), // Bordures arrondies

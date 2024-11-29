@@ -1,13 +1,12 @@
 buildscript {
-    ext.kotlin_version = '1.9.20' // Correction de la syntaxe
+    ext.kotlin_version = '1.8.22' // Assure une version compatible de Kotlin
     repositories {
         google()
         mavenCentral()
     }
 
     dependencies {
-        // Utilisation d'une seule version compatible du plugin Gradle
-        classpath 'com.android.tools.build:gradle:7.3.0'
+        classpath 'com.android.tools.build:gradle:8.0.2' // Compatible avec Kotlin 1.8.x
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -19,10 +18,19 @@ allprojects {
     }
 }
 
+configurations.all {
+    resolutionStrategy.eachDependency { details ->
+        if (details.requested.group == 'org.jetbrains.kotlin') {
+            details.useVersion "$kotlin_version"
+        }
+    }
+}
+
 rootProject.buildDir = '../build'
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
 }
+
 subprojects {
     project.evaluationDependsOn(':app')
 }

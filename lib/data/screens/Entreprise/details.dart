@@ -71,9 +71,8 @@ class Details extends StatelessWidget {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    // Navigue vers l'écran TabBarView et active l'onglet "Rejeter"
-                    Navigator.pop(context); // Retourne à l'écran précédent
-                    DefaultTabController.of(context)?.animateTo(1); // Onglet "Rejeter"
+                    // Affiche une boîte de dialogue d'alerte pour le rejet
+                    showRejectionDialog(context);
                   },
                   child: const Text('Rejeter', style: TextStyle(color: Colors.white)),
                   style: ElevatedButton.styleFrom(
@@ -86,9 +85,8 @@ class Details extends StatelessWidget {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    // Navigue vers l'écran TabBarView et active l'onglet "Valider"
-                    Navigator.pop(context); // Retourne à l'écran précédent
-                    DefaultTabController.of(context)?.animateTo(2); // Onglet "Valider"
+                    // Affiche une boîte de dialogue d'alerte pour la validation
+                    showValidationDialog(context);
                   },
                   child: const Text(
                     'Valider',
@@ -108,6 +106,134 @@ class Details extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  void showRejectionDialog(BuildContext context) {
+    TextEditingController commentaireController = TextEditingController();
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Raison du rejet'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text(
+                'Veuillez fournir une raison pour le rejet :',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 10),
+              TextField(
+                controller: commentaireController,
+                maxLines: 3,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Écrire un commentaire...',
+                ),
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton.icon(
+                onPressed: () {
+                  // Logique pour commencer une note vocale
+                  // Vous pouvez ajouter l'enregistrement vocal ici
+                },
+                icon: const Icon(Icons.mic, color: Colors.white),
+                label: const Text(
+                  'Enregistrer une note vocale',
+                  style: TextStyle(color: Colors.white),
+                ),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.orange,
+                ),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Ferme la boîte de dialogue
+              },
+              child: const Text('Annuler', style: TextStyle(color: Colors.grey)),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                // Traitez le commentaire ici
+                print("Commentaire : ${commentaireController.text}");
+                Navigator.of(context).pop(); // Ferme la boîte de dialogue
+              },
+              child: const Text('Valider', style: TextStyle(color: Colors.white)),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.red,
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void showValidationDialog(BuildContext context) {
+    TextEditingController commentaireController = TextEditingController();
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Raison de la validation'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text(
+                'Veuillez fournir une raison pour la validation :',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 10),
+              TextField(
+                controller: commentaireController,
+                maxLines: 3,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Écrire un commentaire...',
+                ),
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton.icon(
+                onPressed: () {
+                  // Logique pour commencer une note vocale
+                  // Vous pouvez ajouter l'enregistrement vocal ici
+                },
+                icon: const Icon(Icons.mic, color: Colors.white),
+                label: const Text(
+                  'Enregistrer une note vocale',
+                  style: TextStyle(color: Colors.white),
+                ),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.orange,
+                ),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Ferme la boîte de dialogue
+              },
+              child: const Text('Annuler', style: TextStyle(color: Colors.grey)),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                // Traitez le commentaire ici
+                print("Commentaire : ${commentaireController.text}");
+                Navigator.of(context).pop(); // Ferme la boîte de dialogue
+              },
+              child: const Text('Valider', style: TextStyle(color: Colors.white)),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.green,
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 
